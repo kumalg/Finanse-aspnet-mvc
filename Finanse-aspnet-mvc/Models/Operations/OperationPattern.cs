@@ -1,11 +1,9 @@
-﻿
-
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Finanse_aspnet_mvc.Models.Categories;
 
 namespace Finanse_aspnet_mvc.Models.Operations {
- ///   [Table("Patterns")]
+    [Table("Patterns")]
     public class OperationPattern {
         public int Id { get; set; }
         [StringLength(64)]
@@ -20,5 +18,6 @@ namespace Finanse_aspnet_mvc.Models.Operations {
 
         public decimal SignedCost => IsExpense ? -Cost : Cost;
         public virtual CategoryBase Category { get; set; }
+        public string TitleOrCategoryName => string.IsNullOrWhiteSpace(Title) ? Category.Name : Title;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Finanse_aspnet_mvc.Models;
 using Finanse_aspnet_mvc.Models.Categories;
@@ -10,7 +11,7 @@ namespace Finanse_aspnet_mvc.Controllers
         private readonly StackMoneyDb _db = new StackMoneyDb();
         // GET: Categories
         public ActionResult Index() {
-            IEnumerable<Category> model = _db.OnlyCategories;
+            IEnumerable<Category> model = _db.Categories;
             return View(model);
         }
 
@@ -34,7 +35,7 @@ namespace Finanse_aspnet_mvc.Controllers
                 if (category.ParentCategoryId == 0)
                     newCategory = category.AsCategory();
 
-                _db.Categories.Add(newCategory);
+                _db.CategoriesAndSubCategories.Add(newCategory);
                 _db.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -68,18 +69,19 @@ namespace Finanse_aspnet_mvc.Controllers
         }
 
         // GET: Categories/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
+        public ActionResult Delete(int id) {
+            var model = _db.CategoriesAndSubCategories.Single(category => category.Id == id);
+            return View(model);
         }
 
         // POST: Categories/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            try {
+                var categoryToRemove = _db.CategoriesAndSubCategories.Single(category => category.Id == id);
+                _db.CategoriesAndSubCategories.Remove(categoryToRemove);
+                _db.SaveChanges();
 
                 return RedirectToAction("Index");
             }

@@ -163,7 +163,14 @@
     <Compile Include="Migrations\201705191024029_rr.Designer.cs">
       <DependentUpon>201705191024029_rr.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705230952330_yco.cs" />
+    <Compile Include="Migrations\201705230952330_yco.Designer.cs">
+      <DependentUpon>201705230952330_yco.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Accounts\Account.cs" />
+    <Compile Include="Models\Accounts\AccountBase.cs" />
+    <Compile Include="Models\Accounts\SubAccount.cs" />
     <Compile Include="Models\Categories\Category.cs" />
     <Compile Include="Models\Categories\CategoryBase.cs" />
     <Compile Include="Models\Categories\SubCategory.cs" />
@@ -203,7 +210,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -214,10 +223,12 @@
     <Content Include="Views\Operations\Create.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\_Category.cshtml" />
+    <Content Include="Views\Categories\_SubCategory.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Accounts\" />
     <Folder Include="Views\Accounts\" />
     <Folder Include="Views\Patterns\" />
   </ItemGroup>
@@ -242,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705191024029_rr.resx">
       <DependentUpon>201705191024029_rr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705230952330_yco.resx">
+      <DependentUpon>201705230952330_yco.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

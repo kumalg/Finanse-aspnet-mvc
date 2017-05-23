@@ -1,93 +1,17 @@
-﻿@using Finanse_aspnet_mvc.Models.Categories
-@model IEnumerable<Finanse_aspnet_mvc.Models.Categories.Category>
+﻿@model IEnumerable<Finanse_aspnet_mvc.Models.Categories.Category>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Kategorie";
 }
 
-<h2>Index</h2>
+<h2>Kategorie</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ColorKey)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IconKey)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VisibleInIncomes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VisibleInExpenses)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CantDelete)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ColorKey)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IconKey)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VisibleInIncomes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VisibleInExpenses)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CantDelete)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-        
-        @foreach (var subcategory in item.SubCategories) {
-            <tr>
-                <td>
-                   -> @Html.DisplayFor(modelItem => subcategory.Name)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => subcategory.ColorKey)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => subcategory.IconKey)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => subcategory.VisibleInIncomes)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => subcategory.VisibleInExpenses)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => subcategory.CantDelete)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                    @Html.ActionLink("Details", "Details", new {id = item.Id}) |
-                    @Html.ActionLink("Delete", "Delete", new {id = item.Id})
-                </td>
-            </tr>
-        }
-    </tr>
-}
-
-</table>
+<ol>
+    @foreach (var item in Model) {
+        @Html.Partial("_Category", item)
+    }
+</ol>

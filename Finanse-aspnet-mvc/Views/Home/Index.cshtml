@@ -5,10 +5,10 @@
 }
 
 @foreach (var item in Model) {
-    <h1>@item.Title, @(item.SignedCost.ToString("C")), @item.Category.Name</h1>
+    <h4>@item.TitleOrCategoryName, @(item.SignedCost.ToString("C"))</h4> 
+    <p>@item.Category.Name</p>
+    <hr/>
 }
-
-@Html.ActionLink("Yco","About","Home")
 
 @*<div class="jumbotron">
     <h1>ASP.NET</h1>

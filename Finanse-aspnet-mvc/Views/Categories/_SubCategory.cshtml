@@ -1,0 +1,11 @@
+﻿@model Finanse_aspnet_mvc.Models.Categories.SubCategory
+<li>
+    @using (Html.BeginForm("Delete", "Categories", new { id = Model.Id }))
+    {
+        <div>
+            @Html.DisplayFor(modelItem => Model.Name) | 
+            @Html.ActionLink("Edit", "Edit", new {id = Model.Id}) |
+            <input class="btn btn-default" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete record with ID = @Model.Id');" /> 
+        </div>
+    }
+</li>
