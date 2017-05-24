@@ -4,6 +4,7 @@ using Finanse_aspnet_mvc.Models;
 using Finanse_aspnet_mvc.Models.Operations;
 
 namespace Finanse_aspnet_mvc.Controllers {
+    [Authorize]
     public class OperationsController : Controller {
         StackMoneyDb _db = new StackMoneyDb();
         // GET: NewOperation

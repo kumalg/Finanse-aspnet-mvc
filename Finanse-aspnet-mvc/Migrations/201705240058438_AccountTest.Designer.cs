@@ -7,18 +7,18 @@ namespace Finanse_aspnet_mvc.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class rr : IMigrationMetadata
+    public sealed partial class AccountTest : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(rr));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AccountTest));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705191024029_rr"; }
+            get { return "201705240058438_AccountTest"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

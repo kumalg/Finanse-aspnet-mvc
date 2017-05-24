@@ -4,10 +4,9 @@ using System.Web.Mvc;
 using Finanse_aspnet_mvc.Models;
 using Finanse_aspnet_mvc.Models.Categories;
 
-namespace Finanse_aspnet_mvc.Controllers
-{
-    public class CategoriesController : Controller
-    {
+namespace Finanse_aspnet_mvc.Controllers {
+    [Authorize]
+    public class CategoriesController : Controller {
         private readonly StackMoneyDb _db = new StackMoneyDb();
         // GET: Categories
         public ActionResult Index() {
@@ -21,15 +20,13 @@ namespace Finanse_aspnet_mvc.Controllers
         }
 
         // GET: Categories/Create
-        public ActionResult Create()
-        {
+        public ActionResult Create() {
             return View();
         }
 
         // POST: Categories/Create
         [HttpPost]
-        public ActionResult Create(SubCategory category)
-        {
+        public ActionResult Create(SubCategory category) {
             try {
                 CategoryBase newCategory = category;
                 if (category.ParentCategoryId == 0)
@@ -40,30 +37,25 @@ namespace Finanse_aspnet_mvc.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
+            catch {
                 return View();
             }
         }
 
         // GET: Categories/Edit/5
-        public ActionResult Edit(int id)
-        {
+        public ActionResult Edit(int id) {
             return View();
         }
 
         // POST: Categories/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
+        public ActionResult Edit(int id, FormCollection collection) {
+            try {
                 // TODO: Add update logic here
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
+            catch {
                 return View();
             }
         }
@@ -76,8 +68,7 @@ namespace Finanse_aspnet_mvc.Controllers
 
         // POST: Categories/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
+        public ActionResult Delete(int id, FormCollection collection) {
             try {
                 var categoryToRemove = _db.CategoriesAndSubCategories.Single(category => category.Id == id);
                 _db.CategoriesAndSubCategories.Remove(categoryToRemove);
@@ -85,8 +76,7 @@ namespace Finanse_aspnet_mvc.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
+            catch {
                 return View();
             }
         }
