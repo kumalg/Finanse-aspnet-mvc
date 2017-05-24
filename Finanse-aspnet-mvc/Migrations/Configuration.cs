@@ -1,12 +1,25 @@
-namespace Finanse_aspnet_mvc.Migrations {
+using Finanse_aspnet_mvc.Models.Categories;
+
+namespace Finanse_aspnet_mvc.Migrations
+{
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Finanse_aspnet_mvc.Models.StackMoneyDb> {
-        public Configuration() {
+    internal sealed class Configuration : DbMigrationsConfiguration<Finanse_aspnet_mvc.Models.StackMoneyDb>
+    {
+        public Configuration()
+        {
             AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Finanse_aspnet_mvc.Models.StackMoneyDb context) {
+            var defaultCategory = new Category {
+                Id = 1,
+                CantDelete = true,
+                Name = "Inne",
+                ColorKey = "1",
+                IconKey = "1"
+            };
+            context.Categories.AddOrUpdate(h => h.Id, defaultCategory);
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

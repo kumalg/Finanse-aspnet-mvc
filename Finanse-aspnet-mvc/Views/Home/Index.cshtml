@@ -5,9 +5,13 @@
 }
 
 @foreach (var item in Model) {
-    <h4>@item.TitleOrCategoryName, @(item.SignedCost.ToString("C"))</h4> 
-    <p>@item.Category.Name</p>
-    <hr/>
+    using (Html.BeginForm("Delete", "Operations", new {id = item.Id})) {
+        <h4>@item.TitleOrCategoryName, @(item.SignedCost.ToString("C"))</h4>
+        <p>@item.Category.Name</p>
+        @Html.ActionLink("Edit", "Edit", new {id = item.Id})
+        <input class="btn btn-default" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete @item.TitleOrCategoryName ?');"/>   
+        <hr/>
+    }
 }
 
 @*<div class="jumbotron">

@@ -1,13 +1,15 @@
 ﻿using System.Web.Mvc;
+using Finanse_aspnet_mvc.Models;
 
 namespace Finanse_aspnet_mvc.Controllers
 {
     public class AccountsController : Controller
     {
+        StackMoneyDb _db = new StackMoneyDb();
         // GET: Accounts
-        public ActionResult Index()
-        {
-            return View();
+        public ActionResult Index() {
+            var model = _db.Accounts;
+            return View(model);
         }
 
         // GET: Accounts/Details/5

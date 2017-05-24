@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using Finanse_aspnet_mvc.Models.Accounts;
 using Finanse_aspnet_mvc.Models.Categories;
 using Finanse_aspnet_mvc.Models.Operations;
@@ -25,7 +26,7 @@ namespace Finanse_aspnet_mvc.Models {
                 .HasMany<SubAccount>(s => s.SubAccounts)
                 .WithRequired(s => s.ParentAccount)
                 .HasForeignKey(s => s.ParentAccountId);
-            
+
             base.OnModelCreating(modelBuilder);
         }
 

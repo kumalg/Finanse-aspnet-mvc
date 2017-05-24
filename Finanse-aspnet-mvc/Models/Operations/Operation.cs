@@ -2,7 +2,7 @@
 
 namespace Finanse_aspnet_mvc.Models.Operations {
     [Table("Operations")]
-    public class Operation : OperationPattern {
+    public class Operation : OperationBase {
         public string Date { get; set; }
         public bool VisibleInStatistics { get; set; } = true;
     }
