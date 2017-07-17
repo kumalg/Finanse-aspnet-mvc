@@ -4,15 +4,12 @@
     ViewBag.Title = "Home Page";
 }
 
+@Html.ActionLink("Dodaj operację", "Create", "Operations", null, new { @class = "btn btn-default" })
+
 @foreach (var item in Model) {
-    using (Html.BeginForm("Delete", "Operations", new {id = item.Id})) {
-        <h4>@item.TitleOrCategoryName, @(item.SignedCost.ToString("C"))</h4>
-        <p>@item.Category.Name</p>
-        @Html.ActionLink("Edit", "Edit", new {id = item.Id})
-        <input class="btn btn-default" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete @item.TitleOrCategoryName ?');"/>   
-        <hr/>
-    }
+    @Html.Partial("_Operation", item)
 }
+
 
 @*<div class="jumbotron">
     <h1>ASP.NET</h1>

@@ -1,0 +1,29 @@
+﻿@using Finanse_aspnet_mvc.Models
+@using Finanse_aspnet_mvc.Models.Categories
+@model Finanse_aspnet_mvc.Models.Operations.Operation
+
+@using (Html.BeginForm("Delete", "Operations", new { id = Model.Id })) {
+    var deleteModalId = "deleteModal" + Model.Id;
+    var detailsModalId = "detailsModal" + Model.Id;
+
+    <div class="col-md-12">
+        <div class="col-md-9">
+            <h4>@Model.TitleOrCategoryName, @(Model.SignedCost.ToString("C"))</h4>
+            @if (Model.Category is SubCategory) {
+                <p>@(((SubCategory)Model.Category).ParentCategory.Name) -> @Model.Category.Name</p>
+            }
+            else {
+                <p>@Model.Category.Name</p>
+            }
+        </div>
+        <div class="btn-group col-md-3" data-toggle="buttons">
+            @Html.ActionLink("Edytuj", "Edit", "Operations", new { id = Model.Id }, new { @class = "btn btn-default" })
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#@detailsModalId">Szczegóły</button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@deleteModalId">Usuń</button>
+        </div>
+        <hr class="col-md-12" />
+    </div>
+
+    @Html.Partial("_OperationDetailsModal", new ModalProperties { ModalId = detailsModalId, Model = Model })
+    @Html.Partial("_DeleteModal", new ModalProperties { ModalId = deleteModalId, Model = Model.TitleOrCategoryName })
+}

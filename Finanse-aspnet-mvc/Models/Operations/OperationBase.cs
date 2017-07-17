@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.UI.WebControls;
 using Finanse_aspnet_mvc.Models.Accounts;
 using Finanse_aspnet_mvc.Models.Categories;
 
@@ -9,14 +10,19 @@ namespace Finanse_aspnet_mvc.Models.Operations {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [StringLength(64)]
+        [Display(Name = "Tytuł")]
         public string Title { get; set; }
         [StringLength(1024)]
+        [Display(Name = "Więcej informacji")]
         public string MoreInfo { get; set; }
         [ForeignKey("Category")]
+        [Display(Name = "Kategoria")]
         public int CategoryId { get; set; }
+        [Display(Name = "Wartość")]
         public decimal Cost { get; set; }
         public bool IsExpense { get; set; }
         [ForeignKey("Account")]
+        [Display(Name = "Konto")]
         public int AccountId { get; set; }
 
         public decimal SignedCost => IsExpense ? -Cost : Cost;
