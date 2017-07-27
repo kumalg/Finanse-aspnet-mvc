@@ -1,24 +1,17 @@
-﻿@using Finanse_aspnet_mvc.Models
-@model Finanse_aspnet_mvc.Models.Categories.Category
+﻿@model Finanse_aspnet_mvc.Models.Categories.Category
 <li>
     <div>
         @Html.DisplayFor(modelItem => Model.Name)
         @if (!Model.CantDelete) {
-            using (Html.BeginForm("Delete", "Categories", new {id = Model.Id})) {
-                var myModal = "myModal" + Model.Id;
-
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Edit", "Edit", new {id = Model.Id})</li>
-                        <li data-toggle="modal" data-target="#@myModal"><a>Delete</a></li>
-                    </ul>
-                </div>
-
-                @Html.Partial("_DeleteModal", new ModalProperties {Id = myModal, ItemName = Model.Name})
-            }
+            <div class="btn-group" data-toggle="buttons">
+                <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>@Html.ActionLink("Edit", "Edit", "Categories", new { id = Model.Id }, new { data_modal = "" })</li>
+                    <li>@Html.ActionLink("Delete", "Delete", "Categories", new { id = Model.Id }, new { data_modal = "" })</li>
+                </ul>
+            </div>
         }
         <ol>
             @foreach (var subCategory in Model.SubCategories) {

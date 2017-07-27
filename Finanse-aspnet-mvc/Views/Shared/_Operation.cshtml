@@ -1,29 +1,26 @@
-﻿@using Finanse_aspnet_mvc.Models
-@using Finanse_aspnet_mvc.Models.Categories
+﻿@using Finanse_aspnet_mvc.Models.Categories
 @model Finanse_aspnet_mvc.Models.Operations.Operation
 
-@using (Html.BeginForm("Delete", "Operations", new { id = Model.Id })) {
-    var deleteModalId = "deleteModal" + Model.Id;
-    var detailsModalId = "detailsModal" + Model.Id;
-
-    <div class="col-md-12">
-        <div class="col-md-9">
-            <h4>@Model.TitleOrCategoryName, @(Model.SignedCost.ToString("C"))</h4>
-            @if (Model.Category is SubCategory) {
-                <p>@(((SubCategory)Model.Category).ParentCategory.Name) -> @Model.Category.Name</p>
-            }
-            else {
-                <p>@Model.Category.Name</p>
-            }
-        </div>
-        <div class="btn-group col-md-3" data-toggle="buttons">
-            @Html.ActionLink("Edytuj", "Edit", "Operations", new { id = Model.Id }, new { @class = "btn btn-default" })
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#@detailsModalId">Szczegóły</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@deleteModalId">Usuń</button>
-        </div>
-        <hr class="col-md-12" />
+<div class="col-md-12">
+    <div class="col-md-11">
+        <h4>@Model.TitleOrCategoryName, @(Model.SignedCost.ToString("C"))</h4>
+        @if (Model.Category is SubCategory) {
+            <p>@(((SubCategory)Model.Category).ParentCategory.Name) -> @Model.Category.Name</p>
+        }
+        else {
+            <p>@Model.Category.Name</p>
+        }
     </div>
-
-    @Html.Partial("_OperationDetailsModal", new ModalProperties { ModalId = detailsModalId, Model = Model })
-    @Html.Partial("_DeleteModal", new ModalProperties { ModalId = deleteModalId, Model = Model.TitleOrCategoryName })
-}
+    <div class="btn-group pull-right" data-toggle="buttons">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li>@Html.ActionLink("Details", "Details", "Operations", new { id = Model.Id }, new { data_modal = "" })</li>
+            <li>@Html.ActionLink("Edit", "Edit", "Operations", new { id = Model.Id }, new { data_modal = "" })</li>
+            <li class="divider"></li>
+            <li>@Html.ActionLink("Delete", "Delete", "Operations", new { id = Model.Id }, new { data_modal = "" })</li>
+        </ul>
+    </div>
+    <hr class="col-md-12" />
+</div>

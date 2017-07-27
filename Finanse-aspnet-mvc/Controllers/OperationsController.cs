@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Finanse_aspnet_mvc.Models;
 using Finanse_aspnet_mvc.Models.Operations;
@@ -6,72 +9,94 @@ using Finanse_aspnet_mvc.Models.Operations;
 namespace Finanse_aspnet_mvc.Controllers {
     [Authorize]
     public class OperationsController : Controller {
-        StackMoneyDb _db = new StackMoneyDb();
-        // GET: NewOperation
+        private readonly StackMoneyDb _db = new StackMoneyDb();
+
+        // GET: Operations
         public ActionResult Index() {
-            return RedirectToAction("Index", "Home");
+            var model = _db.Operations.ToList();
+            return View(model);
         }
 
-        // GET: NewOperation/Details/5
-        public ActionResult Details(int id) {
-            return View();
+        // GET: Operations/Details/5
+        public async Task<ActionResult> Details(int? id) {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var operation = await _db.Operations.FindAsync(id);
+            if (operation == null)
+                return HttpNotFound();
+
+            return PartialView("_Details", operation);
         }
 
-        // GET: NewOperation/Create
+        // GET: Operations/Create
         public ActionResult Create() {
-            return View();
+            return PartialView("_Create");
         }
 
-        // POST: NewOperation/Create
+        // POST: Operations/Create
         [HttpPost]
-        public ActionResult Create(Operation operation) {
-            try {
+        public async Task<ActionResult> Create(Operation operation) {
+            if (ModelState.IsValid) {
                 _db.Operations.Add(operation);
-                _db.SaveChanges();
-
-                return RedirectToAction("Index", "Home");
+                await _db.SaveChangesAsync();
+                return Json(new { success = true });
             }
-            catch {
-                return View();
-            }
+            return PartialView("_Create", operation);
         }
 
-        // GET: NewOperation/Edit/5
-        public ActionResult Edit(int id) {
-            return View();
+        // GET: Operations/Edit/5
+        public async Task<ActionResult> Edit(int? id) {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var operation = await _db.Operations.FindAsync(id);
+            if (operation == null)
+                return HttpNotFound();
+
+            return PartialView("_Edit", operation);
         }
 
-        // POST: NewOperation/Edit/5
+        // POST: Operations/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection) {
-            try {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+        public async Task<ActionResult> Edit(Operation operation) {
+            if (ModelState.IsValid) {
+                _db.Entry(operation).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
+                return Json(new { success = true });
             }
-            catch {
-                return View();
-            }
+            return PartialView("_Edit", operation);
         }
 
-        // GET: NewOperation/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
+        // GET: Operations/Delete/5
+        public async Task<ActionResult> Delete(int? id) {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-        // POST: NewOperation/Delete/5
+            var operation = await _db.Operations.FindAsync(id);
+            if (operation == null)
+                return HttpNotFound();
+
+            return PartialView("_Delete", operation);
+        }
+
+        // POST: Operations/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection) {
-            try {
-                var operation = _db.Operations.Single(o => o.Id == id);
-                _db.Operations.Remove(operation);
-                _db.SaveChanges();
-            }
-            catch {
-                //return View();
-            }
-            return RedirectToAction("Index", "Home");
+        public async Task<ActionResult> Delete(int id) {
+            var operation = await _db.Operations.FindAsync(id);
+
+            if (operation == null)
+                return HttpNotFound();
+
+            _db.Operations.Remove(operation);
+            await _db.SaveChangesAsync();
+            return Json(new { success = true });
+        }
+
+        protected override void Dispose(bool disposing) {
+            if (disposing)
+                _db.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

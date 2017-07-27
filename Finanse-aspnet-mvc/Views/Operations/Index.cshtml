@@ -1,7 +1,25 @@
-﻿
+﻿@model IEnumerable<Finanse_aspnet_mvc.Models.Operations.Operation>
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Operacje";
 }
 
-<h2>Index</h2>
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
 
+@Html.ActionLink("Dodaj operację", "Create", "Operations", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-small btn-primary" })
+
+@foreach (var item in Model) {
+    @Html.Partial("_Operation", item)
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modalform")
+}

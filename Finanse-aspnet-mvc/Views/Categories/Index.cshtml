@@ -6,6 +6,15 @@
 
 <h2>Kategorie</h2>
 
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+
 <p>
     @Html.ActionLink("Create New", "Create", null, new {@class = "btn btn-default"})
 </p>
@@ -15,3 +24,9 @@
         @Html.Partial("_Category", item)
     }
 </ol>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modalform")
+}

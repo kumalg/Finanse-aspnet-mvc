@@ -12,8 +12,9 @@ namespace Finanse_aspnet_mvc.Controllers {
         public ActionResult Index() {
             if (!Request.IsAuthenticated)
                 return RedirectToAction("About");
-            List<Operation> model = _db.Operations.ToList();
-            return View(model);
+            //List<Operation> model = _db.Operations.ToList();
+            //return View(model);
+            return RedirectToAction("Index", "Operations");
         }
         [AllowAnonymous]
         public ActionResult About() {

@@ -1,0 +1,14 @@
+﻿@model Finanse_aspnet_mvc.Models.Categories.CategoryBase
+
+<div class="modal-body">
+    Czy na pewno chcesz usunąć <span><b>@Model.Name</b></span> ?
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal">Anuluj</button>
+        <input class="btn btn-danger" type="submit" value="Usuń" />
+    </div>
+}
