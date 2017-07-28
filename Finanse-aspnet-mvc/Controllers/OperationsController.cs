@@ -1,36 +1,33 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Finanse_aspnet_mvc.Models;
+using Finanse_aspnet_mvc.Models.Helpers;
 using Finanse_aspnet_mvc.Models.Operations;
 
 namespace Finanse_aspnet_mvc.Controllers {
     [Authorize]
     public class OperationsController : Controller {
         private readonly StackMoneyDb _db = new StackMoneyDb();
-        private List<Operation> _operations = CreateOperations();
+        //private List<Operation> _operations = CreateOperations();
 
-        private static List<Operation> CreateOperations() {
-            List<Operation> operations = new List<Operation>();
-            for (int i = 0; i < 5; i++)
-                operations.Add(new Operation { Id = i, Title = i.ToString(), Cost = i * 2 + 1 });
-            return operations;
-        }
-
-
+        //private static List<Operation> CreateOperations() {
+        //    List<Operation> operations = new List<Operation>();
+        //    for (int i = 0; i < 5; i++)
+        //        operations.Add(new Operation { Id = i, Title = i.ToString(), Cost = i * 2 + 1 });
+        //    return operations;
+        //}
+    
         public ActionResult GetOperations(int lastId, int pageSize) {
-            List<Operation> operations = _db.Operations.ToList();
-            //var items = operations
-            //    .OrderByDescending(o => o.Date)
-            //    .SkipWhile(o => lastId != -1 && o.Id != lastId)
-            ////    .Skip(1)
-            ////    .Skip(pageIndex * pageSize)
-            //    .Take(pageSize);
-            var yco = Json(operations, JsonRequestBehavior.AllowGet);
-            return yco;
+            var items = _db.Operations.ToList()
+                .OrderByDescending(o => o.Date)
+                .SkipWhile(o => lastId != -1 && o.Id != lastId)
+                .Skip(lastId == -1 ? 0 : 1)
+                .Take(pageSize);
+
+            return Content(OperationsHelper.ToJsonString(items), "application/json");
         }
 
         // GET: Operations

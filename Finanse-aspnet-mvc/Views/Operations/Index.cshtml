@@ -25,8 +25,6 @@
     <h4>Loading...</h4>
 </div>
 
-@*<button id="loadMoreBtn" class="btn btn-primary">Wczytaj więcej</button>*@
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modalform")
@@ -34,12 +32,7 @@
     <script type="text/javascript">
 
         var pageSize = 10;
-        var pageIndex = 0;
         var lastId = -1;
-
-        //$('#loadMoreBtn').click(function () {
-        //    GetData();
-        //});
 
         $(document).ready(function () {
             GetData();
@@ -52,13 +45,6 @@
             });
         });
 
-        //function loadMoreBtnVisibility(isVisible) {
-        //    if (isVisible)
-        //        $('#loadMoreBtn').show();
-        //    else
-        //        $('#loadMoreBtn').hide();
-        //}
-
         function GetData() {
             $.ajax({
                 type: 'GET',
@@ -67,19 +53,17 @@
                 dataType: 'json',
                 success: function (data) {
                     if (data != null) {
-                        @*var size = data.length;
+                        var size = data.length;
                         for (var i = 0; i < size; i++) {
-                            $("#container").append('<h4>' + data[i].Id + '</h4>');
-                            @*$("#container").append('@Html.Partial("_Operation", new Operation { Title = "Test", Cost = 12 })');*@
-                        @*}*@
+                            $("#container").append('<h4>' + data[i].Title + '</h4>');
+                        }
 
-                        //if (size) {
-                        //    lastId = data[size - 1].Id;
-                        //    pageIndex++;
+                        if (size) {
+                            lastId = data[size - 1].Id;
 
-                        //    if ($("body").height() <= $(window).height())
-                        //        GetData();
-                        //}
+                            if ($("body").height() <= $(window).height())
+                                GetData();
+                        }
                     }
                 },
                 beforeSend : function () {
