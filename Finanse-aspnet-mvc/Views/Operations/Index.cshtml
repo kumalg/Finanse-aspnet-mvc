@@ -1,7 +1,4 @@
-﻿@using Finanse_aspnet_mvc.Models.Operations
-@model IEnumerable<Finanse_aspnet_mvc.Models.Operations.Operation>
-
-@{
+﻿@{
     ViewBag.Title = "Operacje";
 }
 
@@ -14,68 +11,22 @@
     </div>
 </div>
 
-@Html.ActionLink("Dodaj operację", "Create", "Operations", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-small btn-primary" })
+@Html.ActionLink("+", "Create", "Operations", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-lg btn-primary" })
 
-@foreach (var item in Model) {
-    @Html.Partial("_Operation", item)
-}
+<div id="operationsList">
+</div>
 
-<div id="container"></div>
 <div id="progress" style="display:none">
     <h4>Loading...</h4>
+</div>
+
+<div id="error" style="display:none">
+    <h4>Wystąpił błąd podczas ładowania</h4>
+    <button id="tryAgainBtn" class="btn btn-default">Spróbuj ponownie</button>
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modalform")
-
-    <script type="text/javascript">
-
-        var pageSize = 10;
-        var lastId = -1;
-
-        $(document).ready(function () {
-            GetData();
-
-            $(window).scroll(function () {
-                if ($(window).scrollTop() ==
-                    $(document).height() - $(window).height()) {
-                    GetData();
-                }
-            });
-        });
-
-        function GetData() {
-            $.ajax({
-                type: 'GET',
-                url: '/Operations/GetOperations',
-                data: { "lastid": lastId, "pagesize": pageSize },
-                dataType: 'json',
-                success: function (data) {
-                    if (data != null) {
-                        var size = data.length;
-                        for (var i = 0; i < size; i++) {
-                            $("#container").append('<h4>' + data[i].Title + '</h4>');
-                        }
-
-                        if (size) {
-                            lastId = data[size - 1].Id;
-
-                            if ($("body").height() <= $(window).height())
-                                GetData();
-                        }
-                    }
-                },
-                beforeSend : function () {
-                    $("#progress").show();
-                },
-                complete : function () {
-                    $("#progress").hide();
-                },
-                error: function () {
-                    alert("Error while retrieving data!");
-                }
-            });
-        }
-    </script>
+    @Scripts.Render("~/scripts/operationsInfiniteScrolling.js")
 }

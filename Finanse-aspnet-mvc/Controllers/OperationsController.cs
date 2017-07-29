@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -11,29 +13,39 @@ namespace Finanse_aspnet_mvc.Controllers {
     [Authorize]
     public class OperationsController : Controller {
         private readonly StackMoneyDb _db = new StackMoneyDb();
-        //private List<Operation> _operations = CreateOperations();
-
-        //private static List<Operation> CreateOperations() {
-        //    List<Operation> operations = new List<Operation>();
-        //    for (int i = 0; i < 5; i++)
-        //        operations.Add(new Operation { Id = i, Title = i.ToString(), Cost = i * 2 + 1 });
-        //    return operations;
-        //}
-    
-        public ActionResult GetOperations(int lastId, int pageSize) {
-            var items = _db.Operations.ToList()
-                .OrderByDescending(o => o.Date)
-                .SkipWhile(o => lastId != -1 && o.Id != lastId)
-                .Skip(lastId == -1 ? 0 : 1)
-                .Take(pageSize);
-
-            return Content(OperationsHelper.ToJsonString(items), "application/json");
-        }
 
         // GET: Operations
-        public ActionResult Index() {
-            var model = _db.Operations.ToList();
-            return View(model);
+        public async Task<ActionResult> Index(int lastId = -1, int pageSize = 5) {
+            if (!Request.IsAjaxRequest())
+                return View();
+
+            var model = await _db.Operations.ToListAsync();
+
+            var items = model
+                .OrderByDescending(o => o.Date)
+                .SkipWhile(o => lastId != -1 && o.Id != lastId)     // skip while lastId is not equal actual id and there is lastId (!= -1)
+                .Skip(lastId == -1 ? 0 : 1)                         // if there is no lastId (== -1) then skip 0
+                .Take(pageSize);
+
+            var result = new {
+                lastId = items.LastOrDefault()?.Id ?? -1,
+                partialView = RenderRazorViewToString("_OperationsList", items)
+            };
+
+            return Content(JsonHelper.ToJsonString(result), "application/json"); //PartialView("_OperationsList", items);
+        }
+
+        public string RenderRazorViewToString(string viewName, object model) {
+            ViewDataDictionary viewData = new ViewDataDictionary {
+                Model = model
+            };
+            using (var sw = new StringWriter()) {
+                var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                var viewContext = new ViewContext(ControllerContext, viewResult.View, viewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+                viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+                return sw.GetStringBuilder().ToString();
+            }
         }
 
         // GET: Operations/Details/5

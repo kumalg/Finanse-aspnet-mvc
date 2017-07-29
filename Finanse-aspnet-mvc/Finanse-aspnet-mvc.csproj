@@ -208,6 +208,7 @@
     <Compile Include="Models\Categories\CategoryBase.cs" />
     <Compile Include="Models\Categories\SubCategory.cs" />
     <Compile Include="Models\DecimalModelBinder.cs" />
+    <Compile Include="Models\Helpers\JsonHelper.cs" />
     <Compile Include="Models\Helpers\OperationsHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -254,6 +255,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modalform.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\operationsInfiniteScrolling.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -310,6 +312,7 @@
     <Content Include="Views\Operations\_Edit.cshtml" />
     <Content Include="Views\Operations\_Delete.cshtml" />
     <Content Include="Views\Categories\_Edit.cshtml" />
+    <Content Include="Views\Operations\_OperationsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,5 @@
+﻿@model IEnumerable<Finanse_aspnet_mvc.Models.Operations.Operation>
+
+@foreach (var item in Model) {
+    @Html.Partial("_Operation", item)
+}
