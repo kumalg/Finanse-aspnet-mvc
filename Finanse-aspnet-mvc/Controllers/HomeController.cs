@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Finanse_aspnet_mvc.Models;
-using Finanse_aspnet_mvc.Models.Operations;
 
 namespace Finanse_aspnet_mvc.Controllers {
     [Authorize]
@@ -30,7 +27,8 @@ namespace Finanse_aspnet_mvc.Controllers {
         }
 
         protected override void Dispose(bool disposing) {
-            _db?.Dispose();
+            if (disposing)
+                _db.Dispose();
             base.Dispose(disposing);
         }
     }

@@ -18,8 +18,8 @@ $("#tryAgainBtn").click(function() {
 
 function GetData() {
     $.ajax({
-        type: 'GET',
-        url: '/Operations/Index',
+        type: "GET",
+        url: "/Operations/Index",
         data: { "lastId": lastId, "pageSize": pageSize },
         success: function (data) {
             if (data.lastId !== -1) {

@@ -4,14 +4,14 @@ namespace Finanse_aspnet_mvc.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Finanse_aspnet_mvc.Models.StackMoneyDb>
+    internal sealed class Configuration : DbMigrationsConfiguration<Models.StackMoneyDb>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Finanse_aspnet_mvc.Models.StackMoneyDb context) {
+        protected override void Seed(Models.StackMoneyDb context) {
             var defaultCategory = new Category {
                 Id = 1,
                 CantDelete = true,

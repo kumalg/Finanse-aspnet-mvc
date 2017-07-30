@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using Finanse_aspnet_mvc.Models.Accounts;
 using Finanse_aspnet_mvc.Models.Categories;
 using Finanse_aspnet_mvc.Models.Operations;
@@ -18,12 +17,12 @@ namespace Finanse_aspnet_mvc.Models {
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             modelBuilder.Entity<Category>()
-                .HasMany<SubCategory>(s => s.SubCategories)
+                .HasMany(s => s.SubCategories)
                 .WithRequired(s => s.ParentCategory)
                 .HasForeignKey(s => s.ParentCategoryId);
 
             modelBuilder.Entity<Account>()
-                .HasMany<SubAccount>(s => s.SubAccounts)
+                .HasMany(s => s.SubAccounts)
                 .WithRequired(s => s.ParentAccount)
                 .HasForeignKey(s => s.ParentAccountId);
 

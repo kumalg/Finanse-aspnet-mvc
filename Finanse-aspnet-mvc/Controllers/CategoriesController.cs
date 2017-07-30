@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -84,14 +83,15 @@ namespace Finanse_aspnet_mvc.Controllers {
             return Json(new { success = true });
         }
 
-        private CategoryBase ConvertToRightCategoryType(SubCategory category) {
+        private static CategoryBase ConvertToRightCategoryType(SubCategory category) {
             if (category.ParentCategoryId == 0)
                 return category.AsCategory();
             return category;
         }
 
         protected override void Dispose(bool disposing) {
-            _db?.Dispose();
+            if (disposing)
+                _db.Dispose();
             base.Dispose(disposing);
         }
     }
