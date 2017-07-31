@@ -13,14 +13,14 @@
         <p>@Model.Date</p>
     </div>
     <div class="btn-group pull-right" data-toggle="buttons">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+        <button type="button" class="btn btn-default animateBtn dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
-            <li>@Html.ActionLink("Details", "Details", "Operations", new { id = Model.Id }, new { data_modal = "" })</li>
-            <li>@Html.ActionLink("Edit", "Edit", "Operations", new { id = Model.Id }, new { data_modal = "" })</li>
+            <li>@Html.ActionLink("Szczegóły", "Details", "Operations", new {id = Model.Id}, new {data_modal = ""})</li>
+            <li>@Html.ActionLink("Edytuj", "Edit", "Operations", new {id = Model.Id}, new {data_modal = ""})</li>
             <li class="divider"></li>
-            <li>@Html.ActionLink("Delete", "Delete", "Operations", new { id = Model.Id }, new { data_modal = "" })</li>
+            <li>@Html.ActionLink("Usuń", "Delete", "Operations", new {id = Model.Id}, new {data_modal = ""})</li>
         </ul>
     </div>
     <hr class="col-md-12" />

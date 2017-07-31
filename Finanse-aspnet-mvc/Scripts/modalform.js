@@ -1,29 +1,30 @@
-﻿$(function () {
+﻿//$(function () {
 
     $.ajaxSetup({ cache: false });
 
-    $("a[data-modal]").on("click", function (e) {
+    $(document).on("click", "a[data-modal]", function (e) {
 
         // hide dropdown if any
         $(e.target).closest(".btn-group").children(".dropdown-toggle").dropdown("toggle");
-
         
         $("#myModalContent").load(this.href, function () {
-            
 
             $("#myModal").modal({
                 /*backdrop: 'static',*/
                 keyboard: true
             }, "show");
-
+            
             bindForm(this);
         });
 
         return false;
     });
 
+    $("#myModal").on("hidden.bs.modal", function () {
+        $("#myModalContent").empty();
+    });
 
-});
+//});
 
 function bindForm(dialog) {
     

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Finanse_aspnet_mvc.Models.Operations.Operation>
+@{
     ViewBag.Title = "Operacje";
 }
 
@@ -11,18 +12,19 @@
     </div>
 </div>
 
-@Html.ActionLink("+", "Create", "Operations", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-lg btn-primary" })
+@Html.ActionLink("+", "Create", "Operations", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-lg btn-primary animateBtn" })
+
 
 <div id="operationsList">
 </div>
 
-<div id="progress" style="display:none">
+<div id="progress" style="display:none" class="center">
     <h4>Loading...</h4>
 </div>
 
-<div id="error" style="display:none">
-    <h4>Wystąpił błąd podczas ładowania</h4>
-    <button id="tryAgainBtn" class="btn btn-default">Spróbuj ponownie</button>
+<div id="error" style="display:none" class="center">
+    <h4 class="center">Wystąpił błąd podczas ładowania</h4>
+    <button id="tryAgainBtn" class="btn btn-default center">Spróbuj ponownie</button>
 </div>
 
 @section Scripts {

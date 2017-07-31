@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.Mvc.Ajax;
 using Finanse_aspnet_mvc.Models;
 using Finanse_aspnet_mvc.Models.Helpers;
 using Finanse_aspnet_mvc.Models.Operations;
@@ -14,20 +15,20 @@ namespace Finanse_aspnet_mvc.Controllers {
         private readonly StackMoneyDb _db = new StackMoneyDb();
 
         // GET: Operations
-        public async Task<ActionResult> Index(int lastId = -1, int pageSize = 5) {
+        public async Task<ActionResult> Index(int? lastId, int pageSize = 5) {
             if (!Request.IsAjaxRequest())
-                return View();
+                return View(await _db.Operations.ToListAsync());
 
             var model = await _db.Operations.ToListAsync();
 
             var items = model
                 .OrderByDescending(o => o.Date)
-                .SkipWhile(o => lastId != -1 && o.Id != lastId)     // skip while lastId is not equal actual id and there is lastId (!= -1)
-                .Skip(lastId == -1 ? 0 : 1)                         // if there is no lastId (== -1) then skip 0
+                .SkipWhile(o => lastId != null && o.Id != lastId)     // skip while lastId is not equal actual id and there is lastId (!= -1)
+                .Skip(lastId == null ? 0 : 1)                         // if there is no lastId (== -1) then skip 0
                 .Take(pageSize);
 
             var result = new {
-                lastId = items.LastOrDefault()?.Id ?? -1,
+                lastId = items.LastOrDefault()?.Id,
                 partialView = RenderRazorViewToString("_OperationsList", items)
             };
 
@@ -49,6 +50,9 @@ namespace Finanse_aspnet_mvc.Controllers {
 
         // GET: Operations/Details/5
         public async Task<ActionResult> Details(int? id) {
+            if (!Request.IsAjaxRequest())
+                return View("Index");
+
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
@@ -77,6 +81,9 @@ namespace Finanse_aspnet_mvc.Controllers {
 
         // GET: Operations/Edit/5
         public async Task<ActionResult> Edit(int? id) {
+            if (!Request.IsAjaxRequest())
+                return View("Index");
+
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 

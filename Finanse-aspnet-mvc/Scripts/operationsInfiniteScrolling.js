@@ -1,5 +1,5 @@
 ﻿var pageSize = 5;
-var lastId = -1;
+var lastId;
 
 $(document).ready(function () {
     GetData();
@@ -17,16 +17,20 @@ $("#tryAgainBtn").click(function() {
 });
 
 function GetData() {
+    
+    if ($("#error").is(":visible"))
+        return false;
+
     $.ajax({
         type: "GET",
         url: "/Operations/Index",
         data: { "lastId": lastId, "pageSize": pageSize },
         success: function (data) {
-            if (data.lastId !== -1) {
+            if (data.lastId != null) {
 
                 $("#operationsList").append(data.partialView);
 
-                if (lastId !== data.lastId) {
+                if (lastId != data.lastId) {
                     lastId = data.lastId;
 
                     if ($("body").height() <= $(window).height())
