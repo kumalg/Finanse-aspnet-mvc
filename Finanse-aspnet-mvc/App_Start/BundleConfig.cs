@@ -25,6 +25,7 @@ namespace Finanse_aspnet_mvc {
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/myStyle.css",
+                      "~/Content/loaders.css",
                       "~/Content/site.css"));
         }
     }

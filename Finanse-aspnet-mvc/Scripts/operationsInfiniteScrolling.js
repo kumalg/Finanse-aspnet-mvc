@@ -1,7 +1,9 @@
-﻿var pageSize = 5;
-var lastId;
+﻿var lastId;
+var actualMonthAndYear = moment();
+actualMonthAndYear.locale("pl");
 
 $(document).ready(function () {
+    UpdateActualMonthBtn(actualMonthAndYear);
     GetData();
 
     $(window).scroll(function () {
@@ -24,7 +26,7 @@ function GetData() {
     $.ajax({
         type: "GET",
         url: "/Operations/Index",
-        data: { "lastId": lastId, "pageSize": pageSize },
+        data: { "lastId": lastId, "actualYear": actualMonthAndYear.format("YYYY"), "actualMonth": actualMonthAndYear.format("MM") },
         success: function (data) {
             if (data.lastId != null) {
 
@@ -50,4 +52,54 @@ function GetData() {
             $("#error").show();
         }
     });
+}
+
+$(document).on("click", "#prevMonthBtn", function () {
+    ReloadData(-1);
+});
+
+$(document).on("click", "#nextMonthBtn", function () {
+    ReloadData(1);
+});
+
+function ReloadData(addMonth) {
+    actualMonthAndYear.add(addMonth, "month");
+    UpdateActualMonthBtn(actualMonthAndYear);
+
+    lastId = null;
+    $("#operationsList").html("");
+
+    $.ajax({
+        type: "GET",
+        url: "/Operations/Index",
+        data: { "actualYear": actualMonthAndYear.format("YYYY"), "actualMonth": actualMonthAndYear.format("MM") },
+        success: function (data) {
+            $("#operationsList").html(data.partialView);
+
+            if (lastId != data.lastId) {
+                lastId = data.lastId;
+
+                if ($("body").height() <= $(window).height())
+                    GetData();
+            }
+
+            $("#error").hide();
+        },
+        beforeSend: function () {
+            $("#progress").show();
+        },
+        complete: function () {
+            $("#progress").hide();
+        },
+        error: function () {
+            $("#error").show();
+        }
+    });
+}
+
+function UpdateActualMonthBtn(actualMonthAndYear) {
+    if (actualMonthAndYear.format("YYYY") != moment().format("YYYY"))
+        $("#actualMonthBtn").text(actualMonthAndYear.format("MMMM YYYY"));
+    else
+        $("#actualMonthBtn").text(actualMonthAndYear.format("MMMM"));
 }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
 using Finanse_aspnet_mvc.Models;
 using Finanse_aspnet_mvc.Models.Helpers;
 using Finanse_aspnet_mvc.Models.Operations;
@@ -15,28 +14,29 @@ namespace Finanse_aspnet_mvc.Controllers {
         private readonly StackMoneyDb _db = new StackMoneyDb();
 
         // GET: Operations
-        public async Task<ActionResult> Index(int? lastId, int pageSize = 5) {
+        public async Task<ActionResult> Index(int? lastId, int? actualYear, int? actualMonth) {
             if (!Request.IsAjaxRequest())
-                return View(await _db.Operations.ToListAsync());
+                return View();
 
             var model = await _db.Operations.ToListAsync();
 
             var items = model
                 .OrderByDescending(o => o.Date)
-                .SkipWhile(o => lastId != null && o.Id != lastId)     // skip while lastId is not equal actual id and there is lastId (!= -1)
-                .Skip(lastId == null ? 0 : 1)                         // if there is no lastId (== -1) then skip 0
-                .Take(pageSize);
+                .Where(o => o.Date.StartsWith($"{actualYear}.{actualMonth:00}"))    // because Data format is always YYYY.MM.DD
+                .SkipWhile(o => lastId != null && o.Id != lastId)                   // skip while lastId is not equal actual id and there is lastId (!= -1)
+                .Skip(lastId == null ? 0 : 1)                                       // if there is no lastId (== -1) then skip 0
+                .Take(5);
 
             var result = new {
                 lastId = items.LastOrDefault()?.Id,
                 partialView = RenderRazorViewToString("_OperationsList", items)
             };
 
-            return Content(JsonHelper.ToJsonString(result), "application/json"); //PartialView("_OperationsList", items);
+            return Content(JsonHelper.ToJsonString(result), "application/json");
         }
 
         public string RenderRazorViewToString(string viewName, object model) {
-            ViewDataDictionary viewData = new ViewDataDictionary {
+            var viewData = new ViewDataDictionary {
                 Model = model
             };
             using (var sw = new StringWriter()) {
