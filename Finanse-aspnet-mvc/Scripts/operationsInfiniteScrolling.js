@@ -18,6 +18,14 @@ $("#tryAgainBtn").click(function() {
     GetData();
 });
 
+function CheckIfEmpty() {
+    if (!$.trim($('#operationsList').html()).length) {
+        $("#noOperationsMessage").show();
+    } else {
+        $("#noOperationsMessage").hide();
+    }
+}
+
 function GetData() {
     
     if ($("#error").is(":visible"))
@@ -41,6 +49,7 @@ function GetData() {
             }
 
             $("#error").hide();
+            CheckIfEmpty();
         },
         beforeSend: function () {
             $("#progress").show();
@@ -84,6 +93,7 @@ function ReloadData(addMonth) {
             }
 
             $("#error").hide();
+            CheckIfEmpty();
         },
         beforeSend: function () {
             $("#progress").show();

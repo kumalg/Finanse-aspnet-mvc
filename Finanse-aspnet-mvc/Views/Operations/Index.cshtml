@@ -12,12 +12,14 @@
     </div>
 </div>
 
-@Html.ActionLink("+", "Create", "Operations", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-lg btn-primary animateBtn" })
-
 <div class="btn-group">
     <button id="prevMonthBtn" class="btn btn-default animateBtn"><< Poprzedni</button>
     <button id="actualMonthBtn" class="btn btn-primary actualMonth animateBtn">...</button>
     <button id="nextMonthBtn" class="btn btn-default animateBtn">Następny >></button>
+</div>
+
+<div id="noOperationsMessage" style="display: none">
+    <p>Brak operacji w tym miesiącu :(</p>
 </div>
 
 <div id="operationsList">
@@ -32,6 +34,9 @@
     <h4>Wystąpił błąd podczas ładowania</h4>
     <button id="tryAgainBtn" class="btn btn-default">Spróbuj ponownie</button>
 </div>
+
+@Html.ActionLink("+", "Create", "Operations", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-success btn-circle btn-lg addNew-button animateBtn" })
+@*<button type="button" class="btn btn-success btn-circle btn-lg addNew-button"><i class="glyphicon glyphicon-plus"></i></button>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
