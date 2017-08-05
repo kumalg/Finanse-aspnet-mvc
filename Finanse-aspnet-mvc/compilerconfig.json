@@ -2,5 +2,17 @@
   {
     "outputFile": "Content/myStyle.css",
     "inputFile": "Content/myStyle.scss"
+  },
+  {
+    "outputFile": "Content/Site.css",
+    "inputFile": "Content/Site.scss"
+  },
+  {
+    "outputFile": "Content/loaders.css",
+    "inputFile": "Content/loaders.scss"
+  },
+  {
+    "outputFile": "Content/Loaders/loaders.css",
+    "inputFile": "Content/Loaders/loaders.scss"
   }
 ]

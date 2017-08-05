@@ -225,20 +225,38 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\loaders.css" />
-    <Content Include="Content\loaders.min.css" />
     <Content Include="Content\colors.scss" />
-    <None Include="Content\myStyle.scss" />
-    <Content Include="Content\myStyle.css">
-      <DependentUpon>myStyle.scss</DependentUpon>
+    <Content Include="Content\Loaders\loaders.css">
+      <DependentUpon>loaders.scss</DependentUpon>
     </Content>
-    <Content Include="Content\myStyle.min.css">
-      <DependentUpon>myStyle.css</DependentUpon>
+    <Content Include="Content\Loaders\loaders.min.css">
+      <DependentUpon>loaders.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css">
+      <DependentUpon>Site.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\Loaders\_variables.scss" />
+    <Content Include="Content\Loaders\_animations.scss" />
+    <Content Include="Content\Loaders\loaders\_loader01.scss" />
+    <Content Include="Content\Loaders\loaders\_loader02.scss" />
+    <Content Include="Content\Loaders\loaders\_loader03.scss" />
+    <Content Include="Content\Loaders\loaders\_loader04.scss" />
+    <Content Include="Content\Loaders\loaders\_loader05.scss" />
+    <Content Include="Content\Loaders\loaders\_loader06.scss" />
+    <Content Include="Content\Loaders\loaders\_loader07.scss" />
+    <Content Include="Content\Loaders\loaders\_loader08.scss" />
+    <Content Include="Content\Loaders\loaders\_loader09.scss" />
+    <Content Include="Content\Loaders\loaders\_loader10.scss" />
+    <Content Include="Content\Loaders\loaders\_loader11.scss" />
+    <Content Include="Content\Loaders\loaders\_loader12.scss" />
+    <Content Include="Content\Loaders\loaders.scss" />
+    <None Include="Content\Site.scss" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

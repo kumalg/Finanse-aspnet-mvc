@@ -1,0 +1,30 @@
+﻿.loader {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: relative;
+  animation: loader10 0.7s ease alternate infinite;
+  animation-delay: 0.28s;
+  margin-left: auto;
+  margin-right: auto;
+  top: -16px; }
+  .loader::after, .loader::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    animation: loader10 0.7s ease alternate infinite; }
+  .loader::before {
+    left: -28px;
+    animation-delay: 0.14s; }
+  .loader::after {
+    right: -28px;
+    animation-delay: 0.42s; }
+
+@keyframes loader10 {
+  0% {
+    box-shadow: 0 16px 0 -16px #bbb; }
+  100% {
+    box-shadow: 0 16px 0 #bbb; } }
+
