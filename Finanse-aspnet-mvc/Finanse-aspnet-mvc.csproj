@@ -232,6 +232,8 @@
     <Content Include="Content\Loaders\loaders.min.css">
       <DependentUpon>loaders.css</DependentUpon>
     </Content>
+    <Content Include="Content\logo_thin.png" />
+    <Content Include="Content\logo_wide.png" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.scss</DependentUpon>
     </Content>

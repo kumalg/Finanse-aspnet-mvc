@@ -1,2 +1,15 @@
-﻿$dark-color: #111;
+﻿$accent-color: #079e6f;
+$accent-color-lighter-1: lighten( $accent-color, 3%);
+$accent-color-lighter-2: lighten( $accent-color, 6%);
+$dark-color: #111;
 $light-color: #fff;
+
+$sidebar-background: #1f1f1f;
+$sidebar-background-lighter-1: lighten( $sidebar-background, 3%);
+$sidebar-background-lighter-2: lighten( $sidebar-background, 10%);
+
+$text-color: #c8c8c8;
+
+$body-background: #242424;
+$body-background-lighten-1: lighten( $body-background, 5%);
+$body-background-lighten-2: lighten( $body-background, 15%);

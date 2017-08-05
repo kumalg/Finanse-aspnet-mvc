@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - StackMoney</title>
     @Styles.Render("~/Content/css")
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -22,7 +24,6 @@
             <div class="navbar-collapse collapse">
                 @if (Request.IsAuthenticated) {
                     <ul class="nav navbar-nav">
-                        @*<li>@Html.ActionLink("Dodaj operację", "Create", "Operations")</li>*@
                         <li>@Html.ActionLink("Kategorie", "Index", "Categories")</li>
                         <li>@Html.ActionLink("Statystyki", "Index", "Statistics")</li>
                         <li>@Html.ActionLink("Konta", "Index", "Accounts")</li>
@@ -41,10 +42,106 @@
         <footer>
             <p>&copy; @DateTime.Now.Year - StackMoney</p>
         </footer>
+    </div>*@
+
+    <div id="wrapper" class="menuDisplayed ">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <div id="sidebar-hamburger">
+                @*<button href="#" id="hamburgerButton" class="btn-hamburger animateBtn">
+                    <i class="fa fa-navicon"></i>
+                </button>*@
+                @*@Html.ActionLink("StackMoney", "Index", "Home")*@
+                
+                <div id="logoButtonBackground" class="animateBtn">
+                    <a href="@Url.Action("Index", "Home")" id="logoButton" class="logoButton-wide"></a>
+                </div>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Home")" class="animateBtn">
+                        <i class="fa fa-calendar-o"></i>
+                        <span>Operacje</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Categories")" class="animateBtn">
+                        <i class="fa fa-tags"></i>
+                        <span>Kategorie</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Statistics")" class="animateBtn">
+                        <i class="fa fa-bar-chart"></i>
+                        <span>Statystyki</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Patterns")" class="animateBtn">
+                        <i class="fa fa-copy"></i>
+                        <span>Szablony</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Accounts")" class="animateBtn">
+                        <i class="fa fa-credit-card"></i>
+                        <span>Konta</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "StandingOrders")" class="animateBtn">
+                        <i class="fa fa-clock-o"></i>
+                        <span>Zlecenia stałe</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Contact", "Home")" class="animateBtn">
+                        <i class="fa fa-phone"></i>
+                        <span>Kontakt</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <footer>
+                <p>&copy; @DateTime.Now.Year - StackMoney</p>
+            </footer>
+        </div>
+
+        <!-- Page content -->
+        <div id="page-content-wrapper">
+            <div id="upper-bar">
+                <button href="#" id="hamburgerButton" class="animateBtn">
+                    <i class="fa fa-navicon"></i>
+                </button>
+                
+                @Html.Partial("_LoginPartial")
+            </div>
+            <div class="container body-content">
+                @RenderBody()
+                <hr/>
+            </div>
+        </div>
+
     </div>
+
+    <!-- Menu toggle script -->
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script>
+        $("#hamburgerButton").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("menuDisplayed");
+            $("#wrapper").toggleClass("hide-span");
+
+
+            $("#logoButton").toggleClass("logoButton-thin");
+            $("#logoButton").toggleClass("logoButton-wide");
+        });
+    </script>
 </body>
 </html>
