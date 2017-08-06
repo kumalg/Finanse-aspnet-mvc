@@ -1,0 +1,62 @@
+﻿@import "_mixins.scss";
+
+.operation {
+    background: transparent;
+    height: 68px;
+    max-width: 600px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        background: $body-background-lighten-1;
+        border-radius: 5px;
+    }
+}
+
+.operation-icon {
+    margin: 10px 16px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    @include uniform-size(48px);
+
+    border: {
+        radius: 50%;
+        style: solid;
+        width: 2px;
+        color: $body-background-lighten-1;
+    }
+}
+
+.operation-text {
+    span {
+        font-size: 14px;
+        font-weight: 300;
+    }
+
+    small {
+        font-size: 12px;
+        font-weight: 600;
+    }
+}
+
+.operation-cost {
+    margin: {
+        left: auto;
+        right: 16px;
+    }
+
+    font: {
+        size: 12px;
+        weight: 600;
+    }
+}
+
+.red-text {
+    color: $red-color;
+}
+
+.green-text {
+    color: $green-color;
+}

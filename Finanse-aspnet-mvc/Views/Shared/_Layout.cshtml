@@ -48,56 +48,49 @@
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
-            <div id="sidebar-hamburger">
-                @*<button href="#" id="hamburgerButton" class="btn-hamburger animateBtn">
-                    <i class="fa fa-navicon"></i>
-                </button>*@
-                @*@Html.ActionLink("StackMoney", "Index", "Home")*@
-                
-                <div id="logoButtonBackground" class="animateBtn">
-                    <a href="@Url.Action("Index", "Home")" id="logoButton" class="logoButton-wide"></a>
-                </div>
+            <div id="sidebar-logo" class="animate-button sidebar-logo-wide">
+                <a href="@Url.Action("Index", "Home")"></a>
             </div>
 
             <ul class="sidebar-nav">
                 <li>
-                    <a href="@Url.Action("Index", "Home")" class="animateBtn">
+                    <a href="@Url.Action("Index", "Home")" class="animate-button active">
                         <i class="fa fa-calendar-o"></i>
                         <span>Operacje</span>
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Categories")" class="animateBtn">
+                    <a href="@Url.Action("Index", "Categories")" class="animate-button">
                         <i class="fa fa-tags"></i>
                         <span>Kategorie</span>
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Statistics")" class="animateBtn">
+                    <a href="@Url.Action("Index", "Statistics")" class="animate-button">
                         <i class="fa fa-bar-chart"></i>
                         <span>Statystyki</span>
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Patterns")" class="animateBtn">
+                    <a href="@Url.Action("Index", "Patterns")" class="animate-button">
                         <i class="fa fa-copy"></i>
                         <span>Szablony</span>
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Accounts")" class="animateBtn">
+                    <a href="@Url.Action("Index", "Accounts")" class="animate-button">
                         <i class="fa fa-credit-card"></i>
                         <span>Konta</span>
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "StandingOrders")" class="animateBtn">
+                    <a href="@Url.Action("Index", "StandingOrders")" class="animate-button">
                         <i class="fa fa-clock-o"></i>
                         <span>Zlecenia stałe</span>
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Contact", "Home")" class="animateBtn">
+                    <a href="@Url.Action("Contact", "Home")" class="animate-button">
                         <i class="fa fa-phone"></i>
                         <span>Kontakt</span>
                     </a>
@@ -105,20 +98,20 @@
             </ul>
             
             <footer>
-                <p>&copy; @DateTime.Now.Year - StackMoney</p>
+                <p>&copy; @DateTime.Now.Year</p>
+                <p>StackMoney</p>
             </footer>
         </div>
 
         <!-- Page content -->
         <div id="page-content-wrapper">
             <div id="upper-bar">
-                <button href="#" id="hamburgerButton" class="animateBtn">
+                <button href="#" id="button-hamburger" class="animate-button">
                     <i class="fa fa-navicon"></i>
                 </button>
-                
                 @Html.Partial("_LoginPartial")
             </div>
-            <div class="container body-content">
+            <div class="body-content">
                 @RenderBody()
                 <hr/>
             </div>
@@ -133,14 +126,12 @@
     @RenderSection("scripts", required: false)
 
     <script>
-        $("#hamburgerButton").click(function (e) {
+        $("#button-hamburger").click(function (e) {
             e.preventDefault();
             $("#wrapper").toggleClass("menuDisplayed");
-            $("#wrapper").toggleClass("hide-span");
 
-
-            $("#logoButton").toggleClass("logoButton-thin");
-            $("#logoButton").toggleClass("logoButton-wide");
+            $("#sidebar-logo").toggleClass("sidebar-logo-thin");
+            $("#sidebar-logo").toggleClass("sidebar-logo-wide");
         });
     </script>
 </body>

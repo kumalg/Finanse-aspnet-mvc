@@ -12,30 +12,32 @@
     </div>
 </div>
 
-<div class="btn-group" id="nav-month">
-    <button id="prevMonthBtn" class="btn my-btn-round animateBtn"><< Poprzedni</button>
-    <button id="actualMonthBtn" class="btn my-btn-round actualMonth animateBtn">...</button>
-    <button id="nextMonthBtn" class="btn my-btn-round animateBtn">Następny >></button>
+<div class="page-content">
+    <div class="btn-group" id="nav-month">
+        <button id="prevMonthBtn" class="btn button-round animate-button"><i class="fa fa-chevron-left"></i></button>
+        <button id="actualMonthBtn" class="btn button-round actualMonth animate-button">...</button>
+        <button id="nextMonthBtn" class="btn button-round animate-button"><i class="fa fa-chevron-right"></i></button>
+    </div>
+
+    <div id="noOperationsMessage" style="display: none">
+        <p>Brak operacji w tym miesiącu :(</p>
+    </div>
+
+    <div id="operationsList">
+    </div>
+
+    <div id="progress" style="display: none">
+        <div class="loader"></div>
+        <h4>Loading...</h4>
+    </div>
+
+    <div id="error" style="display:none">
+        <h4>Wystąpił błąd podczas ładowania</h4>
+        <button id="tryAgainBtn" class="btn btn-default">Spróbuj ponownie</button>
+    </div>
 </div>
 
-<div id="noOperationsMessage" style="display: none">
-    <p>Brak operacji w tym miesiącu :(</p>
-</div>
-
-<div id="operationsList">
-</div>
-
-<div id="progress" style="display: none">
-    <div class="loader"></div>
-    <h4>Loading...</h4>
-</div>
-
-<div id="error" style="display:none">
-    <h4>Wystąpił błąd podczas ładowania</h4>
-    <button id="tryAgainBtn" class="btn btn-default">Spróbuj ponownie</button>
-</div>
-
-@Html.ActionLink("+", "Create", "Operations", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-success btn-circle btn-lg addNew-button animateBtn" })
+@Html.ActionLink("+", "Create", "Operations", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-success btn-circle btn-lg button-add animate-button" })
 @*<button type="button" class="btn btn-success btn-circle btn-lg addNew-button"><i class="glyphicon glyphicon-plus"></i></button>*@
 
 @section Scripts {

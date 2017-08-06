@@ -1,0 +1,16 @@
+﻿@import "colors.scss";
+
+@mixin uniform-size($size) {
+    width: $size;
+    height: $size;
+}
+
+@mixin accentHover {
+    &:hover {
+        background-color: $accent-color-lighter-1;
+    }
+
+    &:active {
+        background-color: $accent-color-lighter-2;
+    }
+}

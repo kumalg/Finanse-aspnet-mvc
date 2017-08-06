@@ -3,8 +3,12 @@
 @{
     ViewBag.Title = "Kategorie";
 }
-
-<h2>Kategorie</h2>
+            
+<div style="margin: 16px;">
+    <i class="fa fa-tags" style="font-size: 24px"></i>
+    <h2 style="display: inline; margin-left: 16px; font-weight: lighter">Kategorie</h2>
+</div>
+<hr/>
 
 <!-- modal placeholder-->
 <div id='myModal' class='modal fade in'>
@@ -16,7 +20,7 @@
 </div>
 
 <p>
-    @Html.ActionLink("Create New", "Create", null, new {@class = "btn btn-default"})
+    @Html.ActionLink("Create New", "Create", null, new {@class = "btn button-round button-lg animate-button" })
 </p>
 
 <ol>

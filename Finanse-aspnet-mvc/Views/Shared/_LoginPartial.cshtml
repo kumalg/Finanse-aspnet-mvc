@@ -1,22 +1,33 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
+@if (Request.IsAuthenticated) {
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @style="margin-left: auto"/* @class = "navbar-right"*/ })) {
+        @Html.AntiForgeryToken()
+        <button href="javascript:document.getElementById('logoutForm').submit()" class="upper-bar-button animate-button">
+            <i class="fa fa-power-off"></i>
+        </button>
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        @*<ul class="nav navbar-nav navbar-right">
+                <li>
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            </ul>*@
     }
 }
-else
-{
-    <ul class="nav navbar-nav navbar-right">
+else {
+    @*<ul class="nav navbar-nav navbar-right">
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    </ul>*@
+    <div style="margin-left: auto;">
+
+        <button href="@Url.Action("Register", "Account")" id="registerLink" class="upper-bar-button animate-button">
+            <p>Rejestracja</p>
+        </button>
+
+        <button href="@Url.Action("Login", "Account")" id="loginLink" class="upper-bar-button animate-button">
+            <p>Logowanie</p>
+        </button>
+
+    </div>
 }

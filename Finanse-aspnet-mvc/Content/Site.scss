@@ -1,19 +1,16 @@
 ﻿@import "colors";
+@import "_operation.scss";
+@import "_mixins.scss";
 
-@mixin uniform-size($size) {
-    width: $size;
-    height: $size;
-}
+$sidebar-compactWidth: 80px;
+$sidebar-expandWIdth: 199px;
 
-@mixin accentHover {
-    &:hover {
-        background: $accent-color-lighter-1;
-    }
+$upper-bar-height: 64px;
 
-    &:active {
-        background: $accent-color-lighter-2;
-    }
-}
+/**{
+    padding:0;
+    margin:0;
+}*/
 
 body {
     //padding-top: 50px;
@@ -29,8 +26,17 @@ hr {
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    /*width:100%;
+    text-align:center;*/
+
+    padding: {
+        left: 15px;
+        right: 15px;
+    }
+}
+
+.login-partial-fix{
+    margin-right:20px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -47,7 +53,7 @@ textarea {
     max-width: 280px;
 }
 
-.animateBtn {
+.animate-button {
     transition: transform .1s ease-out, border .1s ease-out, background-color .15s ease-out, color .1s ease-out;
 }
 
@@ -56,38 +62,69 @@ textarea {
 }
 
 .btn-circle {
-    @include uniform-size(30px);
     text-align: center;
     padding: 6px 0;
     font-size: 12px;
     line-height: 1.428571429;
     border-radius: 15px;
+    @include uniform-size(30px);
 }
 
 .btn-circle.btn-lg {
-    @include uniform-size(50px);
     padding: 10px 16px;
     font-size: 18px;
     line-height: 1.33;
     border-radius: 25px;
+    @include uniform-size(50px);
 }
 
 .btn-circle.btn-xl {
-    @include uniform-size(70px);
     padding: 10px 16px;
     font-size: 24px;
     line-height: 1.33;
     border-radius: 35px;
+    @include uniform-size(70px);
 }
 
-.addNew-button {
+
+.button-add {
     position: fixed;
     bottom: 16px;
     vertical-align: top;
 }
 
-$sidebar-compactWidth: 80px;
-$sidebar-expandWIdth: 199px;
+.button-round {
+    color: $accent-color;
+    background: transparent;
+    padding: 6px 16px;
+
+    border: {
+        radius: 4px;
+        width: 1px;
+        style: solid;
+        color: $accent-color;
+    }
+
+    &:hover {
+        background: $accent-color;
+        color: $body-background;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+.button-lg {
+    text-transform: uppercase;
+    padding: 12px 24px;
+
+    font: {
+        size: 11px;
+        weight: normal;
+        family: Montserrat;
+    }
+}
 
 /* Side bar */
 #sidebar-wrapper {
@@ -95,118 +132,56 @@ $sidebar-expandWIdth: 199px;
     position: fixed;
     width: $sidebar-compactWidth;
     height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
     background: $sidebar-background;
+    display: flex;
+    flex-direction: column;
+
+    overflow: {
+        y: auto;
+        x: hidden;
+    }
 
     footer {
+        margin-top: auto;
+        align-self: center;
+        text-align: center;
+        margin-bottom: 16px;
+
         p {
+            margin: 0;
             opacity: 0.25;
         }
     }
 }
 
-/* Main content */
-#page-content-wrapper {
-    padding-left: $sidebar-compactWidth;
+
+#sidebar-logo, 
+#upper-bar {
+    height: $upper-bar-height;
+    background-color: $accent-color;
 }
 
-/* Change the width of the sidebar to display it */
-#wrapper.menuDisplayed #sidebar-wrapper {
-    width: $sidebar-expandWIdth;
-}
-
-#wrapper.menuDisplayed #page-content-wrapper {
-    padding-left: $sidebar-expandWIdth;
-}
-
-.hide-span {
-    span {
-        display: none;
-    }
-}
-
-#logoButtonBackground {
-    @include accentHover;
-    width: 100%;
-    height: 100%
-}
-
-#logoButton {
+#sidebar-logo {
     border: 0;
-    /*background: url(logo_wide.png);*/
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100%;
-    height: 100%;
     display: block;
     text-indent: -9999px;
-}
-
-.logoButton-wide {
-    background: url(logo_wide.png);
-}
-
-.logoButton-thin {
-    background: url(logo_thin.png);
-}
-
-$upper-bar-height: 64px;
-
-#upper-bar {
-    width: 100%;
-    background: red;
-}
-
-#sidebar-hamburger, #upper-bar {
-    height: $upper-bar-height;
-    background: $accent-color;
-}
-
-#hamburgerButton {
-    @include uniform-size($upper-bar-height);
     @include accentHover;
-    background: transparent;
-    margin: 0;
 
-    border: {
-        style: solid;
-        width: 0px 1px 0px 1px;
-        color: $accent-color-lighter-1;
-    }
-
-    i {
-        text-align: center;
-        vertical-align: central;
-        text-indent: 0px;
-        font-size: 16px;
-        color: white;
-        opacity: 0.75;
+    background: {
+        repeat: no-repeat;
+        position: center;
     }
 }
 
-/*#hamburgerButton {
-    border-radius: 50%;
-    @include uniform-size(48px);
-    background: transparent;
-    border: 0;
-    margin: 8px 16px 8px 16px;
+.sidebar-logo-wide {
+    background-image: url(logo_wide.png);
+}
 
-    i {
-        text-align: center;
-        vertical-align:central;
-        text-indent: 0px;
-        font-size: 16px;
-        color: white;
-        opacity: 0.5;
-    }
+.sidebar-logo-thin {
+    background-image: url(logo_thin.png);
+}
 
-    &:hover {
-        background: $sidebar-background-lighter-2;
-    }
-}*/
 
-/* Sidebar styling */
 .sidebar-nav {
     padding: 0;
     margin-top: 16px;
@@ -215,14 +190,40 @@ $upper-bar-height: 64px;
     li {
         text-indent: 16px;
         line-height: 48px;
+        white-space: nowrap;
 
         a {
             display: block;
             text-decoration: none;
+            padding:0;
+            margin:0;
+
+            &:hover,
+            &.active {
+                i {
+                    color: $accent-color;
+                    opacity: 1;
+                }
+
+                span {
+                    opacity: 0.75;
+                }
+            }
 
             &:hover {
                 background: $sidebar-background-lighter-1;
+
+                border: {
+                    width: 0 0 0 4px;
+                    style: solid;
+                    color: $accent-color;
+                }
             }
+
+            &.active span {
+                opacity: 0.75;
+            }
+
 
             &:active {
                 background: $sidebar-background-lighter-2;
@@ -230,38 +231,120 @@ $upper-bar-height: 64px;
 
             i {
                 width: 48px;
-                text-align: center;
-                text-indent: 0px;
                 font-size: 16px;
                 color: white;
                 opacity: 0.25;
+
+                text: {
+                    align: center;
+                    indent: 0px;
+                }
             }
 
             span {
+                display: none;
                 color: white;
                 opacity: 0.5;
+                //opacity: 0;
                 text-indent: 0px;
                 font-size: 13px;
-                margin: 0;//16px - 4px; // NIE WIEM CZEMU ROBI TAM SIE WCZESNIEJ 20PX ZAMIAST 16PX
+                margin: 0; //16px - 4px; // NIE WIEM CZEMU ROBI TAM SIE WCZESNIEJ 20PX ZAMIAST 16PX
             }
         }
     }
 }
 
-.my-btn-round {
-    border-radius: 4px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: $accent-color;
-    color: $accent-color;
-    background: transparent;
-    padding: 6px 16px;
-
-    &:hover {
-        background: $accent-color;
-        color: $body-background;
+.hide-span {
+    span {
+        display: none;
     }
 }
 
+
+
+/* Main content */
+#page-content-wrapper {
+    margin-left: $sidebar-compactWidth;
+}
+
+
+#upper-bar {
+    width: 100%;
+    display: flex;
+}
+
+.upper-bar-button, 
+#button-hamburger {
+    margin: 0;
+    background: transparent;
+    height: 100%;
+    width: auto;
+    min-width: $upper-bar-height;
+    @include accentHover;
+
+    padding: {
+        left: 16px;
+        right: 16px;
+    }
+
+    border: {
+        style: solid;
+        width: 0px 1px 0px 1px;
+        color: $accent-color-lighter-1;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    i {
+        vertical-align: central;
+        font-size: 16px;
+        color: white;
+        opacity: 0.75;
+
+        text: {
+            align: center;
+            indent: 0px;
+        }
+    }
+}
+
+#button-hamburger {
+    @include uniform-size($upper-bar-height);
+}
+
+
+.page-content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1024px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* Change the width of the sidebar to display it */
+#wrapper.menuDisplayed #sidebar-wrapper {
+    width: $sidebar-expandWIdth;
+}
+
+#wrapper.menuDisplayed #page-content-wrapper {
+    margin-left: $sidebar-expandWIdth;
+}
+
+#wrapper.menuDisplayed #sidebar-wrapper {
+    span {
+        display: inline-block;
+        //opacity: 0.5;
+    }
+}
+
+
+
 #nav-month {
+    margin:{
+        left:auto;
+        right:auto;
+    }
 }
