@@ -90,7 +90,29 @@ textarea {
 .button-add {
     position: fixed;
     bottom: 16px;
-    vertical-align: top;
+    left: auto;
+    right:auto;
+    margin: auto;
+}
+
+.button-more {
+    color: $text-color;
+    background-color: transparent;
+    @include uniform-size(24px);
+
+    border: {
+        radius: 4px;
+        width: 0;
+    }
+
+    &:hover {
+        background-color: $body-background-lighten-2;
+    }
+
+    &:focus {
+        background-color: $body-background-lighten-2;
+        outline: 0;
+    }
 }
 
 .button-round {
@@ -314,16 +336,6 @@ textarea {
     @include uniform-size($upper-bar-height);
 }
 
-
-.page-content {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1024px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
-
 /* Change the width of the sidebar to display it */
 #wrapper.menuDisplayed #sidebar-wrapper {
     width: $sidebar-expandWIdth;
@@ -341,10 +353,23 @@ textarea {
 }
 
 
+.page-content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1024px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+
+    > div {
+        margin-top:16px;
+    }
+}
 
 #nav-month {
-    margin:{
-        left:auto;
-        right:auto;
-    }
+}
+
+#operationsList {
+    max-width: 600px;
+    width: 100%;
 }

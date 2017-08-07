@@ -11,8 +11,8 @@ $sidebar-background-lighter-2: lighten( $sidebar-background, 10%);
 $text-color: #c8c8c8;
 
 $body-background: #242424;
-$body-background-lighten-1: lighten( $body-background, 5%);
-$body-background-lighten-2: lighten( $body-background, 15%);
+$body-background-lighten-1: rgba(255,255,255,0.05);//lighten( $body-background, 5%);
+$body-background-lighten-2: rgba(255,255,255,0.1);
 
 $red-color: #e04967;
 $green-color: #34a159;

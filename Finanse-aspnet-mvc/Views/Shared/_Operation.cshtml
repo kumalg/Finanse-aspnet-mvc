@@ -28,18 +28,16 @@
 
 <div class="operation animate-button">
     <div class="operation-icon">
-        <i class="fa fa-copy"></i>
+        <i class="fa fa-shopping-cart" aria-hidden="true" style="color: #fa8748;"></i>
     </div>
     <div class="operation-text">
-        <span>@Model.TitleOrCategoryName</span>
-        <div>
-            @if (Model.Category is SubCategory) {
-                <small>@(((SubCategory)Model.Category).ParentCategory.Name) -> @Model.Category.Name</small>
-            }
-            else {
-                <small>@Model.Category.Name</small>
-            }
-        </div>
+        <p>@Model.TitleOrCategoryName</p>
+        @if (Model.Category is SubCategory) {
+            <small>@(((SubCategory)Model.Category).ParentCategory.Name) -> @Model.Category.Name</small>
+        }
+        else {
+            <small>@Model.Category.Name</small>
+        }
     </div>
 
     @if (Model.IsExpense) {
@@ -53,9 +51,9 @@
         </div>
     }
     
-    <div class="btn-group" data-toggle="buttons" style="margin-right: 16px">
-        <button type="button" class="btn button-round animate-button dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
-            <span class="caret"></span>
+    <div class="btn-group" data-toggle="buttons">
+        <button type="button" class="button-more animate-button dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
         </button>
         <ul class="dropdown-menu" role="menu">
             <li>@Html.ActionLink("Szczegóły", "Details", "Operations", new { id = Model.Id }, new { data_modal = "" })</li>

@@ -1,36 +1,39 @@
 ﻿.operation {
-  background: transparent;
-  height: 68px;
   max-width: 600px;
-  margin: 0;
+  min-height: 68px;
+  padding: 0 16px;
   display: flex;
-  align-items: center; }
+  align-items: center;
+  flex-wrap: wrap; }
   .operation:hover {
-    background: #313131;
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 5px; }
 
 .operation-icon {
-  margin: 10px 16px;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 48px;
   width: 48px;
   height: 48px;
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;
-  border-color: #313131; }
+  border-color: rgba(255, 255, 255, 0.05); }
 
-.operation-text span {
-  font-size: 14px;
-  font-weight: 300; }
-
-.operation-text small {
-  font-size: 12px;
-  font-weight: 600; }
+.operation-text {
+  margin: 0 16px;
+  flex: 1; }
+  .operation-text p {
+    font-size: 14px;
+    font-weight: 300;
+    margin: 0; }
+  .operation-text small {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0; }
 
 .operation-cost {
-  margin-left: auto;
   margin-right: 16px;
   font-size: 12px;
   font-weight: 600; }
@@ -52,7 +55,7 @@ body {
   color: #c8c8c8; }
 
 hr {
-  border-color: #313131; }
+  border-color: rgba(255, 255, 255, 0.05); }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -110,7 +113,22 @@ textarea {
 .button-add {
   position: fixed;
   bottom: 16px;
-  vertical-align: top; }
+  left: auto;
+  right: auto;
+  margin: auto; }
+
+.button-more {
+  color: #c8c8c8;
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border-width: 0; }
+  .button-more:hover {
+    background-color: rgba(255, 255, 255, 0.1); }
+  .button-more:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    outline: 0; }
 
 .button-round {
   color: #079e6f;
@@ -262,14 +280,6 @@ textarea {
   width: 64px;
   height: 64px; }
 
-.page-content {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1024px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-
 /* Change the width of the sidebar to display it */
 #wrapper.menuDisplayed #sidebar-wrapper {
   width: 199px; }
@@ -280,7 +290,17 @@ textarea {
 #wrapper.menuDisplayed #sidebar-wrapper span {
   display: inline-block; }
 
-#nav-month {
+.page-content {
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  max-width: 1024px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .page-content > div {
+    margin-top: 16px; }
+
+#operationsList {
+  max-width: 600px;
+  width: 100%; }
 
