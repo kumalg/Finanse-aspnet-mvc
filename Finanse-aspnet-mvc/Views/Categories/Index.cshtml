@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Finanse_aspnet_mvc.Models.Categories.Category>
+﻿@model Finanse_aspnet_mvc.Controllers.ExpensesAndIncomesViewModel
 
 @{
     ViewBag.Title = "Kategorie";
@@ -23,11 +23,21 @@
     @Html.ActionLink("Create New", "Create", null, new {@class = "btn button-round button-lg animate-button" })
 </p>
 
-<ol>
-    @foreach (var item in Model) {
-        @Html.Partial("_Category", item)
-    }
-</ol>
+<div>
+    <div>
+        Wydatki
+        @foreach (var item in Model.Expenses) {
+            @Html.Partial("_Category", item)
+        }
+    </div>
+
+    <div>
+        Wpływy
+        @foreach (var item in Model.Incomes) {
+            @Html.Partial("_Category", item)
+        }
+    </div>
+</div>
 
 
 @section Scripts {

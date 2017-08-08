@@ -1,12 +1,12 @@
 ﻿@import "_mixins.scss";
 
-.operation {
+.operation,
+.category {
     max-width: 600px;
-    min-height: 68px;
-    padding: 0 16px;
+  //  min-height: 68px;
+    padding: 10px 16px;
     display: flex;
     align-items: center;
-  //  flex-direction:column;
     flex-wrap:wrap;
 
     &:hover {
@@ -15,7 +15,8 @@
     }
 }
 
-.operation-icon {
+.operation-icon,
+.category-icon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,8 +31,32 @@
     }
 }
 
-.operation-text {
-    //line-height: 8px;
+.category-icon.icon-small {
+    min-width: 36px;
+    @include uniform-size(36px);
+    margin: 0 6px;
+}
+
+.category-icon.icon-small > .fa {
+    font-size: 12px;
+}
+
+$width: 48px;
+$dot-size: 12px;
+.dot {
+    @include uniform-size($dot-size);
+    margin: 0 ($width - $dot-size) / 2;
+
+    border: {
+        radius: 50%;
+        style: solid;
+        width: 2px;
+        color: $body-background-lighten-1;
+    }
+}
+
+.operation-text,
+.category-text {
     margin: 0 16px;
     flex: 1;
 
@@ -40,7 +65,9 @@
         font-weight: 300;
         margin: 0;
     }
+}
 
+.operation-text {
     small {
         opacity: 0.5;
         font-size: 12px;

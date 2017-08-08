@@ -16,8 +16,10 @@ namespace Finanse_aspnet_mvc.Migrations
                 Id = 1,
                 CantDelete = true,
                 Name = "Inne",
-                ColorKey = "1",
-                IconKey = "1"
+                ColorKey = "color_key_01",
+                IconKey = "icon_key_01",
+                VisibleInExpenses = true,
+                VisibleInIncomes = true
             };
             context.Categories.AddOrUpdate(h => h.Id, defaultCategory);
             //  This method will be called after migrating to the latest version.

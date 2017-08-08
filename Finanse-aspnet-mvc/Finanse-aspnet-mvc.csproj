@@ -18,8 +18,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44323</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -203,12 +202,19 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounts\Account.cs" />
     <Compile Include="Models\Accounts\AccountBase.cs" />
+    <Compile Include="Models\Accounts\AccountPost.cs" />
+    <Compile Include="Models\Accounts\IAccountBase.cs" />
+    <Compile Include="Models\Accounts\ISubAccount.cs" />
     <Compile Include="Models\Accounts\SubAccount.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Categories\Category.cs" />
     <Compile Include="Models\Categories\CategoryBase.cs" />
+    <Compile Include="Models\Categories\CategoryPost.cs" />
+    <Compile Include="Models\Categories\ICategoryBase.cs" />
+    <Compile Include="Models\Categories\ISubCategory.cs" />
     <Compile Include="Models\Categories\SubCategory.cs" />
     <Compile Include="Models\DecimalModelBinder.cs" />
+    <Compile Include="Models\Helpers\AppSettingsHelper.cs" />
     <Compile Include="Models\Helpers\JsonHelper.cs" />
     <Compile Include="Models\Helpers\OperationsHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -275,7 +281,7 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="Content\_operation.scss" />
+    <Content Include="Content\_operation-category.scss" />
     <Content Include="Content\_mixins.scss" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -354,6 +360,7 @@
     <Content Include="Views\Operations\_Delete.cshtml" />
     <Content Include="Views\Categories\_Edit.cshtml" />
     <Content Include="Views\Operations\_OperationsList.cshtml" />
+    <Content Include="Views\Accounts\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

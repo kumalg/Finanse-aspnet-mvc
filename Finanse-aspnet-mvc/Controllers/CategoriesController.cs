@@ -1,18 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Finanse_aspnet_mvc.Models;
 using Finanse_aspnet_mvc.Models.Categories;
+using Finanse_aspnet_mvc.Models.Helpers;
 
 namespace Finanse_aspnet_mvc.Controllers {
     [Authorize]
     public class CategoriesController : Controller {
         private readonly StackMoneyDb _db = new StackMoneyDb();
+        private IEnumerable<KeyValuePair<string, string>> _colors;
+
         // GET: Categories
-        public ActionResult Index() {
-            IEnumerable<Category> model = _db.Categories;
+        public async Task<ActionResult> Index() {
+            var model = new ExpensesAndIncomesViewModel {
+                Expenses = await _db.Categories.Where(c => c.VisibleInExpenses).OrderBy(c => c.Name).ToListAsync(),
+                Incomes = await _db.Categories.Where(c => c.VisibleInIncomes).OrderBy(c => c.Name).ToListAsync()
+            };
+
             return View(model);
         }
 
@@ -23,25 +31,31 @@ namespace Finanse_aspnet_mvc.Controllers {
 
         // GET: Categories/Create
         public ActionResult Create() {
+            ViewBag.Colors = _colors ?? (_colors = AppSettingsHelper.GetColors());
             return PartialView("_Create");
         }
 
         // POST: Categories/Create
         [HttpPost]
-        public async Task<ActionResult> Create(SubCategory category) {
+        public async Task<ActionResult> Create(CategoryPost categoryPost) {
+            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+
+            //ModelState.Remove(nameof(CategoryPost.CantDelete));
+
             if (ModelState.IsValid) {
-                var newCategory = ConvertToRightCategoryType(category);
-                _db.CategoriesAndSubCategories.Add(newCategory);
+                var category = categoryPost.GetCategory();
+                _db.CategoriesAndSubCategories.Add(category);
                 await _db.SaveChangesAsync();
 
                 return Json(new { success = true });
             }
 
-            return PartialView("_Create", category);
+            return PartialView("_Create", categoryPost);
         }
 
         // GET: Categories/Edit/5
         public ActionResult Edit(int id) {
+            ViewBag.Colors = _colors ?? (_colors = AppSettingsHelper.GetColors());
             return PartialView("_Edit");
         }
 
@@ -94,5 +108,10 @@ namespace Finanse_aspnet_mvc.Controllers {
                 _db.Dispose();
             base.Dispose(disposing);
         }
+    }
+
+    public class ExpensesAndIncomesViewModel{
+        public List<Category> Expenses { get; set; }
+        public List<Category> Incomes { get; set; }
     }
 }

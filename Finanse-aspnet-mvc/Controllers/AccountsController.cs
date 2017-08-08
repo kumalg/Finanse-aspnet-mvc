@@ -1,13 +1,20 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using Finanse_aspnet_mvc.Models;
+using Finanse_aspnet_mvc.Models.Accounts;
+using Finanse_aspnet_mvc.Models.Helpers;
 
 namespace Finanse_aspnet_mvc.Controllers {
     [Authorize]
     public class AccountsController : Controller {
         StackMoneyDb _db = new StackMoneyDb();
+        private IEnumerable<KeyValuePair<string, string>> _colors;
+
         // GET: Accounts
-        public ActionResult Index() {
-            var model = _db.Accounts;
+        public async Task<ActionResult> Index() {
+            var model = await _db.Accounts.ToListAsync();
             return View(model);
         }
 
@@ -18,20 +25,21 @@ namespace Finanse_aspnet_mvc.Controllers {
 
         // GET: Accounts/Create
         public ActionResult Create() {
+            ViewBag.Colors = _colors ?? (_colors = AppSettingsHelper.GetColors());
             return View();
         }
 
         // POST: Accounts/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection) {
-            try {
-                // TODO: Add insert logic here
+        public async Task<ActionResult> Create(AccountPost accountPost) {
+            if (ModelState.IsValid) {
+                var account = accountPost.GetAccount();
+                _db.AccountsAndSubAccounts.Add(account);
+                await _db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
-            catch {
-                return View();
-            }
+            return View();
         }
 
         // GET: Accounts/Edit/5

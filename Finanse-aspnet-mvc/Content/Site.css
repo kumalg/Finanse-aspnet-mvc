@@ -1,15 +1,17 @@
-﻿.operation {
+﻿.operation,
+.category {
   max-width: 600px;
-  min-height: 68px;
-  padding: 0 16px;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   flex-wrap: wrap; }
-  .operation:hover {
+  .operation:hover,
+  .category:hover {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 5px; }
 
-.operation-icon {
+.operation-icon,
+.category-icon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,19 +23,40 @@
   border-width: 2px;
   border-color: rgba(255, 255, 255, 0.05); }
 
-.operation-text {
+.category-icon.icon-small {
+  min-width: 36px;
+  width: 36px;
+  height: 36px;
+  margin: 0 6px; }
+
+.category-icon.icon-small > .fa {
+  font-size: 12px; }
+
+.dot {
+  width: 12px;
+  height: 12px;
+  margin: 0 18px;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgba(255, 255, 255, 0.05); }
+
+.operation-text,
+.category-text {
   margin: 0 16px;
   flex: 1; }
-  .operation-text p {
+  .operation-text p,
+  .category-text p {
     font-size: 14px;
     font-weight: 300;
     margin: 0; }
-  .operation-text small {
-    opacity: 0.5;
-    font-size: 12px;
-    margin: 0; }
-    .operation-text small strong {
-      font-weight: 600; }
+
+.operation-text small {
+  opacity: 0.5;
+  font-size: 12px;
+  margin: 0; }
+  .operation-text small strong {
+    font-weight: 600; }
 
 .operation-angle.fa {
   font-size: 8px;

@@ -4,7 +4,7 @@ using System.Configuration;
 
 namespace Finanse_aspnet_mvc.Models.Categories {
     [Table("Categories")]
-    public abstract class CategoryBase {
+    public abstract class CategoryBase: ICategoryBase {
         public int Id { get; set; }
 
         [StringLength(32)]
@@ -14,7 +14,7 @@ namespace Finanse_aspnet_mvc.Models.Categories {
         public string IconKey { get; set; }
         public bool VisibleInIncomes { get; set; }
         public bool VisibleInExpenses { get; set; }
-        public bool CantDelete { get; set; }
+        public bool CantDelete { get; set; } = false;
 
         private string _lastColorKey;
         private string _color;

@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - StackMoney</title>
     @Styles.Render("~/Content/css")
 
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"  type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"  type="text/css">
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -48,9 +48,7 @@
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
-            <div id="sidebar-logo" class="animate-button sidebar-logo-wide">
-                <a href="@Url.Action("Index", "Home")"></a>
-            </div>
+            <a href="@Url.Action("Index", "Home")" id="sidebar-logo" class="animate-button sidebar-logo-wide"></a>
 
             <ul class="sidebar-nav">
                 <li>

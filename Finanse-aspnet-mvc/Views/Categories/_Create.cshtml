@@ -1,5 +1,5 @@
 ﻿@using Finanse_aspnet_mvc.Models
-@model Finanse_aspnet_mvc.Models.Categories.SubCategory
+@model Finanse_aspnet_mvc.Models.Categories.CategoryPost
 
 @{
     ViewBag.Title = "Create";
@@ -31,6 +31,12 @@
                 @Html.ValidationMessageFor(model => model.ColorKey, "", new { @class = "text-danger" })
             </div>
         </div>
+        
+        @*<div>
+            @foreach (var colorPair in ViewBag.Colors) {
+                <h4 style="color: @colorPair.Value">@colorPair.Key</h4>
+            }
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.IconKey, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -63,7 +69,7 @@
         <div class="form-group">
             @Html.Label("Kategoria nadrzędna", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.ParentCategoryId, new List<SelectListItem>{new SelectListItem{Value = "0"}}.Concat(StackMoneyDb.OnlyCategoriesList().Select(i => new SelectListItem{Value = i.Id.ToString(), Text = i.Name })), new { @class = "btn btn-default" })
+                @Html.DropDownListFor(model => model.ParentCategoryId, new List<SelectListItem> { new SelectListItem { Value = "-1", Text = "Brak" } }.Concat(StackMoneyDb.OnlyCategoriesList().Select(i => new SelectListItem { Value = i.Id.ToString(), Text = i.Name })), new { @class = "btn btn-default" })
             </div>
         </div>
         

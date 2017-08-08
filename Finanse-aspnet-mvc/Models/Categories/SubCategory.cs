@@ -1,5 +1,5 @@
 ﻿namespace Finanse_aspnet_mvc.Models.Categories {
-    public class SubCategory : CategoryBase {
+    public class SubCategory : CategoryBase, ISubCategory {
         public int ParentCategoryId { get; set; }
         public virtual Category ParentCategory { get; set; }
         public Category AsCategory() {

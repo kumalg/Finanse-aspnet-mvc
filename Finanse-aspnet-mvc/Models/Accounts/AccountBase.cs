@@ -3,7 +3,7 @@ using System.Configuration;
 
 namespace Finanse_aspnet_mvc.Models.Accounts {
     [Table("Accounts")]
-    public abstract class AccountBase {
+    public abstract class AccountBase : IAccountBase {
         public int Id { get; set; }
         public string Name { get; set; }
         public string ColorKey { get; set; }
