@@ -42,10 +42,20 @@
     }
 
     small {
+        opacity: 0.5;
         font-size: 12px;
-        font-weight: 600;
         margin: 0;
+
+        strong {
+            font-weight: 600;
+        }
     }
+}
+
+.operation-angle.fa {
+    font-size: 8px;
+    margin: 0 8px;
+    opacity: 0.5;
 }
 
 .operation-cost {

@@ -29,9 +29,16 @@
     font-weight: 300;
     margin: 0; }
   .operation-text small {
+    opacity: 0.5;
     font-size: 12px;
-    font-weight: 600;
     margin: 0; }
+    .operation-text small strong {
+      font-weight: 600; }
+
+.operation-angle.fa {
+  font-size: 8px;
+  margin: 0 8px;
+  opacity: 0.5; }
 
 .operation-cost {
   margin-right: 16px;
