@@ -1,91 +1,103 @@
 ﻿@using Finanse_aspnet_mvc.Models
+@using Finanse_aspnet_mvc.Models.Helpers
 @model Finanse_aspnet_mvc.Models.Categories.CategoryPost
 
-@{
-    ViewBag.Title = "Create";
-}
-
-<h2>Create</h2>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">Nowa kategoria</h4>
+</div>
 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Category</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
+            @*<div class="form-group">
             @Html.LabelFor(model => model.ColorKey, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ColorKey, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ColorKey, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
         
-        @*<div>
+            @*<div>
             @foreach (var colorPair in ViewBag.Colors) {
                 <h4 style="color: @colorPair.Value">@colorPair.Key</h4>
             }
         </div>*@
+        
+            <div class="form-group">
+                @Html.Label("Kolor", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.ColorKey, AppSettingsHelper.GetColors().Select(i => new SelectListItem {Value = i.Key, Text = i.Key}), new {@class = "btn btn-default"})
+                </div>
+            </div>
+        
 
-        <div class="form-group">
+
+            @*<div class="form-group">
             @Html.LabelFor(model => model.IconKey, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.IconKey, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IconKey, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.VisibleInIncomes, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.VisibleInIncomes)
-                    @Html.ValidationMessageFor(model => model.VisibleInIncomes, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.VisibleInExpenses, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.VisibleInExpenses)
-                    @Html.ValidationMessageFor(model => model.VisibleInExpenses, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Kategoria nadrzędna", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.ParentCategoryId, new List<SelectListItem> { new SelectListItem { Value = "-1", Text = "Brak" } }.Concat(StackMoneyDb.OnlyCategoriesList().Select(i => new SelectListItem { Value = i.Id.ToString(), Text = i.Name })), new { @class = "btn btn-default" })
-            </div>
-        </div>
+        </div>*@
         
-        @Html.HiddenFor(item => item.CantDelete)
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group">
+                @Html.Label("Ikona", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.IconKey, AppSettingsHelper.GetIcons().Select(i => new SelectListItem { Value = i.Key, Text = i.Key }), new { @class = "btn btn-default" })
+                </div>
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.VisibleInIncomes, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.VisibleInIncomes)
+                        @Html.ValidationMessageFor(model => model.VisibleInIncomes, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.VisibleInExpenses, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.VisibleInExpenses)
+                        @Html.ValidationMessageFor(model => model.VisibleInExpenses, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Kategoria nadrzędna", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.ParentCategoryId, new List<SelectListItem> { new SelectListItem { Value = "-1", Text = "Brak" } }.Concat(StackMoneyDb.OnlyCategoriesList().Select(i => new SelectListItem { Value = i.Id.ToString(), Text = i.Name })), new { @class = "btn btn-default" })
+                </div>
+            </div>
+        
+            @Html.HiddenFor(item => item.CantDelete)
+
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div class="modal-footer">
+        <button class="btn btn-default animate-button" data-dismiss="modal">Anuluj</button>
+        <input class="btn btn-primary animate-button" type="submit" value="Dodaj" />
+    </div>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

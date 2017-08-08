@@ -1,7 +1,11 @@
-﻿@model Finanse_aspnet_mvc.Models.Categories.CategoryBase
+﻿@using Finanse_aspnet_mvc.Models.Categories
+@model Finanse_aspnet_mvc.Models.Categories.CategoryBase
 
 <div class="modal-body">
-    Czy na pewno chcesz usunąć <span><b>@Model.Name</b></span> ?
+    <p>Czy na pewno chcesz usunąć <b>@Model.Name</b> ?</p>
+    @if (Model is Category) {
+        <p>Zostaną usunięte wszystkie podkategorie.</p>
+    }
 </div>
 
 @using (Html.BeginForm()) {

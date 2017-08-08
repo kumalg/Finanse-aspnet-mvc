@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Configuration;
 
 namespace Finanse_aspnet_mvc.Models.Accounts {
@@ -7,6 +8,8 @@ namespace Finanse_aspnet_mvc.Models.Accounts {
         public int Id { get; set; }
         public string Name { get; set; }
         public string ColorKey { get; set; }
+        [Required]
+        public string UserId { get; set; }
 
         private string _lastColorKey;
         private string _color;

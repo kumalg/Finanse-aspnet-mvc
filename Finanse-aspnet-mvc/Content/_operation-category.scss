@@ -100,3 +100,11 @@ $dot-size: 12px;
 .green-text {
     color: $green-color;
 }
+
+.color-circle {
+    @include uniform-size(32px);
+
+    border: {
+        radius: 50%;
+    }
+}

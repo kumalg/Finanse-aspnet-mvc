@@ -15,6 +15,8 @@ namespace Finanse_aspnet_mvc.Models.Categories {
         public bool VisibleInIncomes { get; set; }
         public bool VisibleInExpenses { get; set; }
         public bool CantDelete { get; set; } = false;
+        [Required]
+        public string UserId { get; set; }
 
         private string _lastColorKey;
         private string _color;

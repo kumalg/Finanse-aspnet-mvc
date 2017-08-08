@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Finanse_aspnet_mvc.Models;
 using Finanse_aspnet_mvc.Models.Helpers;
 using Finanse_aspnet_mvc.Models.Operations;
+using Microsoft.AspNet.Identity;
 
 namespace Finanse_aspnet_mvc.Controllers {
     [Authorize]
@@ -18,7 +19,9 @@ namespace Finanse_aspnet_mvc.Controllers {
             if (!Request.IsAjaxRequest())
                 return View();
 
-            var model = await _db.Operations.ToListAsync();
+            var userId = User.Identity.GetUserId();
+
+            var model = await _db.Operations.Where(o => o.UserId.Equals(userId)).ToListAsync();
 
             var items = model
                 .OrderByDescending(o => o.Date)
@@ -71,6 +74,10 @@ namespace Finanse_aspnet_mvc.Controllers {
         // POST: Operations/Create
         [HttpPost]
         public async Task<ActionResult> Create(Operation operation) {
+
+            ModelState.Remove(nameof(Operation.UserId));
+            operation.UserId = User.Identity.GetUserId();
+
             if (ModelState.IsValid) {
                 _db.Operations.Add(operation);
                 await _db.SaveChangesAsync();
@@ -88,7 +95,7 @@ namespace Finanse_aspnet_mvc.Controllers {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             var operation = await _db.Operations.FindAsync(id);
-            if (operation == null)
+            if (operation == null || !operation.UserId.Equals(User.Identity.GetUserId()))
                 return HttpNotFound();
 
             return PartialView("_Edit", operation);

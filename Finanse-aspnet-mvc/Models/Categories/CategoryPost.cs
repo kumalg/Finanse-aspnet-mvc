@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -13,6 +14,8 @@ namespace Finanse_aspnet_mvc.Models.Categories {
         public bool VisibleInExpenses { get; set; }
         public bool CantDelete { get; set; }
         public int? ParentCategoryId { get; set; }
+        [Required]
+        public string UserId { get; set; }
 
         public CategoryBase GetCategory() {
             CategoryBase category;
@@ -31,6 +34,7 @@ namespace Finanse_aspnet_mvc.Models.Categories {
             category.VisibleInIncomes = VisibleInIncomes;
             category.VisibleInExpenses = VisibleInExpenses;
             category.CantDelete = CantDelete;
+            category.UserId = UserId;
 
             return category;
         }

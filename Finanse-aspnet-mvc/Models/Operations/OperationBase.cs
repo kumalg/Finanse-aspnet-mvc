@@ -4,7 +4,7 @@ using Finanse_aspnet_mvc.Models.Accounts;
 using Finanse_aspnet_mvc.Models.Categories;
 
 namespace Finanse_aspnet_mvc.Models.Operations {
-    public class OperationBase {
+    public class OperationBase : ISpecificUserData {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -23,6 +23,8 @@ namespace Finanse_aspnet_mvc.Models.Operations {
         [ForeignKey("Account")]
         [Display(Name = "Konto")]
         public int AccountId { get; set; }
+        [Required]
+        public string UserId { get; set; }
 
         public decimal SignedCost => IsExpense ? -Cost : Cost;
         public virtual CategoryBase Category { get; set; }

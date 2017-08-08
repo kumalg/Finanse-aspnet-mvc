@@ -218,6 +218,7 @@
     <Compile Include="Models\Helpers\JsonHelper.cs" />
     <Compile Include="Models\Helpers\OperationsHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ISpecificUserData.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModalProperties.cs" />
     <Compile Include="Models\Operations\Operation.cs" />

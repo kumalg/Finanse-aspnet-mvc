@@ -20,8 +20,10 @@
 </div>
 
 <p>
-    @Html.ActionLink("Create New", "Create", null, new {@class = "btn button-round button-lg animate-button" })
+    @Html.ActionLink("Create New", "Create", null, new { data_modal = "", id = "btnCreate", @class = "btn button-round button-lg animate-button" })
 </p>
+
+@*@Html.ActionLink("+", "Create", "Operations", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-success btn-circle btn-lg button-add animate-button" })*@
 
 <div>
     <div>

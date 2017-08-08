@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace Finanse_aspnet_mvc.Models.Categories {
-    public interface ICategoryBase {
+    public interface ICategoryBase : ISpecificUserData {
         int Id { get; set; }
         string Name { get; set; }
         string ColorKey { get; set; }

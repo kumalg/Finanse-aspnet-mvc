@@ -26,5 +26,18 @@ namespace Finanse_aspnet_mvc.Models.Helpers {
         public static string GetIcon(string iconKey) {
             return ConfigurationManager.AppSettings[iconKey];
         }
+
+        public static IEnumerable<KeyValuePair<string, string>> GetIcons() {
+            var colors = ConfigurationManager
+                .AppSettings
+                .AllKeys
+                .Where(k => k.StartsWith("icon_key"));
+
+            var pairs = colors
+                .Select(k => new KeyValuePair<string, string>
+                    (k, ConfigurationManager.AppSettings[k]));
+
+            return pairs;
+        }
     }
 }
