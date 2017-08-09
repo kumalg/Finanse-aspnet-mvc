@@ -20,7 +20,7 @@ namespace Finanse_aspnet_mvc.Controllers {
                 return View();
 
             var userId = User.Identity.GetUserId();
-
+            
             var model = await _db.Operations.Where(o => o.UserId.Equals(userId)).ToListAsync();
 
             var items = model
@@ -28,11 +28,13 @@ namespace Finanse_aspnet_mvc.Controllers {
                 .Where(o => o.Date.StartsWith($"{actualYear}.{actualMonth:00}"))    // because Data format is always YYYY.MM.DD
                 .SkipWhile(o => lastId != null && o.Id != lastId)                   // skip while lastId is not equal actual id and there is lastId (!= -1)
                 .Skip(lastId == null ? 0 : 1)                                       // if there is no lastId (== -1) then skip 0
-                .Take(5);
+                .Take(10);
 
+            var groupedItems = items.GroupBy(o => o.Date);
+            
             var result = new {
                 lastId = items.LastOrDefault()?.Id,
-                partialView = RenderRazorViewToString("_OperationsList", items)
+                partialView = RenderRazorViewToString("_OperationsList", groupedItems)
             };
 
             return Content(JsonHelper.ToJsonString(result), "application/json");

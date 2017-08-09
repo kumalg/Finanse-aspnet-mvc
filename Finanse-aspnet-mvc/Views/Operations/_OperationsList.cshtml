@@ -1,5 +1,16 @@
-﻿@model IEnumerable<Finanse_aspnet_mvc.Models.Operations.Operation>
+﻿@using System.Globalization
+@using Finanse_aspnet_mvc.Models.Operations;
+@model IEnumerable<IGrouping<string, Operation>>
 
-@foreach (var item in Model) {
-    @Html.Partial("_Operation", item)
+@foreach (var group in Model) {
+    <div role="heading" value="@(group.Key)" class="operation-header animate-button">
+        @{
+            var date = DateTime.ParseExact(group.Key, "yyyy.MM.dd", CultureInfo.InvariantCulture);
+        }
+        <div class="operation-header-dayNum">@date.ToString("dd")</div>
+        <div>@date.ToString("dddd")</div>
+    </div>
+    foreach (var operation in group) {
+        @Html.Partial("_Operation", operation)
+    }
 }

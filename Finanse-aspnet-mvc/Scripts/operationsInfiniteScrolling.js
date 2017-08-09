@@ -36,10 +36,18 @@ function GetData() {
         url: "/Operations/Index",
         data: { "lastId": lastId, "actualYear": actualMonthAndYear.format("YYYY"), "actualMonth": actualMonthAndYear.format("MM") },
         success: function (data) {
+
             if (data.lastId != null) {
 
-                $("#operationsList").append(data.partialView);
+                var lastDate = $("#operationsList > div[role=heading]").last().attr("value");
+                var firstNewDate = $(data.partialView).first().attr("value");
 
+                if (lastDate == firstNewDate) {
+                    $("#operationsList").append($(data.partialView).slice(1));
+                } else {
+                    $("#operationsList").append(data.partialView);    
+                }
+                
                 if (lastId != data.lastId) {
                     lastId = data.lastId;
 

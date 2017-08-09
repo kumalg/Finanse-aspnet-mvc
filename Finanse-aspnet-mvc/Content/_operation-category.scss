@@ -3,11 +3,11 @@
 .operation,
 .category {
     max-width: 600px;
-  //  min-height: 68px;
+    //  min-height: 68px;
     padding: 10px 16px;
     display: flex;
     align-items: center;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
 
     &:hover {
         background: $body-background-lighten-1;
@@ -107,4 +107,24 @@ $dot-size: 12px;
     border: {
         radius: 50%;
     }
+}
+
+.operation-header {
+    margin-top: 16px;
+    padding: 10px 16px;
+    display: flex;
+    color: $text-color-darken-1;
+    font-size: 12px;
+    font-weight: 600;
+
+    &:hover {
+        background: $body-background-lighten-1;
+        border-radius: 5px;
+    }
+}
+
+.operation-header-dayNum {
+    width: 48px;
+    margin-right: 16px;
+    text-align:center;
 }
