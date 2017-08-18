@@ -4,16 +4,23 @@ $accent-color-lighter-2: lighten( $accent-color, 6%);
 $dark-color: #111;
 $light-color: #fff;
 
-$sidebar-background: #1f1f1f;
-$sidebar-background-lighter-1: lighten( $sidebar-background, 3%);
-$sidebar-background-lighter-2: lighten( $sidebar-background, 10%);
-
 $text-color: #c8c8c8;
 $text-color-darken-1: rgba(255,255,255,0.4);
 
-$body-background: #242424;
+$foreground-25: rgba(255,255,255,0.25);
+$foreground-40: rgba(255,255,255,0.4);
+$foreground-50: rgba(255,255,255,0.5);
+$foreground-75: rgba(255,255,255,0.75);
+$foreground-100: rgba(255,255,255,1);
+
+$body-background: #242727;
 $body-background-lighten-1: rgba(255,255,255,0.05);//lighten( $body-background, 5%);
 $body-background-lighten-2: rgba(255,255,255,0.1);
+$body-background-darken-1: #202222 ;//darken($body-background, 3%);
 
-$red-color: #e04967;
-$green-color: #34a159;
+$sidebar-background: $body-background;
+$sidebar-background-lighter-1: lighten( $sidebar-background, 3%);
+$sidebar-background-lighter-2: lighten( $sidebar-background, 10%);
+
+$red-color: #e0495c;
+$green-color: #06a771;

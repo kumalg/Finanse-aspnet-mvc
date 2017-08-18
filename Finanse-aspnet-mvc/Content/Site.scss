@@ -1,23 +1,17 @@
 ﻿@import "colors";
 @import "_operation-category.scss";
+@import "_buttons.scss";
 @import "_mixins.scss";
-
-$sidebar-compactWidth: 80px;
-$sidebar-expandWIdth: 199px;
-
-$upper-bar-height: 64px;
-
-/**{
-    padding:0;
-    margin:0;
-}*/
+@import "statics.scss";
 
 body {
     //padding-top: 50px;
     padding-bottom: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: $body-background;
-    color: $text-color;
+    font-family: 'Open Sans', Tahoma, Geneva, Verdana, sans-serif;
+    background: $body-background-darken-1;
+    color: $foreground-100;
+    font-size: 16px;
+ //   line-height: 20px;
 }
 
 hr {
@@ -28,15 +22,14 @@ hr {
 .body-content {
     /*width:100%;
     text-align:center;*/
-
     padding: {
         left: 15px;
         right: 15px;
     }
 }
 
-.login-partial-fix{
-    margin-right:20px;
+.login-partial-fix {
+    margin-right: 20px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -53,104 +46,11 @@ textarea {
     max-width: 280px;
 }
 
-.animate-button {
-    transition: transform .1s ease-out, border .1s ease-out, background-color .15s ease-out, color .1s ease-out;
-}
-
 .actualMonth {
     text-transform: capitalize;
 }
 
-.btn-circle {
-    text-align: center;
-    padding: 6px 0;
-    font-size: 12px;
-    line-height: 1.428571429;
-    border-radius: 15px;
-    @include uniform-size(30px);
-}
 
-.btn-circle.btn-lg {
-    padding: 10px 16px;
-    font-size: 18px;
-    line-height: 1.33;
-    border-radius: 25px;
-    @include uniform-size(50px);
-}
-
-.btn-circle.btn-xl {
-    padding: 10px 16px;
-    font-size: 24px;
-    line-height: 1.33;
-    border-radius: 35px;
-    @include uniform-size(70px);
-}
-
-
-.button-add {
-    position: fixed;
-    bottom: 16px;
-    left: auto;
-    right:auto;
-    margin: auto;
-}
-
-.button-more {
-    color: $text-color;
-    background-color: transparent;
-    @include uniform-size(24px);
-
-    border: {
-        radius: 4px;
-        width: 0;
-    }
-
-    &:hover {
-        background-color: $body-background-lighten-2;
-    }
-
-    &:focus {
-        background-color: $body-background-lighten-2;
-        outline: 0;
-    }
-}
-
-.btn {
-
-}
-
-.button-round {
-    color: $accent-color;
-    background: transparent;
-    padding: 6px 16px;
-
-    border: {
-        radius: 4px;
-        width: 1px;
-        style: solid;
-        color: $accent-color;
-    }
-
-    &:hover {
-        background: $accent-color;
-        color: $body-background;
-    }
-
-    &:focus {
-        outline: 0;
-    }
-}
-
-.button-lg {
-    text-transform: uppercase;
-    padding: 12px 24px;
-
-    font: {
-        size: 11px;
-        weight: normal;
-        family: Montserrat;
-    }
-}
 
 /* Side bar */
 #sidebar-wrapper {
@@ -181,7 +81,7 @@ textarea {
 }
 
 
-#sidebar-logo, 
+#sidebar-logo,
 #upper-bar {
     height: $upper-bar-height;
     background-color: $accent-color;
@@ -221,8 +121,8 @@ textarea {
         a {
             display: block;
             text-decoration: none;
-            padding:0;
-            margin:0;
+            padding: 0;
+            margin: 0;
 
             &:hover,
             &.active {
@@ -257,7 +157,7 @@ textarea {
 
             i {
                 width: 48px;
-                font-size: 16px;
+                font-size: 1em;
                 color: white;
                 opacity: 0.25;
 
@@ -273,7 +173,7 @@ textarea {
                 opacity: 0.5;
                 //opacity: 0;
                 text-indent: 0px;
-                font-size: 13px;
+                font-size: 0.8125em;
                 margin: 0; //16px - 4px; // NIE WIEM CZEMU ROBI TAM SIE WCZESNIEJ 20PX ZAMIAST 16PX
             }
         }
@@ -299,47 +199,6 @@ textarea {
     display: flex;
 }
 
-.upper-bar-button, 
-#button-hamburger {
-    margin: 0;
-    background: transparent;
-    height: 100%;
-    width: auto;
-    min-width: $upper-bar-height;
-    @include accentHover;
-
-    padding: {
-        left: 16px;
-        right: 16px;
-    }
-
-    border: {
-        style: solid;
-        width: 0px 1px 0px 1px;
-        color: $accent-color-lighter-1;
-    }
-
-    &:focus {
-        outline: 0;
-    }
-
-    i {
-        vertical-align: central;
-        font-size: 16px;
-        color: white;
-        opacity: 0.75;
-
-        text: {
-            align: center;
-            indent: 0px;
-        }
-    }
-}
-
-#button-hamburger {
-    @include uniform-size($upper-bar-height);
-}
-
 /* Change the width of the sidebar to display it */
 #wrapper.menuDisplayed #sidebar-wrapper {
     width: $sidebar-expandWIdth;
@@ -363,18 +222,259 @@ textarea {
     max-width: 1024px;
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
 
     > div {
-        margin-top:16px;
+        margin-top: 16px;
     }
 }
 
-#nav-month {
- //   align-self:flex-start;
+.page-content-new {
+    max-width: (640 * 2) + (16px * 2);
+    //  background-color: black;
+    margin-top: 32px;
+
+    margin: {
+        left: auto;
+        right: auto;
+    }
 }
+
+#nav-month-wrapper {
+    //   background-color: yellow;
+    display: flex;
+}
+
+#nav-month {
+    //   align-self:flex-start;
+}
+
+#nav-month-new {
+    // background-color: green;
+    min-height: 32px;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    margin: {
+        left: 8px;
+        right: 8px;
+    }
+
+    > p {
+        margin-right: auto;
+    }
+}
+
+#nav-month-new-buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 
 #operationsList {
     max-width: 600px;
     width: 100%;
+}
+
+.month-bar {
+
+    p,
+    small {
+        margin: 0;
+    }
+
+    p {
+        font-size: 1.125em;
+        line-height: 1.125em;
+        color: $accent-color;
+    }
+
+    small {
+        opacity: .5;
+        font-size: 0.75em;
+        line-height: 0.75em;
+    }
+}
+
+
+#blank-space {
+    //   background-color: red;
+    flex: 1;
+
+    margin: {
+        left: 8px;
+        right: 8px;
+    }
+}
+
+#operations-page-content {
+    //  background-color: red;
+    display: flex;
+    align-items: flex-start;
+    margin-top: 32px - 8px;
+}
+
+#operations-list {
+    //  background-color: blue;
+    flex: 1;
+}
+
+#more-infos {
+    // background-color: cyan;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#visible-accounts {
+    //  background-color: coral;
+}
+
+#summary {
+    //  background-color: darkorchid;
+}
+
+#operations-list,
+#more-infos {
+    margin: 8px;
+}
+
+#operations-list {
+}
+
+#visible-accounts {
+    margin-bottom: 16px;
+}
+
+.page-card {
+    background-color: $body-background;
+    border-radius: 5px;
+
+    > div {
+        margin: 16px;
+    }
+
+    > .header {
+        // background-color: red;
+        min-height: 32px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        padding: {
+            left: 16px;
+            right: 16px;
+        }
+
+        > p {
+            margin: 0;
+            //line-height: 2em;
+            color: $foreground-40;
+            font-size: 0.875em
+        }
+
+        > .right {
+            margin-left: auto;
+        }
+    }
+}
+
+@media all and (max-width: 960px) {
+    #operations-page-content {
+        flex-direction: column;
+        align-items: initial;
+    }
+
+    #more-infos {
+        order: 1;
+    }
+
+    #operations-list {
+        order: 2;
+    }
+
+    #blank-space {
+        display: none;
+    }
+}
+
+
+/*input[type='checkbox'] {
+    @include uniform-size(16px);
+    background-color: transparent;
+
+    border: {
+        radius: 5px;
+        width: 2px;
+        style: solid;
+        color: $foreground-25;
+    }
+}*/
+
+.checkbox-group {
+    padding: 0 16px 16px 16px;
+
+    > div + div {
+        margin-top: 16px;
+    }
+}
+
+.checkbox-div {
+    display: flex;
+    align-items: center;
+
+    &.sub {
+        margin-left: 32px;
+    }
+}
+
+input[type='checkbox'] {
+    -webkit-appearance: none;
+    // background-color: #fafafa;
+    padding: 0px;
+    margin: 0;
+    // border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    @include uniform-size(16px);
+
+    min: {
+        @include uniform-size(16px);
+    }
+
+    background-color: transparent;
+    outline: 0;
+    line-height: 1em;
+    cursor: grab;
+
+    border: {
+        radius: 5px;
+        width: 2px;
+        style: solid;
+        color: $foreground-25;
+    }
+
+    &:active, &:focus, &:checked {
+        outline: 0;
+    }
+
+    &:hover {
+        border-color: $foreground-50;
+    }
+
+    &:checked {
+        border-color: $accent-color;
+        border-width: 8px;
+    }
+}
+
+label {
+    margin: 0;
+    padding: 0 0 0 16px;
+    font-size: 0.75em;
+    font-weight: 400;
+    line-height: 1em;
 }

@@ -1,0 +1,218 @@
+﻿@import "colors";
+@import "_mixins.scss";
+@import "statics.scss";
+
+.animate-button {
+    transition: transform .1s ease-out, border .1s ease-out, background-color .15s ease-out, color .1s ease-out;
+}
+
+.btn-circle {
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+    @include uniform-size(30px);
+}
+
+.btn-circle.btn-lg {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+    @include uniform-size(50px);
+}
+
+.btn-circle.btn-xl {
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
+    @include uniform-size(70px);
+}
+
+
+.button-add {
+    position: fixed;
+    bottom: 16px;
+    left: auto;
+    right: auto;
+    margin: auto;
+}
+
+.button-more {
+    color: $text-color;
+    background-color: transparent;
+    @include uniform-size(24px);
+
+    border: {
+        radius: 4px;
+        width: 0;
+    }
+
+    &:hover {
+        background-color: $body-background-lighten-2;
+    }
+
+    &:focus {
+        background-color: $body-background-lighten-2;
+        outline: 0;
+    }
+}
+
+.btn {
+}
+
+.button-round {
+    color: $accent-color;
+    background: transparent;
+    padding: 6px 16px;
+
+    border: {
+        radius: 4px;
+        width: 1px;
+        style: solid;
+        color: $accent-color;
+    }
+
+    &:hover {
+        background: $accent-color;
+        color: $body-background;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+.outline-button {
+    color: $accent-color;
+    background-color: transparent;
+    margin: 0 4px;
+    padding: 0;
+
+    min: {
+        @include uniform-size(32px);
+    }
+
+    border: {
+        radius: 5px;
+        width: 1.5px;
+        style: solid;
+        color: $accent-color;
+    }
+
+    &:hover {
+        background: $accent-color;
+        color: $body-background;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+.bottomline-button {
+    color: $foreground-40;
+    background-color: transparent;
+    min-height: 32px;
+    font-size: 12px;
+    border: none;
+    padding: 0;
+    display: inline-block;
+    outline: 0;
+
+    border: {
+        color: transparent;
+        width: 0 0 2px 0;
+        style: solid;
+    }
+
+    &:focus {
+        border-color: $accent-color;
+        color: $accent-color;
+    }
+}
+
+.bottomline-button-group {
+    display: flex;
+    align-items:flex-start;
+    flex-wrap:wrap;
+
+    button + button {
+        margin-left: 24px;
+    }
+}
+
+.expand-button {
+    background-color: transparent;
+    padding: 0;
+    outline: 0;
+    border: none;
+    @include uniform-size(16px);
+
+    &:active {
+        i {
+            transform: rotate(90deg);
+        }
+    }
+}
+
+.button-lg {
+    text-transform: uppercase;
+    padding: 12px 24px;
+
+    font: {
+        size: 11px;
+        weight: normal;
+        family: Montserrat;
+    }
+}
+
+#planned-operations-button {
+    margin: {
+        left: 20px;
+        right: 0;
+    }
+}
+
+.upper-bar-button,
+#button-hamburger {
+    margin: 0;
+    background: transparent;
+    height: 100%;
+    width: auto;
+    min-width: $upper-bar-height;
+    @include accentHover;
+
+    padding: {
+        left: 16px;
+        right: 16px;
+    }
+
+    border: {
+        style: solid;
+        width: 0px 1px 0px 1px;
+        color: $accent-color-lighter-1;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    i {
+        vertical-align: central;
+        font-size: 16px;
+        color: white;
+        opacity: 0.75;
+
+        text: {
+            align: center;
+            indent: 0px;
+        }
+    }
+}
+
+#button-hamburger {
+    @include uniform-size($upper-bar-height);
+}

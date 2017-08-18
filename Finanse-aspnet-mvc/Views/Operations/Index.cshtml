@@ -12,8 +12,8 @@
     </div>
 </div>
 
-<div class="page-content">
-    <div class="btn-group" id="nav-month">
+<div class="page-content-new">
+    @*<div class="btn-group" id="nav-month">
         <button id="prevMonthBtn" class="btn button-round animate-button"><i class="fa fa-chevron-left"></i></button>
         <button id="nextMonthBtn" class="btn button-round animate-button"><i class="fa fa-chevron-right"></i></button>
         <button id="actualMonthBtn" class="btn button-round actualMonth animate-button">...</button>
@@ -34,6 +34,88 @@
     <div id="error" style="display:none">
         <h4>Wystąpił błąd podczas ładowania</h4>
         <button id="tryAgainBtn" class="btn button-round animate-button">Spróbuj ponownie</button>
+    </div>*@
+    @*@Html.Partial("_OperationsList", null)*@
+    <div id="nav-month-wrapper">
+        <div id="nav-month-new">
+            <div class="month-bar">
+                <p>Sierpień</p>
+                <small>2017</small>
+            </div>
+            <div id="nav-month-new-buttons">
+                <button class="outline-button">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </button>
+                <button class="outline-button">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </button>
+                <button class="outline-button" id="planned-operations-button">
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        <div id="blank-space">
+
+        </div>
+    </div>
+    <div id="operations-page-content">
+        <div id="operations-list" class="page-card">
+            <div class="header">
+                <p>Operacje</p>
+
+                @*<button class="bottomline-button">Data</button>
+                <button class="bottomline-button">Kategoria</button>*@
+
+                <div class="right bottomline-button-group">
+                    <button class="bottomline-button animate-button">Data</button>
+                    <button class="bottomline-button animate-button">Kategoria</button>
+                </div>
+            </div>
+            <div>
+                @Html.Partial("_OperationsList", null)
+                @Html.Partial("_OperationsList", null)
+            </div>
+        </div>
+        <div id="more-infos">
+            <div id="visible-accounts" class="page-card">
+                <div class="header">
+                    <p>Widoczne konta</p>
+
+                    <div class="right bottomline-button-group">
+                        <button class="expand-button">
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <div class="checkbox-div">
+                        <input type="checkbox" id="account-01-checkbox" class="animate-button">
+                        <label for="account-01-checkbox">Gotówka</label>
+                    </div>
+
+                    <div class="checkbox-div">
+                        <input type="checkbox" id="account-02-checkbox" class="animate-button" />
+                        <label for="account-02-checkbox">BZ WBK</label>
+                    </div>
+
+                    <div class="checkbox-div sub">
+                        <input type="checkbox" id="account-03-checkbox" class="animate-button" />
+                        <label for="account-03-checkbox">Karta Visa</label>
+                    </div>
+
+                    <div class="checkbox-div sub">
+                        <input type="checkbox" id="account-04-checkbox" class="animate-button" />
+                        <label for="account-04-checkbox">Karta MasterCard</label>
+                    </div>
+                </div>
+            </div>
+            <div id="summary" class="page-card">
+                <div class="header">
+                    <p>Podsumowanie</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -44,6 +126,6 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modalform")
     @Scripts.Render("~/scripts/moment-with-locales.js")
-    @Scripts.Render("~/scripts/operationsInfiniteScrolling.js")
+    @*@Scripts.Render("~/scripts/operationsInfiniteScrolling.js")*@
     @Scripts.Render("~/scripts/loaders.css.js")
 }
