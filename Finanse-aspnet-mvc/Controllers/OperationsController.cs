@@ -8,11 +8,14 @@ using Finanse_aspnet_mvc.Models;
 using Finanse_aspnet_mvc.Models.Helpers;
 using Finanse_aspnet_mvc.Models.Operations;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 
 namespace Finanse_aspnet_mvc.Controllers {
     [Authorize]
     public class OperationsController : Controller {
         private readonly StackMoneyDb _db = new StackMoneyDb();
+        //private Operation[] _operations = new Operation[10];
+
 
         // GET: Operations
         public async Task<ActionResult> Index(int? lastId, int? actualYear, int? actualMonth) {
@@ -20,7 +23,7 @@ namespace Finanse_aspnet_mvc.Controllers {
                 return View();
 
             var userId = User.Identity.GetUserId();
-            
+
             var model = await _db.Operations.Where(o => o.UserId.Equals(userId)).ToListAsync();
 
             var items = model
@@ -31,8 +34,9 @@ namespace Finanse_aspnet_mvc.Controllers {
                 .Take(10);
 
             var groupedItems = items.GroupBy(o => o.Date);
-            
-            var result = new {
+
+            var result = new
+            {
                 lastId = items.LastOrDefault()?.Id,
                 partialView = RenderRazorViewToString("_OperationsList", groupedItems)
             };

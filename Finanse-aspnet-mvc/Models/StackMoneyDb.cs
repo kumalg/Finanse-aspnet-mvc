@@ -29,6 +29,11 @@ namespace Finanse_aspnet_mvc.Models {
             base.OnModelCreating(modelBuilder);
         }
 
+        public StackMoneyDb() : base("name=DefaultConnection")
+        {
+            
+        }
+
         public static IEnumerable<Category> OnlyCategoriesList() {
             StackMoneyDb d = new StackMoneyDb();
             return d.Categories;

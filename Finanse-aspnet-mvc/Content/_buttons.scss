@@ -2,6 +2,7 @@
 @import "_mixins.scss";
 @import "statics.scss";
 
+button,
 .animate-button {
     transition: transform .1s ease-out, border .1s ease-out, background-color .15s ease-out, color .1s ease-out;
 }
@@ -86,10 +87,17 @@
 }
 
 .outline-button {
+    display: inline-block;
     color: $accent-color;
     background-color: transparent;
+    font-size: 0.6875em;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 1em;
     margin: 0 4px;
-    padding: 0;
+    text-align: center;
+    line-height: 0.6875em;
+    text-decoration: none !important;
 
     min: {
         @include uniform-size(32px);
@@ -102,33 +110,103 @@
         color: $accent-color;
     }
 
-    &:hover {
-        background: $accent-color;
-        color: $body-background;
+    &.outline-button-lg {
+        font-size: 0.8125em;
+        padding: 1em 2em;
+        line-height: 1em;
+    }
+
+    &:enabled {
+        &:hover {
+            background-color: $accent-color;
+            color: $body-background;
+        }
+
+        &:active {
+            background-color: $accent-color-lighter-2;
+            border-color: $accent-color-lighter-2;
+        }
+    }
+
+    &:disabled {
+        border-color: $foreground-25;
+        color: $foreground-25;
     }
 
     &:focus {
         outline: 0;
     }
+
+    &.square {
+        padding: 0;
+        @include uniform-size(32px);
+    }
+
+    &.outline-button-inverted {
+        color: $body-background;
+        background-color: $accent-color;
+
+        &:enabled {
+            &:hover {
+                background-color: transparent;
+                border-color: $accent-color;
+                color: $accent-color;
+            }
+
+            &:active {
+                background-color: transparent;
+                border-color: $accent-color-lighter-2;
+                color: $accent-color-lighter-2;
+            }
+        }
+
+        &:disabled {
+            background-color: $foreground-25;
+            border: none;
+            color: $body-background;
+        }
+    }
 }
+
+.filter-button {
+    margin:0;
+}
+
+/* Bottom line button */
 
 .bottomline-button {
     color: $foreground-40;
-    background-color: transparent;
-    min-height: 32px;
-    font-size: 12px;
-    border: none;
     padding: 0;
-    display: inline-block;
     outline: 0;
 
-    border: {
-        color: transparent;
-        width: 0 0 2px 0;
-        style: solid;
+    input[type=radio] {
+        position: absolute;
+        visibility: hidden;
     }
 
-    &:focus {
+    label {
+        margin: 0;
+        display: flex;
+        height: 100%;
+        padding: 0;
+        align-items: center;
+        font-size: 0.8125em;
+        font-weight: 400;
+        min-height: 32px;
+        cursor: pointer;
+
+        border: {
+            color: transparent;
+            width: 0 0 2px 0;
+            style: solid;
+        }
+    }
+
+    &:hover label {
+        color: $foreground-50;
+    }
+
+    input[type=radio]:checked ~ label {
         border-color: $accent-color;
         color: $accent-color;
     }
@@ -136,20 +214,29 @@
 
 .bottomline-button-group {
     display: flex;
-    align-items:flex-start;
-    flex-wrap:wrap;
+    align-items: flex-start;
+    flex-wrap: wrap;
 
-    button + button {
+    div + div {
         margin-left: 24px;
     }
 }
+
+/* End of bottom line button */
+
+
 
 .expand-button {
     background-color: transparent;
     padding: 0;
     outline: 0;
     border: none;
+    color: $foreground-25;
     @include uniform-size(16px);
+
+    &:hover {
+        color: $foreground-50;
+    }
 
     &:active {
         i {
@@ -176,24 +263,18 @@
     }
 }
 
-.upper-bar-button,
-#button-hamburger {
+.upper-bar-button {
     margin: 0;
     background: transparent;
     height: 100%;
     width: auto;
     min-width: $upper-bar-height;
+    border: none;
     @include accentHover;
 
     padding: {
         left: 16px;
         right: 16px;
-    }
-
-    border: {
-        style: solid;
-        width: 0px 1px 0px 1px;
-        color: $accent-color-lighter-1;
     }
 
     &:focus {
@@ -204,12 +285,17 @@
         vertical-align: central;
         font-size: 16px;
         color: white;
-        opacity: 0.75;
 
         text: {
             align: center;
             indent: 0px;
         }
+    }
+
+    p {
+        font-size: 0.75em;
+        font-weight: 600;
+        margin: 0;
     }
 }
 

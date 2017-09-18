@@ -1,17 +1,22 @@
 ﻿@import "colors";
-@import "_operation-category.scss";
-@import "_buttons.scss";
 @import "_mixins.scss";
 @import "statics.scss";
 
+@import "about.scss";
+@import "login_style.scss";
+
+@import "_operation-category.scss";
+@import "_buttons.scss";
+@import "_checkbox.scss";
+@import "_search.scss";
+
 body {
-    //padding-top: 50px;
+    padding-top: $upper-bar-height;
     padding-bottom: 20px;
     font-family: 'Open Sans', Tahoma, Geneva, Verdana, sans-serif;
     background: $body-background-darken-1;
     color: $foreground-100;
     font-size: 16px;
- //   line-height: 20px;
 }
 
 hr {
@@ -20,8 +25,6 @@ hr {
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    /*width:100%;
-    text-align:center;*/
     padding: {
         left: 15px;
         right: 15px;
@@ -40,11 +43,11 @@ hr {
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
-}
+}*/
 
 .actualMonth {
     text-transform: capitalize;
@@ -56,6 +59,8 @@ textarea {
 #sidebar-wrapper {
     z-index: 1;
     position: fixed;
+    top: 0;
+    padding-top: $upper-bar-height;
     width: $sidebar-compactWidth;
     height: 100%;
     background: $sidebar-background;
@@ -84,13 +89,22 @@ textarea {
 #sidebar-logo,
 #upper-bar {
     height: $upper-bar-height;
-    background-color: $accent-color;
+}
+
+#upper-bar {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 #sidebar-logo {
     border: 0;
     display: block;
-    text-indent: -9999px;
+    //   text-indent: -9999px;
+    background-color: $accent-color;
+    min-height: $upper-bar-height;
+    width: 80px;
     @include accentHover;
 
     background: {
@@ -171,7 +185,6 @@ textarea {
                 display: none;
                 color: white;
                 opacity: 0.5;
-                //opacity: 0;
                 text-indent: 0px;
                 font-size: 0.8125em;
                 margin: 0; //16px - 4px; // NIE WIEM CZEMU ROBI TAM SIE WCZESNIEJ 20PX ZAMIAST 16PX
@@ -197,11 +210,17 @@ textarea {
 #upper-bar {
     width: 100%;
     display: flex;
+    align-items: center;
+    background-color: $accent-color-darker-1;
 }
 
 /* Change the width of the sidebar to display it */
 #wrapper.menuDisplayed #sidebar-wrapper {
     width: $sidebar-expandWIdth;
+}
+
+#wrapper.menuDisplayed #sidebar-logo {
+    min-width: $sidebar-expandWIdth;
 }
 
 #wrapper.menuDisplayed #page-content-wrapper {
@@ -211,7 +230,6 @@ textarea {
 #wrapper.menuDisplayed #sidebar-wrapper {
     span {
         display: inline-block;
-        //opacity: 0.5;
     }
 }
 
@@ -231,7 +249,6 @@ textarea {
 
 .page-content-new {
     max-width: (640 * 2) + (16px * 2);
-    //  background-color: black;
     margin-top: 32px;
 
     margin: {
@@ -241,48 +258,29 @@ textarea {
 }
 
 #nav-month-wrapper {
-    //   background-color: yellow;
     display: flex;
 }
 
 #nav-month {
-    //   align-self:flex-start;
-}
-
-#nav-month-new {
-    // background-color: green;
     min-height: 32px;
-    flex: 1;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-
-    margin: {
-        left: 8px;
-        right: 8px;
-    }
 
     > p {
         margin-right: auto;
     }
 }
 
-#nav-month-new-buttons {
+#nav-month-buttons {
     display: flex;
     flex-wrap: wrap;
 }
 
-
-#operationsList {
-    max-width: 600px;
-    width: 100%;
-}
-
 .month-bar {
 
-    p,
-    small {
+    * {
         margin: 0;
     }
 
@@ -299,11 +297,8 @@ textarea {
     }
 }
 
-
+#nav-month,
 #blank-space {
-    //   background-color: red;
-    flex: 1;
-
     margin: {
         left: 8px;
         right: 8px;
@@ -311,67 +306,58 @@ textarea {
 }
 
 #operations-page-content {
-    //  background-color: red;
     display: flex;
     align-items: flex-start;
     margin-top: 32px - 8px;
 }
 
-#operations-list {
-    //  background-color: blue;
+#nav-month,
+#blank-space,
+#operations-list-card,
+#more-infos-cards {
     flex: 1;
 }
 
-#more-infos {
-    // background-color: cyan;
-    flex: 1;
+#operations-list {
+    padding: 0;
+}
+
+.page-card-container {
+    margin: 8px;
     display: flex;
     flex-direction: column;
-}
 
-#visible-accounts {
-    //  background-color: coral;
-}
-
-#summary {
-    //  background-color: darkorchid;
-}
-
-#operations-list,
-#more-infos {
-    margin: 8px;
-}
-
-#operations-list {
-}
-
-#visible-accounts {
-    margin-bottom: 16px;
+    > * + * {
+        margin-top: 16px !important;
+    }
 }
 
 .page-card {
     background-color: $body-background;
     border-radius: 5px;
+    margin: 8px;
 
     > div {
         margin: 16px;
-    }
-
-    > .header {
-        // background-color: red;
-        min-height: 32px;
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
 
         padding: {
             left: 16px;
             right: 16px;
         }
 
+        &:last-child {
+            margin-bottom: 24px;
+        }
+    }
+
+    > .header {
+        min-height: 32px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
         > p {
             margin: 0;
-            //line-height: 2em;
             color: $foreground-40;
             font-size: 0.875em
         }
@@ -379,6 +365,16 @@ textarea {
         > .right {
             margin-left: auto;
         }
+    }
+
+    > .content {
+        > * + * {
+            margin-top: 24px;
+        }
+    }
+
+    &.inner-page-card {
+        margin: 0;
     }
 }
 
@@ -388,11 +384,11 @@ textarea {
         align-items: initial;
     }
 
-    #more-infos {
+    #more-infos-cards {
         order: 1;
     }
 
-    #operations-list {
+    #operations-list-card {
         order: 2;
     }
 
@@ -401,80 +397,16 @@ textarea {
     }
 }
 
-
-/*input[type='checkbox'] {
-    @include uniform-size(16px);
-    background-color: transparent;
-
-    border: {
-        radius: 5px;
-        width: 2px;
-        style: solid;
-        color: $foreground-25;
-    }
-}*/
-
-.checkbox-group {
-    padding: 0 16px 16px 16px;
-
-    > div + div {
-        margin-top: 16px;
-    }
-}
-
-.checkbox-div {
-    display: flex;
-    align-items: center;
-
-    &.sub {
-        margin-left: 32px;
-    }
-}
-
-input[type='checkbox'] {
-    -webkit-appearance: none;
-    // background-color: #fafafa;
-    padding: 0px;
-    margin: 0;
-    // border-radius: 3px;
-    display: inline-block;
-    position: relative;
-    @include uniform-size(16px);
-
-    min: {
-        @include uniform-size(16px);
+@media all and (max-width: 640px) {
+    #wrapper:not(.menuDisplayed) #sidebar-wrapper {
+        left: -80px;
     }
 
-    background-color: transparent;
-    outline: 0;
-    line-height: 1em;
-    cursor: grab;
-
-    border: {
-        radius: 5px;
-        width: 2px;
-        style: solid;
-        color: $foreground-25;
+    #sidebar-logo {
+        display: none;
     }
 
-    &:active, &:focus, &:checked {
-        outline: 0;
+    #page-content-wrapper {
+        margin-left: 0 !important;
     }
-
-    &:hover {
-        border-color: $foreground-50;
-    }
-
-    &:checked {
-        border-color: $accent-color;
-        border-width: 8px;
-    }
-}
-
-label {
-    margin: 0;
-    padding: 0 0 0 16px;
-    font-size: 0.75em;
-    font-weight: 400;
-    line-height: 1em;
 }

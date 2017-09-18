@@ -15,6 +15,10 @@
     }
 }
 
+.operation{
+    cursor:pointer;
+}
+
 .operation-icon,
 .category-icon {
     display: flex;
@@ -66,7 +70,7 @@ $dot-size: 12px;
         font-size: 0.8125em;
         color: $foreground-100;
         //  background-color: blue;
-        // font-weight: 300;
+         font-weight: 400;
         margin: 0;
         line-height: 0.8125em;
     }
@@ -76,7 +80,7 @@ $dot-size: 12px;
     small {
         color: $foreground-25;
         // background-color: red;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 0.6875em;
         margin: 0;
         padding: 0;
@@ -108,7 +112,7 @@ $dot-size: 12px;
     margin-right:8px;
     font: {
         size: 0.8125em;
-        weight: 500;
+        weight: 600;
     }
 }
 

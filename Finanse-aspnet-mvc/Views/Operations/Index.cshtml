@@ -37,19 +37,19 @@
     </div>*@
     @*@Html.Partial("_OperationsList", null)*@
     <div id="nav-month-wrapper">
-        <div id="nav-month-new">
+        <div id="nav-month">
             <div class="month-bar">
                 <p>Sierpień</p>
                 <small>2017</small>
             </div>
-            <div id="nav-month-new-buttons">
-                <button class="outline-button">
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+            <div id="nav-month-buttons">
+                <button class="outline-button square">
+                    <i class="fa fa-angle-left square" aria-hidden="true"></i>
                 </button>
-                <button class="outline-button">
+                <button class="outline-button square">
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </button>
-                <button class="outline-button" id="planned-operations-button">
+                <button class="outline-button outline-button-inverted square" id="planned-operations-button">
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                 </button>
             </div>
@@ -59,60 +59,76 @@
         </div>
     </div>
     <div id="operations-page-content">
-        <div id="operations-list" class="page-card">
+        <div id="operations-list-card" class="page-card">
             <div class="header">
                 <p>Operacje</p>
 
-                @*<button class="bottomline-button">Data</button>
-                <button class="bottomline-button">Kategoria</button>*@
-
                 <div class="right bottomline-button-group">
-                    <button class="bottomline-button animate-button">Data</button>
-                    <button class="bottomline-button animate-button">Kategoria</button>
+                    <div class="bottomline-button">
+                        <input type="radio" id="group-by-date-button" name="group-method" value="date" checked="checked" />
+                        <label for="group-by-date-button" class="animate-button">Data</label>
+                    </div>
+
+                    <div class="bottomline-button">
+                        <input type="radio" id="group-by-category-button" name="group-method" value="category" />
+                        <label for="group-by-category-button" class="animate-button">Kategoria</label>
+                    </div>
                 </div>
             </div>
-            <div>
+            <div id="operations-list">
                 @Html.Partial("_OperationsList", null)
                 @Html.Partial("_OperationsList", null)
             </div>
         </div>
-        <div id="more-infos">
-            <div id="visible-accounts" class="page-card">
+        <div id="more-infos-cards" class="page-card-container">
+            <div id="visible-accounts-card" class="page-card inner-page-card">
                 <div class="header">
                     <p>Widoczne konta</p>
 
-                    <div class="right bottomline-button-group">
-                        <button class="expand-button">
-                            <i class="fa fa-angle-down" aria-hidden="true"></i>
-                        </button>
-                    </div>
+                    <button class="right expand-button">
+                        <i class="fa fa-angle-down animate-button" aria-hidden="true"></i>
+                    </button>
                 </div>
 
-                <div class="checkbox-group">
-                    <div class="checkbox-div">
-                        <input type="checkbox" id="account-01-checkbox" class="animate-button">
-                        <label for="account-01-checkbox">Gotówka</label>
+                <div class="content">
+
+                    <div class="checkbox-group">
+                        <div class="checkbox-div">
+                            <input type="checkbox" id="account-01-checkbox" class="animate-button">
+                            <label for="account-01-checkbox">Gotówka</label>
+                        </div>
+
+                        <div class="checkbox-div">
+                            <input type="checkbox" id="account-02-checkbox" class="animate-button" checked="checked" />
+                            <label for="account-02-checkbox">BZ WBK</label>
+                        </div>
+
+                        <div class="checkbox-div sub">
+                            <input type="checkbox" id="account-03-checkbox" class="animate-button" checked="checked" />
+                            <label for="account-03-checkbox">Karta Visa</label>
+                        </div>
+
+                        <div class="checkbox-div sub">
+                            <input type="checkbox" id="account-04-checkbox" class="animate-button" />
+                            <label for="account-04-checkbox">Karta MasterCard</label>
+                        </div>
                     </div>
 
-                    <div class="checkbox-div">
-                        <input type="checkbox" id="account-02-checkbox" class="animate-button" />
-                        <label for="account-02-checkbox">BZ WBK</label>
-                    </div>
+                    <button class="outline-button filter-button">Filtruj</button>
 
-                    <div class="checkbox-div sub">
-                        <input type="checkbox" id="account-03-checkbox" class="animate-button" />
-                        <label for="account-03-checkbox">Karta Visa</label>
-                    </div>
-
-                    <div class="checkbox-div sub">
-                        <input type="checkbox" id="account-04-checkbox" class="animate-button" />
-                        <label for="account-04-checkbox">Karta MasterCard</label>
-                    </div>
                 </div>
             </div>
-            <div id="summary" class="page-card">
+            <div id="summary-card" class="page-card inner-page-card">
                 <div class="header">
                     <p>Podsumowanie</p>
+
+                    <button class="right expand-button">
+                        <i class="fa fa-angle-down animate-button" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="content">
+                    Kontent
                 </div>
             </div>
         </div>
@@ -128,4 +144,15 @@
     @Scripts.Render("~/scripts/moment-with-locales.js")
     @*@Scripts.Render("~/scripts/operationsInfiniteScrolling.js")*@
     @Scripts.Render("~/scripts/loaders.css.js")
+
+    <script>
+        /* Slide Toogle */
+        $("div.page-card button.expand-button").click(function () {
+            var arrow = $(this).find("i.fa");
+
+            arrow.toggleClass("fa-rotate-90");
+
+            $(this).parent().parent().find("div.content").slideToggle();
+        });
+    </script>
 }

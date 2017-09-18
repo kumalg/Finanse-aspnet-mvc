@@ -23,7 +23,7 @@ namespace Finanse_aspnet_mvc {
                 "~/Scripts/modalform.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                     // "~/Content/bootstrap.css",
                       "~/Content/Loaders/loaders.css",
                       "~/Content/site.css"));
         }

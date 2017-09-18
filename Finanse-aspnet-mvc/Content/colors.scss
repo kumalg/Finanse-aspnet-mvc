@@ -1,6 +1,12 @@
-﻿$accent-color: #079e6f;
+﻿$accent-color: #06a771;
+
 $accent-color-lighter-1: lighten( $accent-color, 3%);
 $accent-color-lighter-2: lighten( $accent-color, 6%);
+
+$accent-color-darker-1: darken( $accent-color, 3%);
+$accent-color-darker-2: darken( $accent-color, 6%);
+
+
 $dark-color: #111;
 $light-color: #fff;
 

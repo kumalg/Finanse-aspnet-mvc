@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Finanse_aspnet_mvc.Models;
 using Finanse_aspnet_mvc.Models.Categories;
 using Finanse_aspnet_mvc.Models.Helpers;
+using Microsoft.AspNet.Identity;
 
 namespace Finanse_aspnet_mvc.Controllers {
     [Authorize]
@@ -38,12 +39,15 @@ namespace Finanse_aspnet_mvc.Controllers {
         // POST: Categories/Create
         [HttpPost]
         public async Task<ActionResult> Create(CategoryPost categoryPost) {
-            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
 
-            //ModelState.Remove(nameof(CategoryPost.CantDelete));
+            ModelState.Remove(nameof(CategoryPost.CantDelete));
+            ModelState.Remove(nameof(CategoryPost.UserId));
 
             if (ModelState.IsValid) {
                 var category = categoryPost.GetCategory();
+                category.UserId = User.Identity.GetUserId();
+
                 _db.CategoriesAndSubCategories.Add(category);
                 await _db.SaveChangesAsync();
 

@@ -3,52 +3,54 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - StackMoney</title>
+    <title>StackMoney - @ViewBag.Title</title>
+    @Styles.Render("~/Content/reset.css")
+    @Styles.Render("~/Content/bootstrap.css")
     @Styles.Render("~/Content/css")
-
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"  type="text/css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("StackMoney", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                @if (Request.IsAuthenticated) {
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Kategorie", "Index", "Categories")</li>
-                        <li>@Html.ActionLink("Statystyki", "Index", "Statistics")</li>
-                        <li>@Html.ActionLink("Konta", "Index", "Accounts")</li>
-                        <li>@Html.ActionLink("Szablony", "Index", "Patterns")</li>
-                        <li>@Html.ActionLink("Zlecenia stałe", "Index", "StandingOrders")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    </ul>
-                }
-                @Html.Partial("_LoginPartial")
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("StackMoney", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    @if (Request.IsAuthenticated) {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Kategorie", "Index", "Categories")</li>
+                            <li>@Html.ActionLink("Statystyki", "Index", "Statistics")</li>
+                            <li>@Html.ActionLink("Konta", "Index", "Accounts")</li>
+                            <li>@Html.ActionLink("Szablony", "Index", "Patterns")</li>
+                            <li>@Html.ActionLink("Zlecenia stałe", "Index", "StandingOrders")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                    }
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - StackMoney</p>
-        </footer>
-    </div>*@
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - StackMoney</p>
+            </footer>
+        </div>*@
 
     <div id="wrapper" class="menuDisplayed ">
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
-            <a href="@Url.Action("Index", "Home")" id="sidebar-logo" class="animate-button sidebar-logo-wide"></a>
+            @*<a href="@Url.Action("Index", "Home")" id="sidebar-logo" class="animate-button sidebar-logo-wide"></a>*@
 
             <ul class="sidebar-nav">
                 <li>
@@ -94,7 +96,7 @@
                     </a>
                 </li>
             </ul>
-            
+
             <footer>
                 <p>&copy; @DateTime.Now.Year</p>
                 <p>StackMoney</p>
@@ -104,14 +106,24 @@
         <!-- Page content -->
         <div id="page-content-wrapper">
             <div id="upper-bar">
-                <button href="#" id="button-hamburger" class="animate-button">
+                <button href="@Url.Action("Index", "Home")" id="sidebar-logo" class="animate-button sidebar-logo-wide"></button>
+
+                <button href="#" id="button-hamburger" class="upper-bar-button animate-button">
                     <i class="fa fa-navicon"></i>
                 </button>
+
+                @*<input type="text" name="search" placeholder="Szukaj">*@
+
+                <div class="container-1">
+                    <span class="icon"><i class="fa fa-search"></i></span>
+                    <input type="search" id="search" placeholder="Szukaj" />
+                </div>
+
                 @Html.Partial("_LoginPartial")
             </div>
             <div class="body-content">
                 @RenderBody()
-                <hr/>
+                <hr />
             </div>
         </div>
 

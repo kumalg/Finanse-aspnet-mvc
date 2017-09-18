@@ -3,3 +3,102 @@
 @{
     ViewBag.Title = "Home Page";
 }
+
+<div id="nav-bar" class="hide">
+    <div class="container">
+        <h4 class="title">StackMoney</h4>
+        <div class="buttons">
+            @Html.ActionLink("Zarejestruj się", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "button-nav" })
+            @Html.ActionLink("Zaloguj się", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "button-nav" })
+        </div>
+    </div>
+</div>
+
+<section id="sect-name">
+    <div class="container">
+        <h1 class="title">StackMoney</h1>
+        <h3 class="desc">Osobisty menedżer Twoich pieniędzy</h3>
+
+            <div class="buttons">
+                @Html.ActionLink("Zarejestruj się", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "button" })
+                @Html.ActionLink("Zaloguj się", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "button button-invert" })
+            </div>
+    </div>
+</section>
+
+<section id="sect-info">
+    <div class="container">
+        <div>
+            <img src="Content/Start/macs.png" alt="Mountain View">
+        </div>
+        <div class="desc">
+            <h2 style="color: #1f1f1f">StackMoney to intuicyjna aplikacja umożliwiająca zarządzanie Twoimi finansami</h2>
+            <p style="color: #1f1f1f">Interfejs został przygotowany tak, abyś szybko i bez kłopotu mógł poruszać się pomiędzy różnymi funkcjami. Łatwo dodasz nową operację, przejrzysz historię, dodasz nową kategorię czy przeanalizujesz statystyki. </p>
+        </div>
+    </div>
+</section>
+
+<section id="sect-pros">
+    <div class="container">
+        <div class="sect-pros-list">
+            <div class="sect-pros-col">
+                <span></span>
+                <h4>Operacje wykonane i zaplanowane</h4>
+                <p>W intuicyjny sposób możesz poruszać się po operacjach ze wszystkich miesięcy oraz tych planowanych.</p>
+            </div>
+            <div class="sect-pros-col">
+                <span></span>
+                <h4>Własne kategorie i podkategorie</h4>
+                <p>Dowolnie zarządzaj i dodawaj własne kategorie dla operacji.</p>
+            </div>
+            <div class="sect-pros-col">
+                <span></span>
+                <h4>Zlecenia stałe, szablony</h4>
+                <p>Usprawnij działanie operacjami, które powtarzają sie cyklicznie bądź tymi, które są bardzo do siebie podobne.</p>
+            </div>
+            <div class="sect-pros-col">
+                <span></span>
+                <h4>Statystyki, wykresy</h4>
+                <p>Analizuj swoje finanse na podstawie rozbudowanych wykresów.</p>
+            </div>
+            <div class="sect-pros-col">
+                <span></span>
+                <h4>Konta i subkonta</h4>
+                <p>Przypisz operacje do konkretnych kont. Możesz również tworzyć subkonta.</p>
+            </div>
+            <div class="sect-pros-col">
+                <span></span>
+                <h4>Wieloplatformowość</h4>
+                <p>Aplikacja dostępna zarówno w internecie jak i dedykowanej aplikacji na urządzenia z systemem Windows 10</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="sect-app">
+    <div class="container">
+        <h2 style="color: #1f1f1f">Aplikacja do pobrania</h2>
+        <p style="color: #1f1f1f">Interfejs został przygotowany tak, abyś szybko i bez kłopotu mógł poruszać się pomiędzy różnymi funkcjami. Łatwo dodasz nową operację, przejrzysz historię, dodasz nową kategorię czy przeanalizujesz statystyki. </p>
+    </div>
+</section>
+
+<section id="sect-foot"></section>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    ShowMenu();
+    $(window).scroll(function () {
+        ShowMenu();
+    });
+
+    function ShowMenu() {
+        if ($(window).scrollTop() > $("#sect-name").height()) {
+            $('#nav-bar').removeClass('hide');
+            $('#nav-bar').addClass('load');
+        }
+        else {
+            $('#nav-bar').removeClass('load');
+            $('#nav-bar').addClass('hide');
+        }
+    }
+</script>

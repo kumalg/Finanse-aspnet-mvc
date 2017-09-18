@@ -1,0 +1,70 @@
+﻿@import "colors";
+@import "_mixins.scss";
+@import "statics.scss";
+
+
+.container-1 {
+    width: 300px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+    margin-left: 32px;
+}
+
+.container-1 input#search {
+    width: 240px;
+    height: 32px;
+    background: white;
+    border: none;
+    font-size: 0.75em;
+    font-weight: 600;
+    float: left;
+    color: #63717f;
+    padding-left: 40px;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
+}
+
+.container-1 input#search::-webkit-input-placeholder {
+    color: darkgray;
+}
+
+.container-1 input#search:-moz-placeholder { /* Firefox 18- */
+    color: darkgray;
+}
+
+.container-1 input#search::-moz-placeholder { /* Firefox 19+ */
+    color: darkgray;
+}
+
+.container-1 input#search:-ms-input-placeholder {
+    color: darkgray;
+}
+
+.container-1 .icon {
+    position: absolute;
+    text-align: center;
+    margin: auto;
+    padding-top: 10px;
+    width: 32px;
+    height: 32px;
+    font-size: 0.75em;
+    line-height: 0.75em;
+    z-index: 1;
+    color: $accent-color;
+
+    > i {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.container-1 input#search:hover, .container-1 input#search:focus, .container-1 input#search:active {
+    outline: none;
+}
+
+.container-1 input#search:focus {
+    //box-shadow: 0 0 16px $accent-color-lighter-2;
+    box-shadow: inset 0 0 16px rgba($accent-color, 0.25);
+}

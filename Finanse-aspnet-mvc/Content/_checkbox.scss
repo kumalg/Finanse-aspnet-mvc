@@ -1,0 +1,67 @@
+﻿@import "colors.scss";
+@import "_mixins.scss";
+
+.checkbox-group {
+    > div + div {
+        margin-top: 16px;
+    }
+}
+
+.checkbox-div {
+    display: flex;
+    align-items: center;
+
+    &.sub {
+        margin-left: 32px;
+    }
+}
+
+input[type='checkbox'] {
+    -webkit-appearance: none;
+    padding: 0px;
+    margin: 0;
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    outline: 0;
+    line-height: 1em;
+    cursor: pointer;
+    @include uniform-size(16px);
+
+    border: {
+        radius: 5px;
+        width: 2px;
+        style: solid;
+        color: $foreground-25;
+    }
+
+    min: {
+        @include uniform-size(16px);
+    }
+
+    &:active, &:focus, &:checked {
+        outline: 0;
+    }
+
+    &:hover {
+        border-color: $foreground-50;
+    }
+
+    &:checked {
+        border-color: $accent-color;
+        border-width: 8px;
+
+        &:hover {
+            border-color: $accent-color-lighter-2;
+        }
+    }
+}
+
+input[type='checkbox'] ~ label {
+    margin: 0;
+    padding: 0 0 0 16px;
+    font-size: 0.75em;
+    font-weight: 400;
+    line-height: 1em;
+    cursor: pointer;
+}

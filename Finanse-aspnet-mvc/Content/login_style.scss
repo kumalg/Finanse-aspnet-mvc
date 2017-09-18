@@ -1,0 +1,153 @@
+.login-page {
+    background: url(background.jpg) no-repeat #1f1f1f;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+
+
+    .content {
+        display: table;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+
+    .login-content {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .login-box {
+        margin: auto;
+        padding: 32px 8px;
+        max-width: 400px;
+
+        > h1 {
+            margin: 0 0 32px 0;
+            font-family: 'montserrat', sans-serif;
+            color: #3cb476;
+            text-align: center;
+            cursor: default;
+        }
+
+        > form {
+            border-style: solid;
+            border-width: 1px 0;
+            border-color: rgba(255,255,255,.1);
+            padding: 32px 0;
+
+            > div + div {
+                margin-top: 16px;
+            }
+        }
+
+        .login-buttons {
+            margin-top: 32px;
+        }
+
+        .bottom-link-div {
+            margin-top: 16px;
+            text-align: center;
+        }
+    }
+
+
+    .input-div {
+        label {
+            color: rgba(255,255,255,.5);
+            font-size: 0.875em;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+           // max-width: initial; //BO SIE JEBIE
+            border-width: 0;
+            height: 48px;
+            background-color: rgba(255,255,255,.1);
+            color: #fff;
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 0 16px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+    }
+
+    .login-button {
+        height: 48px;
+        background-color: #3cb476;
+        color: #1f1f1f;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-align: center;
+        padding: 0;
+        font-size: 0.875em;
+        border-width: 2px;
+        border-color: #3cb476;
+        border-style: solid;
+        box-sizing: border-box;
+        width: 100%;
+        font-family: inherit;
+        cursor: pointer;
+        transition: background-color .2s, color .2s;
+
+        &:hover {
+            background-color: transparent;
+            color: #3cb476;
+        }
+    }
+
+    .facebook-button {
+        background-color: #4267b2;
+        border-color: #4267b2;
+        color: #fff;
+        margin-top: 16px;
+
+        &:hover {
+            background-color: transparent;
+            color: #4267b2;
+        }
+    }
+
+
+    .bottom-link-div {
+        color: rgba(255,255,255,0.5);
+        font-size: 0.875em;
+    }
+
+    .link, .bottom-link-div a {
+        color: #3cb476;
+        text-decoration: none;
+    }
+
+    .link {
+        font-size: 0.875em;
+    }
+
+
+    .remember-square {
+        width: 16px;
+        height: 16px;
+        background-color: #3cb476;
+        border-radius: 4px;
+        display: inline-block;
+        padding-top: 0;
+        margin-top: 0;
+    }
+
+    .remember-div {
+        display: inline-block;
+
+        label {
+            display: inline-block;
+            color: rgba(255,255,255,.5);
+            font-size: 0.875em;
+            margin: 2px 0 0 8px;
+            padding: 0;
+            vertical-align: top;
+        }
+    }
+}
