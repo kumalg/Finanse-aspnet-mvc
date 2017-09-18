@@ -195,10 +195,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705240058438_AccountTest.cs" />
-    <Compile Include="Migrations\201705240058438_AccountTest.Designer.cs">
-      <DependentUpon>201705240058438_AccountTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounts\Account.cs" />
     <Compile Include="Models\Accounts\AccountBase.cs" />
@@ -377,11 +373,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705240058438_AccountTest.resx">
-      <DependentUpon>201705240058438_AccountTest.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
