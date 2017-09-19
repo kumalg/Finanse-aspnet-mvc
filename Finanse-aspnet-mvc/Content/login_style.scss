@@ -1,10 +1,7 @@
+@import "colors";
+
 .login-page {
     background: url(background.jpg) no-repeat #1f1f1f;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    margin: 0;
-    padding: 0;
-
 
     .content {
         display: table;
@@ -26,7 +23,7 @@
         > h1 {
             margin: 0 0 32px 0;
             font-family: 'montserrat', sans-serif;
-            color: #3cb476;
+            color: $accent-color;
             text-align: center;
             cursor: default;
         }
@@ -62,7 +59,7 @@
         input {
             display: block;
             width: 100%;
-           // max-width: initial; //BO SIE JEBIE
+            // max-width: initial; //BO SIE JEBIE
             border-width: 0;
             height: 48px;
             background-color: rgba(255,255,255,.1);
@@ -77,7 +74,7 @@
 
     .login-button {
         height: 48px;
-        background-color: #3cb476;
+        background-color: $accent-color;
         color: #1f1f1f;
         border-radius: 4px;
         text-transform: uppercase;
@@ -86,7 +83,7 @@
         padding: 0;
         font-size: 0.875em;
         border-width: 2px;
-        border-color: #3cb476;
+        border-color: $accent-color;
         border-style: solid;
         box-sizing: border-box;
         width: 100%;
@@ -96,7 +93,7 @@
 
         &:hover {
             background-color: transparent;
-            color: #3cb476;
+            color: $accent-color;
         }
     }
 
@@ -119,7 +116,7 @@
     }
 
     .link, .bottom-link-div a {
-        color: #3cb476;
+        color: $accent-color;
         text-decoration: none;
     }
 
@@ -131,7 +128,7 @@
     .remember-square {
         width: 16px;
         height: 16px;
-        background-color: #3cb476;
+        background-color: $accent-color;
         border-radius: 4px;
         display: inline-block;
         padding-top: 0;

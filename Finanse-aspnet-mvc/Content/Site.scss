@@ -11,12 +11,17 @@
 @import "_search.scss";
 
 body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+.body {
     padding-top: $upper-bar-height;
     padding-bottom: 20px;
-    font-family: 'Open Sans', Tahoma, Geneva, Verdana, sans-serif;
     background: $body-background-darken-1;
-    color: $foreground-100;
-    font-size: 16px;
+   // color: $foreground-100;
 }
 
 hr {

@@ -1,11 +1,5 @@
 ﻿.about-page {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-  margin: 0;
-  padding: 0;
-  height: 2000px;
-  display: block;
-  background: white; }
+  display: block; }
   .about-page section {
     margin: 0;
     padding: 0;
@@ -17,7 +11,7 @@
       padding: 0 16px; }
   .about-page .title {
     font-family: 'montserrat', sans-serif;
-    color: #3cb476;
+    color: #06a771;
     margin: 0;
     padding: 0; }
   .about-page .desc {
@@ -27,7 +21,7 @@
   .about-page h1 {
     font-size: 3em; }
   .about-page .button {
-    background-color: #3cb476;
+    background-color: #06a771;
     padding: 14px 30px;
     text-decoration: none;
     color: #1f1f1f;
@@ -37,18 +31,18 @@
     font-size: 0.875em;
     display: inline-block;
     transition: background-color .2s, color .2s;
-    border-color: #3cb476;
+    border-color: #06a771;
     border-width: 2px;
     border-radius: 4px;
     border-style: solid; }
     .about-page .button:hover {
       background-color: transparent;
-      color: #3cb476; }
+      color: #06a771; }
   .about-page .button-invert {
     background-color: transparent;
-    color: #3cb476; }
+    color: #06a771; }
     .about-page .button-invert:hover {
-      background-color: #3cb476;
+      background-color: #06a771;
       color: #1f1f1f; }
   .about-page .button-nav {
     text-decoration: none;
@@ -61,7 +55,7 @@
     line-height: 64px;
     transition: background-color .2s, color .2s; }
     .about-page .button-nav:hover {
-      color: #3cb476; }
+      color: #06a771; }
   .about-page #sect-name {
     min-height: 640px;
     background: url(background.jpg) no-repeat #1f1f1f;
@@ -99,7 +93,7 @@
     .about-page .sect-pros-col span {
       font-family: 'Segoe MDL2 Assets';
       font-size: 3em;
-      color: #3cb476; }
+      color: #06a771; }
     .about-page .sect-pros-col h4 {
       font-weight: 500;
       font-size: 1.125em;
@@ -112,7 +106,7 @@
       color: rgba(0, 0, 0, 0.75); }
   .about-page #sect-app {
     min-height: 640px;
-    background-color: #3cb476; }
+    background-color: #06a771; }
   .about-page #sect-foot {
     min-height: 128px;
     background-color: #1f1f1f; }
@@ -154,11 +148,7 @@
     opacity: 0; }
 
 .login-page {
-  background: url(background.jpg) no-repeat #1f1f1f;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-  margin: 0;
-  padding: 0; }
+  background: url(background.jpg) no-repeat #1f1f1f; }
   .login-page .content {
     display: table;
     position: absolute;
@@ -174,7 +164,7 @@
     .login-page .login-box > h1 {
       margin: 0 0 32px 0;
       font-family: 'montserrat', sans-serif;
-      color: #3cb476;
+      color: #06a771;
       text-align: center;
       cursor: default; }
     .login-page .login-box > form {
@@ -206,7 +196,7 @@
     font-family: inherit; }
   .login-page .login-button {
     height: 48px;
-    background-color: #3cb476;
+    background-color: #06a771;
     color: #1f1f1f;
     border-radius: 4px;
     text-transform: uppercase;
@@ -215,7 +205,7 @@
     padding: 0;
     font-size: 0.875em;
     border-width: 2px;
-    border-color: #3cb476;
+    border-color: #06a771;
     border-style: solid;
     box-sizing: border-box;
     width: 100%;
@@ -224,7 +214,7 @@
     transition: background-color .2s, color .2s; }
     .login-page .login-button:hover {
       background-color: transparent;
-      color: #3cb476; }
+      color: #06a771; }
   .login-page .facebook-button {
     background-color: #4267b2;
     border-color: #4267b2;
@@ -237,14 +227,14 @@
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.875em; }
   .login-page .link, .login-page .bottom-link-div a {
-    color: #3cb476;
+    color: #06a771;
     text-decoration: none; }
   .login-page .link {
     font-size: 0.875em; }
   .login-page .remember-square {
     width: 16px;
     height: 16px;
-    background-color: #3cb476;
+    background-color: #06a771;
     border-radius: 4px;
     display: inline-block;
     padding-top: 0;
@@ -610,6 +600,7 @@ input[type='checkbox'] {
   outline: 0;
   line-height: 1em;
   cursor: pointer;
+  transition: all 0.5s;
   width: 16px;
   height: 16px;
   border-radius: 5px;
@@ -693,12 +684,15 @@ input[type='checkbox'] ~ label {
   box-shadow: inset 0 0 16px rgba(6, 167, 113, 0.25); }
 
 body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0; }
+
+.body {
   padding-top: 64px;
   padding-bottom: 20px;
-  font-family: 'Open Sans', Tahoma, Geneva, Verdana, sans-serif;
-  background: #202222;
-  color: white;
-  font-size: 16px; }
+  background: #202222; }
 
 hr {
   border-color: rgba(255, 255, 255, 0.05); }

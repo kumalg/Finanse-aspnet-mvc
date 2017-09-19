@@ -1,11 +1,7 @@
+@import "colors.scss";
+
 .about-page {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    margin: 0;
-    padding: 0;
-    height: 2000px;
     display: block;
-    background: white;
 
     section {
         margin: 0;
@@ -22,7 +18,7 @@
 
     .title {
         font-family: 'montserrat', sans-serif;
-        color: #3cb476;
+        color: $accent-color;
         margin: 0;
         padding: 0;
     }
@@ -38,7 +34,7 @@
     }
 
     .button {
-        background-color: #3cb476;
+        background-color: $accent-color;
         padding: 14px 30px;
         text-decoration: none;
         color: #1f1f1f;
@@ -50,7 +46,7 @@
         transition: background-color .2s, color .2s;
 
         border: {
-            color: #3cb476;
+            color: $accent-color;
             width: 2px;
             radius: 4px;
             style: solid;
@@ -58,16 +54,16 @@
 
         &:hover {
             background-color: transparent;
-            color: #3cb476;
+            color: $accent-color;
         }
     }
 
     .button-invert {
         background-color: transparent;
-        color: #3cb476;
+        color: $accent-color;
 
         &:hover {
-            background-color: #3cb476;
+            background-color: $accent-color;
             color: #1f1f1f;
         }
     }
@@ -85,7 +81,7 @@
         transition: background-color .2s, color .2s;
 
         &:hover {
-            color: #3cb476;
+            color: $accent-color;
         }
     }
 
@@ -150,7 +146,7 @@
         span {
             font-family: 'Segoe MDL2 Assets';
             font-size: 3em;
-            color: #3cb476;
+            color: $accent-color;
         }
 
         h4 {
@@ -170,7 +166,7 @@
 
     #sect-app {
         min-height: 640px;
-        background-color: #3cb476;
+        background-color: $accent-color;
     }
 
     #sect-foot {
