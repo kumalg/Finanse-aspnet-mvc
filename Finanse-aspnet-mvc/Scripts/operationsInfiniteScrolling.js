@@ -19,7 +19,7 @@ $("#tryAgainBtn").click(function() {
 });
 
 function CheckIfEmpty() {
-    if (!$.trim($('#operationsList').html()).length) {
+    if (!$.trim($('#operations-list').html()).length) {
         $("#noOperationsMessage").show();
     } else {
         $("#noOperationsMessage").hide();
@@ -39,13 +39,13 @@ function GetData() {
 
             if (data.lastId != null) {
 
-                var lastDate = $("#operationsList > div[role=heading]").last().attr("value");
+                var lastDate = $("#operations-list > div[role=heading]").last().attr("value");
                 var firstNewDate = $(data.partialView).first().attr("value");
 
                 if (lastDate == firstNewDate) {
-                    $("#operationsList").append($(data.partialView).slice(1));
+                    $("#operations-list").append($(data.partialView).slice(1));
                 } else {
-                    $("#operationsList").append(data.partialView);    
+                    $("#operations-list").append(data.partialView);    
                 }
                 
                 if (lastId != data.lastId) {
@@ -71,11 +71,11 @@ function GetData() {
     });
 }
 
-$(document).on("click", "#prevMonthBtn", function () {
+$(document).on("click", "#prev-month-button", function () {
     ReloadData(-1);
 });
 
-$(document).on("click", "#nextMonthBtn", function () {
+$(document).on("click", "#next-month-button", function () {
     ReloadData(1);
 });
 
@@ -84,14 +84,14 @@ function ReloadData(addMonth) {
     UpdateActualMonthBtn(actualMonthAndYear);
 
     lastId = null;
-    $("#operationsList").html("");
+    $("#operations-list").html("");
 
     $.ajax({
         type: "GET",
         url: "/Operations/Index",
         data: { "actualYear": actualMonthAndYear.format("YYYY"), "actualMonth": actualMonthAndYear.format("MM") },
         success: function (data) {
-            $("#operationsList").html(data.partialView);
+            $("#operations-list").html(data.partialView);
 
             if (lastId != data.lastId) {
                 lastId = data.lastId;
@@ -116,8 +116,6 @@ function ReloadData(addMonth) {
 }
 
 function UpdateActualMonthBtn(actualMonthAndYear) {
-    if (actualMonthAndYear.format("YYYY") != moment().format("YYYY"))
-        $("#actualMonthBtn").text(actualMonthAndYear.format("MMMM YYYY"));
-    else
-        $("#actualMonthBtn").text(actualMonthAndYear.format("MMMM"));
+    $("#actual-month-title").text(actualMonthAndYear.format("MMMM"));
+    $("#actual-year-title").text(actualMonthAndYear.format("YYYY"));
 }

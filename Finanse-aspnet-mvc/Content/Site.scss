@@ -21,7 +21,7 @@ body {
     padding-top: $upper-bar-height;
     padding-bottom: 20px;
     background: $body-background-darken-1;
-   // color: $foreground-100;
+    color: $foreground-100;
 }
 
 hr {
@@ -262,8 +262,14 @@ textarea {
     }
 }
 
-#nav-month-wrapper {
+#nav-month-wrapper, .page-top {
     display: flex;
+}
+
+.page-top {
+    padding: 0 8px;
+    flex-direction: row;
+    align-items: center;
 }
 
 #nav-month {
@@ -293,6 +299,7 @@ textarea {
         font-size: 1.125em;
         line-height: 1.125em;
         color: $accent-color;
+        text-transform: capitalize;
     }
 
     small {
@@ -310,7 +317,7 @@ textarea {
     }
 }
 
-#operations-page-content {
+#operations-page-content, .multi-cards-container {
     display: flex;
     align-items: flex-start;
     margin-top: 32px - 8px;
@@ -366,15 +373,18 @@ textarea {
             color: $foreground-40;
             font-size: 0.875em
         }
-
-        > .right {
-            margin-left: auto;
-        }
     }
 
     > .content {
         > * + * {
             margin-top: 24px;
+        }
+
+        .list {
+            margin: {
+                left: -16px;
+                right: -16px;
+            }
         }
     }
 
@@ -383,8 +393,12 @@ textarea {
     }
 }
 
+.flex-right {
+    margin-left: auto;
+}
+
 @media all and (max-width: 960px) {
-    #operations-page-content {
+    #operations-page-content, .multi-cards-container {
         flex-direction: column;
         align-items: initial;
     }

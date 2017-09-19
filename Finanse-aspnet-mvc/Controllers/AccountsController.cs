@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Finanse_aspnet_mvc.Models;
 using Finanse_aspnet_mvc.Models.Accounts;
 using Finanse_aspnet_mvc.Models.Helpers;
+using Microsoft.AspNet.Identity;
 
 namespace Finanse_aspnet_mvc.Controllers {
     [Authorize]
@@ -32,8 +33,12 @@ namespace Finanse_aspnet_mvc.Controllers {
         // POST: Accounts/Create
         [HttpPost]
         public async Task<ActionResult> Create(AccountPost accountPost) {
+            ModelState.Remove(nameof(AccountPost.UserId));
+
             if (ModelState.IsValid) {
                 var account = accountPost.GetAccount();
+                account.UserId = User.Identity.GetUserId();
+
                 _db.AccountsAndSubAccounts.Add(account);
                 await _db.SaveChangesAsync();
 

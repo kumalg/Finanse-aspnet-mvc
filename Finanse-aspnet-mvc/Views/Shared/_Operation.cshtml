@@ -3,54 +3,64 @@
 
 <div class="operation animate-button">
     <div class="operation-icon">
-        <i class="fa fa-shopping-basket" aria-hidden="true" style="color:#1e91c2"></i>
-        @*<i class="@(Model.Category.Icon)" aria-hidden="true" style="color: @Model.Category.Color;" ></i>*@
+        @*<i class="fa fa-shopping-basket" aria-hidden="true" style="color:#1e91c2"></i>*@
+        <i class="@(Model.Category.Icon)" aria-hidden="true" style="color: @Model.Category.Color;"></i>
     </div>
     <div class="operation-text">
-        @*<p>@Model.TitleOrCategoryName</p>*@
-        <p>Środki czystości</p>
+        <p>@Model.TitleOrCategoryName</p>
+        @*<p>Środki czystości</p>*@
         <div>
-            <small>Zakupy</small>
-            <i class="fa fa-chevron-right operation-angle"></i>
-            <small>Lidl</small>
+            @*<small>Zakupy</small>
+                <i class="fa fa-chevron-right operation-angle"></i>
+                <small>Lidl</small>*@
 
-            @*@if (Model.Category is SubCategory) {
-                <small><strong>@(((SubCategory)Model.Category).ParentCategory.Name)</strong></small>
+            @if (Model.Category is SubCategory)
+            {
+                <small>@(((SubCategory)Model.Category).ParentCategory.Name)</small>
                 <i class="fa fa-chevron-right operation-angle"></i>
                 <small>@Model.Category.Name</small>
             }
-            else {
-                <small><strong>@Model.Category.Name</strong></small>
-            }*@
+            else
+            {
+                <small>@Model.Category.Name</small>
+            }
         </div>
     </div>
 
     @*@if (Model.IsExpense) {
-        <div class="operation-cost red-text">
-            @(Model.SignedCost.ToString("C"))
-        </div>
-    }
-    else {
-        <div class="operation-cost green-text">
-            @(Model.SignedCost.ToString("C"))
-        </div>
-    }*@
+            <div class="operation-cost red-text">
+                @(Model.SignedCost.ToString("C"))
+            </div>
+        }
+        else {
+            <div class="operation-cost green-text">
+                @(Model.SignedCost.ToString("C"))
+            </div>
+        }*@
 
     <div class="operation-cost">
-        20,00 PLN
+        @*20,00 PLN*@
+        @(Model.Cost.ToString()) PLN
     </div>
 
-    <i class="fa fa-arrow-left expense" aria-hidden="true"></i>
-    
+    @if (Model.IsExpense)
+    {
+        <i class="fa fa-arrow-left expense" aria-hidden="true"></i>
+    }
+    else
+    {
+        <i class="fa fa-arrow-left income" aria-hidden="true"></i>
+    }
+
     @*<div class="btn-group" data-toggle="buttons">
-        <button type="button" class="button-more animate-button dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
-            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li>@Html.ActionLink("Szczegóły", "Details", "Operations", new { id = Model.Id }, new { data_modal = "" })</li>
-            <li>@Html.ActionLink("Edytuj", "Edit", "Operations", new { id = Model.Id }, new { data_modal = "" })</li>
-            <li class="divider"></li>
-            <li>@Html.ActionLink("Usuń", "Delete", "Operations", new { id = Model.Id }, new { data_modal = "" })</li>
-        </ul>
-    </div>*@
+            <button type="button" class="button-more animate-button dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li>@Html.ActionLink("Szczegóły", "Details", "Operations", new { id = Model.Id }, new { data_modal = "" })</li>
+                <li>@Html.ActionLink("Edytuj", "Edit", "Operations", new { id = Model.Id }, new { data_modal = "" })</li>
+                <li class="divider"></li>
+                <li>@Html.ActionLink("Usuń", "Delete", "Operations", new { id = Model.Id }, new { data_modal = "" })</li>
+            </ul>
+        </div>*@
 </div>

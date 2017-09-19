@@ -20,7 +20,10 @@ namespace Finanse_aspnet_mvc.Controllers {
         // GET: Operations
         public async Task<ActionResult> Index(int? lastId, int? actualYear, int? actualMonth) {
             if (!Request.IsAjaxRequest())
+            {
+                ViewBag.Accounts = await _db.Accounts.ToListAsync();
                 return View();
+            }
 
             var userId = User.Identity.GetUserId();
 

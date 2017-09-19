@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Finanse_aspnet_mvc.Models.Operations.Operation>
+﻿@using Finanse_aspnet_mvc.Models.Accounts
+@model IEnumerable<Finanse_aspnet_mvc.Models.Operations.Operation>
 @{
     ViewBag.Title = "Operacje";
 }
@@ -39,14 +40,14 @@
     <div id="nav-month-wrapper">
         <div id="nav-month">
             <div class="month-bar">
-                <p>Sierpień</p>
-                <small>2017</small>
+                <p id="actual-month-title">Miesiąc</p>
+                <small id="actual-year-title">Rok</small>
             </div>
             <div id="nav-month-buttons">
-                <button class="outline-button square">
+                <button class="outline-button square" id="prev-month-button">
                     <i class="fa fa-angle-left square" aria-hidden="true"></i>
                 </button>
-                <button class="outline-button square">
+                <button class="outline-button square" id="next-month-button">
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </button>
                 <button class="outline-button outline-button-inverted square" id="planned-operations-button">
@@ -63,7 +64,7 @@
             <div class="header">
                 <p>Operacje</p>
 
-                <div class="right bottomline-button-group">
+                <div class="flex-right bottomline-button-group">
                     <div class="bottomline-button">
                         <input type="radio" id="group-by-date-button" name="group-method" value="date" checked="checked" />
                         <label for="group-by-date-button" class="animate-button">Data</label>
@@ -76,8 +77,6 @@
                 </div>
             </div>
             <div id="operations-list">
-                @Html.Partial("_OperationsList", null)
-                @Html.Partial("_OperationsList", null)
             </div>
         </div>
         <div id="more-infos-cards" class="page-card-container">
@@ -85,33 +84,50 @@
                 <div class="header">
                     <p>Widoczne konta</p>
 
-                    <button class="right expand-button">
+                    <button class="flex-right expand-button">
                         <i class="fa fa-angle-down animate-button" aria-hidden="true"></i>
                     </button>
                 </div>
 
                 <div class="content">
-
+                    
                     <div class="checkbox-group">
-                        <div class="checkbox-div">
+                        @foreach (var account in ViewBag.Accounts)
+                        {
+                            var id = $"account-{account.Id}-checkbox";
+                            <div class="checkbox-div">
+                                <input type="checkbox" id="@id" class="animate-button" checked="checked" value="@account.Id"/>
+                                <label for="@id">@account.Name</label>
+                            </div>
+
+                            foreach (var subAccount in account.SubAccounts)
+                            {
+                                var subId = $"account-{subAccount.Id}-checkbox";
+                                <div class="checkbox-div sub">
+                                    <input type="checkbox" id="@subId" class="animate-button" checked="checked" value="@subAccount.Id"/>
+                                    <label for="@subId">@subAccount.Name</label>
+                                </div>
+                            }
+                        }
+                        @*<div class="checkbox-div">
                             <input type="checkbox" id="account-01-checkbox" class="animate-button">
                             <label for="account-01-checkbox">Gotówka</label>
                         </div>
 
                         <div class="checkbox-div">
-                            <input type="checkbox" id="account-02-checkbox" class="animate-button" checked="checked" />
+                            <input type="checkbox" id="account-02-checkbox" class="animate-button" checked="checked"/>
                             <label for="account-02-checkbox">BZ WBK</label>
                         </div>
 
                         <div class="checkbox-div sub">
-                            <input type="checkbox" id="account-03-checkbox" class="animate-button" checked="checked" />
+                            <input type="checkbox" id="account-03-checkbox" class="animate-button" checked="checked"/>
                             <label for="account-03-checkbox">Karta Visa</label>
                         </div>
 
                         <div class="checkbox-div sub">
-                            <input type="checkbox" id="account-04-checkbox" class="animate-button" />
+                            <input type="checkbox" id="account-04-checkbox" class="animate-button"/>
                             <label for="account-04-checkbox">Karta MasterCard</label>
-                        </div>
+                        </div>*@
                     </div>
 
                     <button class="outline-button filter-button">Filtruj</button>
@@ -122,7 +138,7 @@
                 <div class="header">
                     <p>Podsumowanie</p>
 
-                    <button class="right expand-button">
+                    <button class="flex-right expand-button">
                         <i class="fa fa-angle-down animate-button" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -142,7 +158,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modalform")
     @Scripts.Render("~/scripts/moment-with-locales.js")
-    @*@Scripts.Render("~/scripts/operationsInfiniteScrolling.js")*@
+    @Scripts.Render("~/scripts/operationsInfiniteScrolling.js")
     @Scripts.Render("~/scripts/loaders.css.js")
 
     <script>

@@ -692,7 +692,8 @@ body {
 .body {
   padding-top: 64px;
   padding-bottom: 20px;
-  background: #202222; }
+  background: #202222;
+  color: white; }
 
 hr {
   border-color: rgba(255, 255, 255, 0.05); }
@@ -855,8 +856,13 @@ textarea {
   margin-left: auto;
   margin-right: auto; }
 
-#nav-month-wrapper {
+#nav-month-wrapper, .page-top {
   display: flex; }
+
+.page-top {
+  padding: 0 8px;
+  flex-direction: row;
+  align-items: center; }
 
 #nav-month {
   min-height: 32px;
@@ -877,7 +883,8 @@ textarea {
 .month-bar p {
   font-size: 1.125em;
   line-height: 1.125em;
-  color: #06a771; }
+  color: #06a771;
+  text-transform: capitalize; }
 
 .month-bar small {
   opacity: .5;
@@ -889,7 +896,7 @@ textarea {
   margin-left: 8px;
   margin-right: 8px; }
 
-#operations-page-content {
+#operations-page-content, .multi-cards-container {
   display: flex;
   align-items: flex-start;
   margin-top: 24px; }
@@ -929,15 +936,19 @@ textarea {
       margin: 0;
       color: rgba(255, 255, 255, 0.4);
       font-size: 0.875em; }
-    .page-card > .header > .right {
-      margin-left: auto; }
   .page-card > .content > * + * {
     margin-top: 24px; }
+  .page-card > .content .list {
+    margin-left: -16px;
+    margin-right: -16px; }
   .page-card.inner-page-card {
     margin: 0; }
 
+.flex-right {
+  margin-left: auto; }
+
 @media all and (max-width: 960px) {
-  #operations-page-content {
+  #operations-page-content, .multi-cards-container {
     flex-direction: column;
     align-items: initial; }
   #more-infos-cards {

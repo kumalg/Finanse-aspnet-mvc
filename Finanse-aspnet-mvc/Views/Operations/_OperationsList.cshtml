@@ -3,28 +3,36 @@
 @model IEnumerable<IGrouping<string, Operation>>
 
 @*@foreach (var group in Model) {
-    <div role="heading" value="@(group.Key)" class="operation-header animate-button">
+        <div role="heading" value="@(group.Key)" class="operation-header animate-button">
+            @{
+                var date = DateTime.ParseExact(group.Key, "yyyy.MM.dd", CultureInfo.InvariantCulture);
+            }
+            <div class="operation-header-dayNum">@date.ToString("dd")</div>
+            <div>@date.ToString("dddd")</div>
+        </div>
+        foreach (var operation in group) {
+            @Html.Partial("_Operation", operation)
+        }
+    }*@
+@foreach (var dayGroup in Model)
+{
+    <div role="heading" value="2017.08.08" class="operation-header animate-button">
         @{
-            var date = DateTime.ParseExact(group.Key, "yyyy.MM.dd", CultureInfo.InvariantCulture);
+            var date = DateTime.ParseExact(dayGroup.Key, "yyyy.MM.dd", CultureInfo.InvariantCulture);
         }
         <div class="operation-header-dayNum">@date.ToString("dd")</div>
         <div>@date.ToString("dddd")</div>
     </div>
-    foreach (var operation in group) {
+    foreach (var operation in dayGroup)
+    {
         @Html.Partial("_Operation", operation)
     }
-}*@
 
-<div role="heading" value="2017.08.08" class="operation-header animate-button">
-    @{
-        var date = DateTime.ParseExact("2017.08.08", "yyyy.MM.dd", CultureInfo.InvariantCulture);
-    }
-    <div class="operation-header-dayNum">@date.ToString("dd")</div>
-    <div>@date.ToString("dddd")</div>
-</div>
-@for (int i = 0; i < 3; i++) {
-    @Html.Partial("_Operation", null)
 }
+
+
+
+
 
 
 

@@ -3,12 +3,12 @@
 @{
     ViewBag.Title = "Kategorie";
 }
-            
-<div style="margin: 16px;">
+
+@*<div style="margin: 16px;">
     <i class="fa fa-tags" style="font-size: 24px"></i>
     <h2 style="display: inline; margin-left: 16px; font-weight: lighter">Kategorie</h2>
 </div>
-<hr/>
+<hr />*@
 
 <!-- modal placeholder-->
 <div id='myModal' class='modal fade in'>
@@ -19,30 +19,65 @@
     </div>
 </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { data_modal = "", id = "btnCreate", @class = "btn button-round button-lg animate-button" })
-</p>
 
 @*@Html.ActionLink("+", "Create", "Operations", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-success btn-circle btn-lg button-add animate-button" })*@
-
-<div>
-    <div>
-        Wydatki
-        @foreach (var item in Model.Expenses) {
-            @Html.Partial("_Category", item)
-        }
+<div class="page-content-new">
+    <div class="page-top">
+        Kategorie
+        <div class="flex-right">
+            @Html.ActionLink("Dodaj nową", "Create", null, new { data_modal = "", id = "btnCreate", @class = "btn button-round button-lg animate-button" })
+        </div>
     </div>
+    <div class="multi-cards-container">
+        <div class="page-card" style="flex: 1">
+            <div class="header">
+                <p>Wydatki</p>
 
-    <div>
-        Wpływy
-        @foreach (var item in Model.Incomes) {
-            @Html.Partial("_Category", item)
-        }
+                <button class="flex-right expand-button">
+                    <i class="fa fa-angle-down animate-button" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="content">
+                <div class="list">
+                    @foreach (var item in Model.Expenses)
+                    {
+                        @Html.Partial("_Category", item)
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="page-card" style="flex: 1">
+            <div class="header">
+                <p>Wpływy</p>
+
+                <button class="flex-right expand-button">
+                    <i class="fa fa-angle-down animate-button" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="content">
+                <div class="list">
+                    @foreach (var item in Model.Incomes)
+                    {
+                        @Html.Partial("_Category", item)
+                    }
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modalform")
+
+    <script>
+        /* Slide Toogle */
+        $("div.page-card button.expand-button").click(function () {
+            var arrow = $(this).find("i.fa");
+
+            arrow.toggleClass("fa-rotate-90");
+
+            $(this).parent().parent().find("div.content").slideToggle();
+        });
+    </script>
 }
