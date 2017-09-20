@@ -10,12 +10,11 @@
 </div>
 <hr />*@
 
-<!-- modal placeholder-->
-<div id='myModal' class='modal fade in'>
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div id='myModalContent'></div>
-        </div>
+<!-- The Modal -->
+<div id="pop-up" class="pop-up">
+    <div class="pop-up-content">
+        <!-- Modal content -->
+        <div id="pop-up-content"></div>
     </div>
 </div>
 
@@ -25,7 +24,7 @@
     <div class="page-top">
         <p class="page-title">Kategorie</p>
         <div class="flex-right">
-            @Html.ActionLink("Dodaj nową", "Create", null, new { data_modal = "", id = "btnCreate", @class = "button-round animate-button" })
+            @Html.ActionLink("Dodaj nową", "Create", null, new { dataModal = "", id = "btnCreate", @class = "button-round animate-button" })
         </div>
     </div>
     <div class="multi-cards-container">

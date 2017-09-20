@@ -58,9 +58,10 @@ namespace Finanse_aspnet_mvc.Controllers {
         }
 
         // GET: Categories/Edit/5
-        public ActionResult Edit(int id) {
+        public async Task<ActionResult> Edit(int id) {
             ViewBag.Colors = _colors ?? (_colors = AppSettingsHelper.GetColors());
-            return PartialView("_Edit");
+            var model = await _db.CategoriesAndSubCategories.FindAsync(id);
+            return PartialView("_Edit", model);
         }
 
         // POST: Categories/Edit/5

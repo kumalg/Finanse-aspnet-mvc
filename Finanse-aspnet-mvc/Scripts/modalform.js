@@ -1,33 +1,33 @@
 ﻿//$(function () {
 
-    $.ajaxSetup({ cache: false });
+$.ajaxSetup({ cache: false });
 
-    $(document).on("click", "a[data-modal]", function (e) {
+$(document).on("click", "a[dataModal]", function (e) {
+    
+    // hide dropdown if any
+    $(e.target).closest(".btn-group").children(".dropdown-toggle").dropdown("toggle");
 
-        // hide dropdown if any
-        $(e.target).closest(".btn-group").children(".dropdown-toggle").dropdown("toggle");
-        
-        $("#myModalContent").load(this.href, function () {
+    $("#pop-up-content").load(this.href, function () {
 
-            $("#myModal").modal({
-                /*backdrop: 'static',*/
-                keyboard: true
-            }, "show");
-            
-            bindForm(this);
-        });
+        $("#pop-up").modal({
+            /*backdrop: 'static',*/
+            keyboard: true
+        }, "show");
 
-        return false;
+        bindForm(this);
     });
 
-    $("#myModal").on("hidden.bs.modal", function () {
-        $("#myModalContent").empty();
-    });
+    return false;
+});
+
+$("#pop-up").on("hidden.bs.modal", function () {
+    $("#pop-up-content").empty();
+});
 
 //});
 
 function bindForm(dialog) {
-    
+
     $("form", dialog).submit(function () {
         $.ajax({
             url: this.action,
@@ -35,11 +35,11 @@ function bindForm(dialog) {
             data: $(this).serialize(),
             success: function (result) {
                 if (result.success) {
-                    $("#myModal").modal("hide");
+                    $("#pop-up").modal("hide");
                     //Refresh
                     location.reload();
                 } else {
-                    $("#myModalContent").html(result);
+                    $("#pop-up-content").html(result);
                     bindForm();
                 }
             }
@@ -47,3 +47,31 @@ function bindForm(dialog) {
         return false;
     });
 }
+
+///* FROM WEB */
+
+//// Get the modal
+//var modal = document.getElementById('myModal');
+
+//// Get the button that opens the modal
+//var btn = document.getElementById("btnCreate");
+
+//// Get the <span> element that closes the modal
+//var span = document.getElementsByClassName("close")[0];
+
+//// When the user clicks on the button, open the modal 
+//btn.onclick = function () {
+//    modal.style.display = "block";
+//}
+
+//// When the user clicks on <span> (x), close the modal
+//span.onclick = function () {
+//    modal.style.display = "none";
+//}
+
+//// When the user clicks anywhere outside of the modal, close it
+//window.onclick = function (event) {
+//    if (event.target == modal) {
+//        modal.style.display = "none";
+//    }
+//}

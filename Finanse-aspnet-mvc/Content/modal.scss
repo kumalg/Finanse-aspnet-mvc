@@ -1,0 +1,93 @@
+﻿@import "colors.scss";
+
+.pop-up {
+    font-family: inherit;
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.pop-up-content {
+    position: relative;
+    background-color: rgba($body-background, 0.9);
+    margin: auto;
+    padding: 0;
+    border: none;
+    max-width: 400px;
+    //width: 80%;
+    //box-shadow: 0 0 64px 0 rgba(0,0,0,.2);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: 100px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: 100px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 0 16px;
+    background-color: $accent-color;
+    min-height: 48px;
+    color: white;
+    line-height: 48px;
+}
+
+.modal-body {
+    padding: 16px;
+}
+
+.modal-footer {
+    border-top: 1px;
+    border-color: $foreground-25;
+    border-style: solid;
+    padding: 16px 0;
+    margin: 0 16px;
+    color: white;
+}

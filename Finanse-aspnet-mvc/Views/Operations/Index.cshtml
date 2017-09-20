@@ -4,12 +4,11 @@
     ViewBag.Title = "Operacje";
 }
 
-<!-- modal placeholder-->
-<div id="myModal" class="modal fade in">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div id="myModalContent"></div>
-        </div>
+<!-- The Modal -->
+<div id="pop-up" class="pop-up">
+    <div class="pop-up-content">
+        <!-- Modal content -->
+        <div id="pop-up-content"></div>
     </div>
 </div>
 
@@ -121,7 +120,9 @@
     </div>
 </div>
 
-@Html.ActionLink("+", "Create", "Operations", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-success btn-circle btn-lg button-add animate-button" })
+@Html.ActionLink("+", "Create", "Operations", null, new { dataModal = "", id = "btnCreate", @class = "button-round button-add animate-button" })
+<!-- Trigger/Open The Modal -->
+@*<button id="btnCreate" class = "button-round button-add animate-button">+</button>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

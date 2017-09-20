@@ -3,52 +3,32 @@
 
 <div class="operation animate-button">
     <div class="operation-icon">
-        @*<i class="fa fa-shopping-basket" aria-hidden="true" style="color:#1e91c2"></i>*@
         <i class="@(Model.Category.Icon)" aria-hidden="true" style="color: @Model.Category.Color;"></i>
     </div>
+
     <div class="operation-text">
         <p>@Model.TitleOrCategoryName</p>
-        @*<p>Środki czystości</p>*@
-        <div>
-            @*<small>Zakupy</small>
-                <i class="fa fa-chevron-right operation-angle"></i>
-                <small>Lidl</small>*@
 
-            @if (Model.Category is SubCategory)
-            {
+        <div>
+            @if (Model.Category is SubCategory) {
                 <small>@(((SubCategory)Model.Category).ParentCategory.Name)</small>
                 <i class="fa fa-chevron-right operation-angle"></i>
                 <small>@Model.Category.Name</small>
             }
-            else
-            {
+            else {
                 <small>@Model.Category.Name</small>
             }
         </div>
     </div>
 
-    @*@if (Model.IsExpense) {
-            <div class="operation-cost red-text">
-                @(Model.SignedCost.ToString("C"))
-            </div>
-        }
-        else {
-            <div class="operation-cost green-text">
-                @(Model.SignedCost.ToString("C"))
-            </div>
-        }*@
-
     <div class="operation-cost">
-        @*20,00 PLN*@
         @(Model.Cost.ToString()) PLN
     </div>
 
-    @if (Model.IsExpense)
-    {
+    @if (Model.IsExpense) {
         <i class="fa fa-arrow-left expense" aria-hidden="true"></i>
     }
-    else
-    {
+    else {
         <i class="fa fa-arrow-left income" aria-hidden="true"></i>
     }
 
