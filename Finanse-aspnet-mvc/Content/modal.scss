@@ -5,26 +5,28 @@
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 9999; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding: 48px 0; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    //background-color: rgb(0,0,0); /* Fallback color */
+    //background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 /* Modal Content */
 .pop-up-content {
-    position: relative;
-    background-color: rgba($body-background, 0.9);
     margin: auto;
-    padding: 0;
+    position: relative;
+    background-color: rgba($body-background, 1);
+    margin: auto;
+    padding: 24px;
     border: none;
+    border-radius: 5px;
     max-width: 400px;
     //width: 80%;
-    //box-shadow: 0 0 64px 0 rgba(0,0,0,.2);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.2);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -71,23 +73,79 @@
     cursor: pointer;
 }
 
-.modal-header {
-    padding: 0 16px;
-    background-color: $accent-color;
-    min-height: 48px;
-    color: white;
-    line-height: 48px;
+.pop-up-header {
+    margin-bottom: 16px;
+    color: $foreground-50;
+
+    h4 {
+        display: inline;
+    }
 }
 
-.modal-body {
-    padding: 16px;
+.pop-up-body {
+    padding: 24px 0;
 }
 
-.modal-footer {
+.pop-up-footer {
     border-top: 1px;
-    border-color: $foreground-25;
+    border-color: rgba($foreground-100, 0.1);
     border-style: solid;
-    padding: 16px 0;
-    margin: 0 16px;
+    padding-top: 24px;
     color: white;
+    text-align: right;
+
+    .button-block {
+        > * {
+            margin: 0;
+        }
+
+        * + * {
+            margin-left: 16px;
+        }
+    }
+}
+
+.pop-up-button {
+    padding: 0;
+    background: none;
+    border: none;
+    color: $accent-color;
+    font-size: 0.875em;
+    line-height: 1.5em;
+    outline: none;
+    transition: color 0.2s;
+
+    &:hover {
+        color: $accent-color-lighter-1;
+    }
+
+    &:active {
+        color: $accent-color-lighter-2;
+    }
+}
+
+.pop-up-button-primary {
+    font-weight: 600;
+}
+
+.form-wrapper {
+    > div + div {
+        margin-top: 16px;
+    }
+}
+
+.close-button {
+    float: right;
+    background: none;
+    border: none;
+    font-size: 1.25em;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    color: $foreground-50;
+    transition: color 0.2s;
+
+    &:hover {
+        color: $foreground-75;
+    }
 }

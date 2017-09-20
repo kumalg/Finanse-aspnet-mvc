@@ -49,29 +49,6 @@
         }
     }
 
-
-    .input-div {
-        label {
-            color: rgba(255,255,255,.5);
-            font-size: 0.875em;
-        }
-
-        input {
-            display: block;
-            width: 100%;
-            // max-width: initial; //BO SIE JEBIE
-            border-width: 0;
-            height: 48px;
-            background-color: rgba(255,255,255,.1);
-            color: #fff;
-            border-radius: 4px;
-            margin-top: 8px;
-            padding: 0 16px;
-            box-sizing: border-box;
-            font-family: inherit;
-        }
-    }
-
     .login-button {
         height: 48px;
         background-color: $accent-color;
@@ -146,5 +123,27 @@
             padding: 0;
             vertical-align: top;
         }
+    }
+}
+
+.input-div {
+    label {
+        color: rgba(255,255,255,.5);
+        font-size: 0.875em;
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        // max-width: initial; //BO SIE JEBIE
+        border-width: 0;
+        height: 48px;
+        background-color: rgba(255,255,255,.1);
+        color: #fff;
+        border-radius: 4px;
+        margin-top: 8px;
+        padding: 0 16px;
+        box-sizing: border-box;
+        font-family: inherit;
     }
 }

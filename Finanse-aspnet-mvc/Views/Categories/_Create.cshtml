@@ -2,9 +2,10 @@
 @using Finanse_aspnet_mvc.Models.Helpers
 @model Finanse_aspnet_mvc.Models.Categories.CategoryPost
 
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="myModalLabel">Nowa kategoria</h4>
+<div class="pop-up-header">
+    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+    <h4 id="myModalLabel">Nowa kategoria</h4>
+    <button type="button" class="close-button" data-dismiss="modal" aria-label="Close"><i aria-hidden="true">&times;</i></button>
 </div>
 
 
@@ -12,15 +13,13 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="modal-body">
-        <div class="form-horizontal">
+    <div class="pop-up-body">
+        <div class="form-wrapper">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
+            <div class="input-div">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
 
             @*<div class="form-group">
@@ -37,11 +36,9 @@
             }
         </div>*@
         
-            <div class="form-group">
-                @Html.Label("Kolor", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.ColorKey, AppSettingsHelper.GetColors().Select(i => new SelectListItem {Value = i.Key, Text = i.Key}), new {@class = "btn btn-default"})
-                </div>
+            <div>
+                @Html.Label("Kolor", htmlAttributes: new { @class = "" })
+                    @Html.DropDownListFor(model => model.ColorKey, AppSettingsHelper.GetColors().Select(i => new SelectListItem {Value = i.Key, Text = i.Key}), new {@class = ""})
             </div>
         
 
@@ -54,38 +51,26 @@
             </div>
         </div>*@
         
-            <div class="form-group">
-                @Html.Label("Ikona", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.IconKey, AppSettingsHelper.GetIcons().Select(i => new SelectListItem { Value = i.Key, Text = i.Key }), new { @class = "btn btn-default" })
-                </div>
+            <div>
+                @Html.Label("Ikona", htmlAttributes: new { @class = "" })
+                @Html.DropDownListFor(model => model.IconKey, AppSettingsHelper.GetIcons().Select(i => new SelectListItem { Value = i.Key, Text = i.Key }), new { @class = "" })
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.VisibleInIncomes, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.VisibleInIncomes)
-                        @Html.ValidationMessageFor(model => model.VisibleInIncomes, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+            <div class="checkbox-div">
+                @Html.EditorFor(model => model.VisibleInIncomes)
+                @Html.LabelFor(model => model.VisibleInIncomes, htmlAttributes: new {@class = "label-normal" })
+                @Html.ValidationMessageFor(model => model.VisibleInIncomes, "", new {@class = "text-danger"})
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.VisibleInExpenses, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.VisibleInExpenses)
-                        @Html.ValidationMessageFor(model => model.VisibleInExpenses, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+            <div class="checkbox-div">
+                @Html.EditorFor(model => model.VisibleInExpenses)
+                @Html.LabelFor(model => model.VisibleInExpenses, htmlAttributes: new { @class = "label-normal" })
+                @Html.ValidationMessageFor(model => model.VisibleInExpenses, "", new { @class = "text-danger" })
             </div>
 
-            <div class="form-group">
-                @Html.Label("Kategoria nadrzędna", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.ParentCategoryId, new List<SelectListItem> { new SelectListItem { Value = "-1", Text = "Brak" } }.Concat(StackMoneyDb.OnlyCategoriesList().Select(i => new SelectListItem { Value = i.Id.ToString(), Text = i.Name })), new { @class = "btn btn-default" })
-                </div>
+            <div>
+                @Html.Label("Kategoria nadrzędna", htmlAttributes: new { @class = "" })
+                @Html.DropDownListFor(model => model.ParentCategoryId, new List<SelectListItem> { new SelectListItem { Value = "-1", Text = "Brak" } }.Concat(StackMoneyDb.OnlyCategoriesList().Select(i => new SelectListItem { Value = i.Id.ToString(), Text = i.Name })), new { @class = "" })
             </div>
         
             @Html.HiddenFor(item => item.CantDelete)
@@ -93,9 +78,11 @@
         </div>
     </div>
 
-    <div class="modal-footer">
-        <button class="btn btn-default animate-button" data-dismiss="modal">Anuluj</button>
-        <input class="btn btn-primary animate-button" type="submit" value="Dodaj" />
+    <div class="pop-up-footer">
+        <div class="button-block">
+            <button class="pop-up-button" data-dismiss="modal">Anuluj</button>
+            <input class="pop-up-button pop-up-button-primary" type="submit" value="Dodaj" />
+        </div>
     </div>
 }
 
