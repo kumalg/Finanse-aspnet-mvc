@@ -251,6 +251,7 @@
     </Content>
     <Content Include="Content\background.jpg" />
     <Content Include="Content\Start\macs.png" />
+    <Content Include="Content\user1600.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -269,6 +270,7 @@
     <Content Include="Content\Loaders\loaders\_loader11.scss" />
     <Content Include="Content\Loaders\loaders\_loader12.scss" />
     <Content Include="Content\Loaders\loaders.scss" />
+    <Content Include="Content\shared-layout.scss" />
     <None Include="Content\Site.scss" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -371,6 +373,7 @@
     <Content Include="Views\Categories\_Edit.cshtml" />
     <Content Include="Views\Operations\_OperationsList.cshtml" />
     <Content Include="Views\Accounts\Create.cshtml" />
+    <Content Include="Views\Operations\_AccountCheckBoxesPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

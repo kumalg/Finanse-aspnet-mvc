@@ -1,11 +1,13 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated) {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @style = "margin-left: auto"/* @class = "navbar-right"*/ })) {
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @style = "margin-left: auto; height:inherit;"/* @class = "navbar-right"*/ }))
+    {
         @Html.AntiForgeryToken()
 
-        <a href="@Url.Action("Index", "Manage")" title="Manage" class="upper-bar-button animate-button">
-            @User.Identity.GetUserName()
-        </a><button href="javascript:document.getElementById('logoutForm').submit()" class="upper-bar-button animate-button">
+        <div class="user-avatar-wrapper">
+            <div class="user-avatar"></div>
+        </div><button href="javascript:document.getElementById('logoutForm').submit()" class="upper-bar-button animate-button">
             <i class="fa fa-power-off"></i>
         </button>
 

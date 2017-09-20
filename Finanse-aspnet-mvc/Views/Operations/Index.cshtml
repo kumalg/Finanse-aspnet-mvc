@@ -14,30 +14,9 @@
 </div>
 
 <div class="page-content-new">
-    @*<div class="btn-group" id="nav-month">
-        <button id="prevMonthBtn" class="btn button-round animate-button"><i class="fa fa-chevron-left"></i></button>
-        <button id="nextMonthBtn" class="btn button-round animate-button"><i class="fa fa-chevron-right"></i></button>
-        <button id="actualMonthBtn" class="btn button-round actualMonth animate-button">...</button>
-    </div>
 
-    <div id="noOperationsMessage" style="display: none">
-        <p>Brak operacji w tym miesiącu :(</p>
-    </div>
-
-    <div id="operationsList">
-    </div>
-
-    <div id="progress" style="display: none">
-        <div class="loader"></div>
-        <h4>Loading...</h4>
-    </div>
-
-    <div id="error" style="display:none">
-        <h4>Wystąpił błąd podczas ładowania</h4>
-        <button id="tryAgainBtn" class="btn button-round animate-button">Spróbuj ponownie</button>
-    </div>*@
-    @*@Html.Partial("_OperationsList", null)*@
-    <div id="nav-month-wrapper">
+    <!-- Page heading -->
+    <div class="page-top">
         <div id="nav-month">
             <div class="month-bar">
                 <p id="actual-month-title">Miesiąc</p>
@@ -55,31 +34,60 @@
                 </button>
             </div>
         </div>
-        <div id="blank-space">
-
-        </div>
+        <div id="blank-space"></div>
     </div>
+
+    <!-- Page content -->
     <div id="operations-page-content">
+        
+        <!-- Operations list -->
         <div id="operations-list-card" class="page-card">
             <div class="header">
                 <p>Operacje</p>
 
                 <div class="flex-right bottomline-button-group">
                     <div class="bottomline-button">
-                        <input type="radio" id="group-by-date-button" name="group-method" value="date" checked="checked" />
+                        <input type="radio" id="group-by-date-button" name="group-method" value="date" checked="checked"/>
                         <label for="group-by-date-button" class="animate-button">Data</label>
                     </div>
 
                     <div class="bottomline-button">
-                        <input type="radio" id="group-by-category-button" name="group-method" value="category" />
+                        <input type="radio" id="group-by-category-button" name="group-method" value="category"/>
                         <label for="group-by-category-button" class="animate-button">Kategoria</label>
                     </div>
                 </div>
             </div>
             <div id="operations-list">
             </div>
+
+            <div id="noOperationsMessage" style="display: none" class="operations-list-message">
+                <span class="segoe-mdl2-icon"></span>
+                <p>Brak operacji w tym miesiącu</p>
+            </div>
+
+            <div id="operationsList">
+            </div>
+            
+            @*<div class="operations-list-loading">
+                <div class="loader"></div>
+            </div>*@
+
+            @*<div id="progress" style="display: none">
+                <div class="loader"></div>
+            </div>*@
+
+            <div id="error" style="display: none" class="operations-list-message">
+                <span class="segoe-mdl2-icon"></span>
+                <p>Wystąpił błąd podczas ładowania</p>
+                <button id="tryAgainBtn" class="button-round animate-button">Spróbuj ponownie</button>
+            </div>
+
         </div>
+        
+        <!-- Second column of cards -->
         <div id="more-infos-cards" class="page-card-container">
+            
+            <!-- Visible accounts -->
             <div id="visible-accounts-card" class="page-card inner-page-card">
                 <div class="header">
                     <p>Widoczne konta</p>
@@ -90,50 +98,12 @@
                 </div>
 
                 <div class="content">
-                    
-                    <div class="checkbox-group">
-                        @foreach (var account in ViewBag.Accounts)
-                        {
-                            var id = $"account-{account.Id}-checkbox";
-                            <div class="checkbox-div">
-                                <input type="checkbox" id="@id" class="animate-button" checked="checked" value="@account.Id"/>
-                                <label for="@id">@account.Name</label>
-                            </div>
-
-                            foreach (var subAccount in account.SubAccounts)
-                            {
-                                var subId = $"account-{subAccount.Id}-checkbox";
-                                <div class="checkbox-div sub">
-                                    <input type="checkbox" id="@subId" class="animate-button" checked="checked" value="@subAccount.Id"/>
-                                    <label for="@subId">@subAccount.Name</label>
-                                </div>
-                            }
-                        }
-                        @*<div class="checkbox-div">
-                            <input type="checkbox" id="account-01-checkbox" class="animate-button">
-                            <label for="account-01-checkbox">Gotówka</label>
-                        </div>
-
-                        <div class="checkbox-div">
-                            <input type="checkbox" id="account-02-checkbox" class="animate-button" checked="checked"/>
-                            <label for="account-02-checkbox">BZ WBK</label>
-                        </div>
-
-                        <div class="checkbox-div sub">
-                            <input type="checkbox" id="account-03-checkbox" class="animate-button" checked="checked"/>
-                            <label for="account-03-checkbox">Karta Visa</label>
-                        </div>
-
-                        <div class="checkbox-div sub">
-                            <input type="checkbox" id="account-04-checkbox" class="animate-button"/>
-                            <label for="account-04-checkbox">Karta MasterCard</label>
-                        </div>*@
-                    </div>
-
+                    @Html.Partial("_AccountCheckBoxesPartial", ViewBag.Accounts as IEnumerable<Account>)
                     <button class="outline-button filter-button">Filtruj</button>
-
                 </div>
             </div>
+            
+            <!-- Summary -->
             <div id="summary-card" class="page-card inner-page-card">
                 <div class="header">
                     <p>Podsumowanie</p>
@@ -152,7 +122,6 @@
 </div>
 
 @Html.ActionLink("+", "Create", "Operations", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-success btn-circle btn-lg button-add animate-button" })
-@*<button type="button" class="btn btn-success btn-circle btn-lg addNew-button"><i class="glyphicon glyphicon-plus"></i></button>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -10,6 +10,8 @@
 @import "_checkbox.scss";
 @import "_search.scss";
 
+@import "shared-layout.scss";
+
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
@@ -58,144 +60,30 @@ textarea {
     text-transform: capitalize;
 }
 
+.operations-list-loading,
+.operations-list-message {
+    text-align: center;
 
-
-/* Side bar */
-#sidebar-wrapper {
-    z-index: 1;
-    position: fixed;
-    top: 0;
-    padding-top: $upper-bar-height;
-    width: $sidebar-compactWidth;
-    height: 100%;
-    background: $sidebar-background;
-    display: flex;
-    flex-direction: column;
-
-    overflow: {
-        y: auto;
-        x: hidden;
-    }
-
-    footer {
-        margin-top: auto;
-        align-self: center;
-        text-align: center;
-        margin-bottom: 16px;
-
-        p {
-            margin: 0;
-            opacity: 0.25;
-        }
+    p {
+        margin-top: 16px;
+        color: $foreground-75;
     }
 }
 
+.operations-list-message {
+    margin: {
+        top: 64px !important;
+        bottom: 64px !important;
+    }
 
-#sidebar-logo,
-#upper-bar {
-    height: $upper-bar-height;
-}
-
-#upper-bar {
-    z-index: 9999;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-
-#sidebar-logo {
-    border: 0;
-    display: block;
-    //   text-indent: -9999px;
-    background-color: $accent-color;
-    min-height: $upper-bar-height;
-    width: 80px;
-    @include accentHover;
-
-    background: {
-        repeat: no-repeat;
-        position: center;
+    span {
+        font-size: 3em;
+        color: $foreground-75;
     }
 }
 
-.sidebar-logo-wide {
-    background-image: url(logo_wide.png);
-}
-
-.sidebar-logo-thin {
-    background-image: url(logo_thin.png);
-}
-
-
-.sidebar-nav {
-    padding: 0;
-    margin-top: 16px;
-    list-style: none;
-
-    li {
-        text-indent: 16px;
-        line-height: 48px;
-        white-space: nowrap;
-
-        a {
-            display: block;
-            text-decoration: none;
-            padding: 0;
-            margin: 0;
-
-            &:hover,
-            &.active {
-                i {
-                    color: $accent-color;
-                    opacity: 1;
-                }
-
-                span {
-                    opacity: 0.75;
-                }
-            }
-
-            &:hover {
-                background: $sidebar-background-lighter-1;
-
-                border: {
-                    width: 0 0 0 4px;
-                    style: solid;
-                    color: $accent-color;
-                }
-            }
-
-            &.active span {
-                opacity: 0.75;
-            }
-
-
-            &:active {
-                background: $sidebar-background-lighter-2;
-            }
-
-            i {
-                width: 48px;
-                font-size: 1em;
-                color: white;
-                opacity: 0.25;
-
-                text: {
-                    align: center;
-                    indent: 0px;
-                }
-            }
-
-            span {
-                display: none;
-                color: white;
-                opacity: 0.5;
-                text-indent: 0px;
-                font-size: 0.8125em;
-                margin: 0; //16px - 4px; // NIE WIEM CZEMU ROBI TAM SIE WCZESNIEJ 20PX ZAMIAST 16PX
-            }
-        }
-    }
+.segoe-mdl2-icon {
+    font-family: 'Segoe MDL2 Assets';
 }
 
 .hide-span {
@@ -212,12 +100,6 @@ textarea {
 }
 
 
-#upper-bar {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    background-color: $accent-color-darker-1;
-}
 
 /* Change the width of the sidebar to display it */
 #wrapper.menuDisplayed #sidebar-wrapper {
@@ -235,20 +117,6 @@ textarea {
 #wrapper.menuDisplayed #sidebar-wrapper {
     span {
         display: inline-block;
-    }
-}
-
-
-.page-content {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1024px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    > div {
-        margin-top: 16px;
     }
 }
 
@@ -270,6 +138,7 @@ textarea {
     padding: 0 8px;
     flex-direction: row;
     align-items: center;
+    min-height: 42px;
 }
 
 #nav-month {
@@ -312,7 +181,7 @@ textarea {
 #nav-month,
 #blank-space {
     margin: {
-        left: 8px;
+       // left: 8px;
         right: 8px;
     }
 }
@@ -334,6 +203,11 @@ textarea {
     padding: 0;
 }
 
+.page-card, .page-card-container {
+    width: 100%;
+    max-width: 640px;
+}
+
 .page-card-container {
     margin: 8px;
     display: flex;
@@ -342,6 +216,14 @@ textarea {
     > * + * {
         margin-top: 16px !important;
     }
+}
+
+.page-title {
+    padding: 0;
+    margin: 0 10px 0 0;
+    color: $accent-color;
+    font-weight: 400;
+    font-size: 1.125em;
 }
 
 .page-card {
@@ -400,7 +282,10 @@ textarea {
 @media all and (max-width: 960px) {
     #operations-page-content, .multi-cards-container {
         flex-direction: column;
-        align-items: initial;
+        align-items: inherit;
+        > * {
+            align-self: center;
+        }
     }
 
     #more-infos-cards {

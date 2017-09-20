@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'animations';
+@import "../colors.scss";
 
 @import 'loaders/loader01';
 @import 'loaders/loader02';
@@ -15,5 +16,6 @@
 @import 'loaders/loader12';
 
 .loader {
-    @include loader10(16.0px, #bbb, 0.7s, 12.0px, center);
+  // @include loader10(16.0px, #bbb, 0.7s, 12.0px, center);
+   @include loader04(32px, $accent-color);
 }
