@@ -5,10 +5,10 @@
 @foreach (var dayGroup in Model) {
     <div role="heading" value="@dayGroup.Key" class="operation-header animate-button">
         @{
-            var date = DateTime.ParseExact(dayGroup.Key, "yyyy.MM.dd", CultureInfo.InvariantCulture);
+            //var date = DateTime.ParseExact(dayGroup.Key, "yyyy.MM.dd", CultureInfo.InvariantCulture);
         }
-        <div class="operation-header-dayNum">@date.ToString("dd")</div>
-        <div>@date.ToString("dddd")</div>
+        <div class="operation-header-dayNum">@*@date.ToString("dd")*@</div>
+        <div>@*@date.ToString("dddd")*@@dayGroup.Key</div>
     </div>
     foreach (var operation in dayGroup) {
         @Html.Partial("_Operation", operation)

@@ -1,6 +1,7 @@
 ﻿var lastId;
 var actualMonthAndYear = moment();
 var accounts = [];
+var groupBy;
 
 actualMonthAndYear.locale("pl");
 
@@ -14,24 +15,50 @@ $(document).ready(function () {
         }
     });
 });
+$("#group-method-list input").on("change",
+    function() {
+        groupBy = $("input[name=group-method]:checked").attr("value");
+       //console.log(type);
+        ReloadData();
+    });
 
 $("#account-filter-button").click(function() {
-    var values = [];
-    $("#accounts-checkboxes input:checked").each(function() {
-        values.push($(this).attr("value"));
-    });
-    accounts = values;
-    ReloadData(0);
-    console.log(accounts);
+    var values = SelectedAccounts();
+
+    if (!CompareLists(accounts, values)) {
+        accounts = values;
+        ReloadData();
+    }
+
+    $(this).attr("disabled", true);
 });
+
+$("#accounts-checkboxes").on("change",
+    function() {
+        $("#account-filter-button[disabled]").attr("disabled", false);
+    });
 
 $("#tryAgainBtn").click(function() {
     $("#error").hide();
     GetData();
 });
 
+function CompareLists(arr1, arr2) {
+    return arr1.length === arr2.length && arr1.every((el, ix) => el === arr2[ix]);
+}
+
+function SelectedAccounts() {
+    var values = [];
+
+    $("#accounts-checkboxes input:checked").each(function () {
+        values.push($(this).attr("value"));
+    });
+
+    return values;
+}
+
 function CheckIfEmpty() {
-    if (!$.trim($('#operations-list').html()).length) {
+    if (!$.trim($("#operations-list").html()).length) {
         $("#noOperationsMessage").show();
     } else {
         $("#noOperationsMessage").hide();
@@ -46,7 +73,7 @@ function GetData() {
         type: "GET",
         url: "/Operations/Index",
         traditional:true,
-        data: { "lastId": lastId, "actualYear": actualMonthAndYear.format("YYYY"), "actualMonth": actualMonthAndYear.format("MM"), "accounts": accounts },
+        data: { "lastId": lastId, "actualYear": actualMonthAndYear.format("YYYY"), "actualMonth": actualMonthAndYear.format("MM"), "accounts": accounts, "groupBy": groupBy },
         success: function (data) {
 
             if (data.lastId != null) {
@@ -102,7 +129,7 @@ function ReloadData(addMonth) {
         type: "GET",
         url: "/Operations/Index",
         traditional: true,
-        data: { "actualYear": actualMonthAndYear.format("YYYY"), "actualMonth": actualMonthAndYear.format("MM"), "accounts": accounts },
+        data: { "actualYear": actualMonthAndYear.format("YYYY"), "actualMonth": actualMonthAndYear.format("MM"), "accounts": accounts, "groupBy": groupBy },
         success: function (data) {
             $("#operations-list").html(data.partialView);
 

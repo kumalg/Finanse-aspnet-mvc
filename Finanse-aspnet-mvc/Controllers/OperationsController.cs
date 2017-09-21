@@ -10,6 +10,7 @@ using Finanse_aspnet_mvc.Models.Helpers;
 using Finanse_aspnet_mvc.Models.Operations;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
+using Finanse_aspnet_mvc.Models.Categories;
 using WebGrease.Css.Extensions;
 
 namespace Finanse_aspnet_mvc.Controllers {
@@ -25,39 +26,73 @@ namespace Finanse_aspnet_mvc.Controllers {
         }
 
         // GET: Operations
-        public async Task<ActionResult> Index(int? lastId, int? actualYear, int? actualMonth, string[] accounts) {
+        public async Task<ActionResult> Index(int? lastId, int? actualYear, int? actualMonth, string[] accounts, string groupBy) {
             if (!Request.IsAjaxRequest()) {
                 ViewBag.Accounts = await _db.Accounts.ToListAsync();
                 return View();
             }
+
             var actualMonthString = $"{actualYear}.{actualMonth:00}";
 
-            var allOperations = OperationsOfLoginUser();
-
-            var operationsOfThisMonth = allOperations.Where(o => o.Date.StartsWith(actualMonthString));     // because Data format is always YYYY.MM.DD
-            operationsOfThisMonth = operationsOfThisMonth.OrderByDescending(o => o.Id);
-
-            //accounts = new[] { 2 };
+            var operationsOfThisMonth = OperationsOfLoginUser()
+                .Where(o => o.Date.StartsWith(actualMonthString));     // because Data format is always YYYY.MM.DD
+            
+            /* Filter */
             if (accounts != null && accounts.Any()) {
                 var accountsInt = Array.ConvertAll(accounts, int.Parse);
                 operationsOfThisMonth = operationsOfThisMonth.Where(o => accountsInt.Contains(o.AccountId));
             }
-
-            var operationsOfThisMonthList = await operationsOfThisMonth.ToListAsync();
-
-            var operationsOfThisMonthFiltered = operationsOfThisMonthList
-                .SkipWhile(o => lastId != null && o.Id != lastId)                   // skip while lastId is not equal actual id and there is lastId (!= -1)
-                .Skip(lastId == null ? 0 : 1)                                       // if there is no lastId (== -1) then skip 0
-                .Take(10);
-
-            var groupedOperations = operationsOfThisMonthFiltered.GroupBy(o => o.Date).OrderByDescending(g => g.Key);
+            
+            IEnumerable<IGrouping<string, Operation>> groupedOperations;
+            switch (groupBy) {
+                case "category":
+                    groupedOperations = await OperationsByCategory(operationsOfThisMonth, lastId);
+                    break;
+                default:
+                    groupedOperations = await OperationsByDate(operationsOfThisMonth, lastId);
+                    break;
+            }
 
             var result = new {
-                lastId = operationsOfThisMonthFiltered.LastOrDefault()?.Id,
+                lastId = groupedOperations.LastOrDefault()?.LastOrDefault()?.Id,
                 partialView = RenderRazorViewToString("_OperationsList", groupedOperations)
             };
 
             return Content(JsonHelper.ToJsonString(result), "application/json");
+        }
+
+        private static async Task<IEnumerable<IGrouping<string, Operation>>> OperationsByDate(IQueryable<Operation> list, int? lastId)
+        {
+            var operationsOfThisMonthList = await list
+                .OrderByDescending(o => o.Date)
+                .ThenByDescending(o => o.Id)
+                .ToListAsync();
+
+            return TakePartOfOperations(operationsOfThisMonthList, lastId)
+                .GroupBy(o => o.Date);
+        }
+
+        private static async Task<IEnumerable<IGrouping<string, Operation>>> OperationsByCategory(IQueryable<Operation> list, int? lastId)
+        {
+            var operationsOfThisMonthList = await list
+                .OrderBy(o => o.Category is SubCategory
+                    ? (o.Category as SubCategory).ParentCategory.Name
+                    : o.Category.Name)
+                .ThenByDescending(o => o.Date)
+                .ThenByDescending(o => o.Id)
+                .ToListAsync();
+
+            return TakePartOfOperations(operationsOfThisMonthList, lastId)
+                    .GroupBy(o => o.Category is SubCategory
+                        ? ((SubCategory)o.Category).ParentCategory.Name
+                        : o.Category.Name);
+        }
+
+        private static IEnumerable<Operation> TakePartOfOperations(IEnumerable<Operation> list, int? lastId) {
+            return list
+                .SkipWhile(o => lastId != null && o.Id != lastId)                   // skip while lastId is not equal actual id and there is lastId (!= -1)
+                .Skip(lastId == null ? 0 : 1)                                       // if there is no lastId (== -1) then skip 0
+                .Take(10);
         }
 
         public string RenderRazorViewToString(string viewName, object model) {
