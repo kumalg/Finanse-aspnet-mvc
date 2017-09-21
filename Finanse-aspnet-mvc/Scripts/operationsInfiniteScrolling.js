@@ -1,5 +1,7 @@
 ﻿var lastId;
 var actualMonthAndYear = moment();
+var accounts = [];
+
 actualMonthAndYear.locale("pl");
 
 $(document).ready(function () {
@@ -11,6 +13,16 @@ $(document).ready(function () {
             GetData();
         }
     });
+});
+
+$("#account-filter-button").click(function() {
+    var values = [];
+    $("#accounts-checkboxes input:checked").each(function() {
+        values.push($(this).attr("value"));
+    });
+    accounts = values;
+    ReloadData(0);
+    console.log(accounts);
 });
 
 $("#tryAgainBtn").click(function() {
@@ -26,15 +38,15 @@ function CheckIfEmpty() {
     }
 }
 
-function GetData() {
-    
+function GetData() {    
     if ($("#error").is(":visible"))
         return false;
 
     $.ajax({
         type: "GET",
         url: "/Operations/Index",
-        data: { "lastId": lastId, "actualYear": actualMonthAndYear.format("YYYY"), "actualMonth": actualMonthAndYear.format("MM") },
+        traditional:true,
+        data: { "lastId": lastId, "actualYear": actualMonthAndYear.format("YYYY"), "actualMonth": actualMonthAndYear.format("MM"), "accounts": accounts },
         success: function (data) {
 
             if (data.lastId != null) {
@@ -89,7 +101,8 @@ function ReloadData(addMonth) {
     $.ajax({
         type: "GET",
         url: "/Operations/Index",
-        data: { "actualYear": actualMonthAndYear.format("YYYY"), "actualMonth": actualMonthAndYear.format("MM") },
+        traditional: true,
+        data: { "actualYear": actualMonthAndYear.format("YYYY"), "actualMonth": actualMonthAndYear.format("MM"), "accounts": accounts },
         success: function (data) {
             $("#operations-list").html(data.partialView);
 

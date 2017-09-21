@@ -1,21 +1,19 @@
 ﻿@model IEnumerable<Finanse_aspnet_mvc.Models.Accounts.Account>
 
-<div class="checkbox-group">
-    @foreach (var account in Model)
-    {
-        var id = $"account-{account.Id}-checkbox";
-        <div class="checkbox-div">
-            <input type="checkbox" id="@id" class="animate-button" checked="checked" value="@account.Id" />
-            <label for="@id">@account.Name</label>
-        </div>
+@foreach (var account in Model)
+{
+    var id = $"account-{account.Id}-checkbox";
+    <div class="checkbox-div">
+        <input type="checkbox" id="@id" class="animate-button" checked="checked" value="@account.Id" />
+        <label for="@id">@account.Name</label>
+    </div>
 
-        foreach (var subAccount in account.SubAccounts)
-        {
-            var subId = $"account-{subAccount.Id}-checkbox";
-            <div class="checkbox-div sub">
-                <input type="checkbox" id="@subId" class="animate-button" checked="checked" value="@subAccount.Id" />
-                <label for="@subId">@subAccount.Name</label>
-            </div>
-        }
+    foreach (var subAccount in account.SubAccounts)
+    {
+        var subId = $"account-{subAccount.Id}-checkbox";
+        <div class="checkbox-div sub">
+            <input type="checkbox" id="@subId" class="animate-button" checked="checked" value="@subAccount.Id" />
+            <label for="@subId">@subAccount.Name</label>
+        </div>
     }
-</div>
+}

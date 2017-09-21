@@ -97,8 +97,10 @@
                 </div>
 
                 <div class="content">
-                    @Html.Partial("_AccountCheckBoxesPartial", ViewBag.Accounts as IEnumerable<Account>)
-                    <button class="outline-button filter-button">Filtruj</button>
+                    <div class="checkbox-group" id="accounts-checkboxes">
+                        @Html.Partial("_AccountCheckBoxesPartial", ViewBag.Accounts as IEnumerable<Account>)
+                    </div>
+                    <button class="outline-button filter-button" id="account-filter-button">Filtruj</button>
                 </div>
             </div>
             
