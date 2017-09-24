@@ -9,7 +9,7 @@
     <div class="operation-text">
         <p>@Model.TitleOrCategoryName</p>
 
-        <div>
+        <div class="operation-category-name">
             @if (Model.Category is SubCategory) {
                 <small>@(((SubCategory)Model.Category).ParentCategory.Name)</small>
                 <i class="fa fa-chevron-right operation-angle"></i>

@@ -28,12 +28,12 @@
 
     <div>
         <div class="remember-div">
-            <div class="checkbox">
+            <div class="checkbox-div">
                 @Html.CheckBoxFor(m => m.RememberMe)
                 @Html.LabelFor(m => m.RememberMe)
             </div>
+            @Html.ActionLink("Zapomniałeś hasła?", "ForgotPassword", null, new { @style = "margin-left: auto", @class = "link" })
         </div>
-        @Html.ActionLink("Zapomniałeś hasła?", "ForgotPassword", null, new { @style = "display: inline; float: right;", @class = "link" })
     </div>
 
     <div class="login-buttons">

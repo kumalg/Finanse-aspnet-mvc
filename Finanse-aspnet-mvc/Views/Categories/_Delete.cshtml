@@ -1,8 +1,8 @@
 ﻿@using Finanse_aspnet_mvc.Models.Categories
-@model Finanse_aspnet_mvc.Models.Categories.CategoryBase
+@model CategoryBase
 
-<div class="modal-body">
-    <p>Czy na pewno chcesz usunąć <b>@Model.Name</b> ?</p>
+<div class="pop-up-body">
+    <p>Czy na pewno chcesz usunąć <strong>@Model.Name</strong> ?</p>
     @if (Model is Category) {
         <p>Zostaną usunięte wszystkie podkategorie.</p>
     }
@@ -11,8 +11,10 @@
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
 
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal">Anuluj</button>
-        <input class="btn btn-danger" type="submit" value="Usuń" />
+    <div class="pop-up-footer">
+        <div class="button-block">
+            <button class="pop-up-button" data-dismiss="modal">Anuluj</button>
+            <input class="pop-up-button pop-up-button-danger" type="submit" value="Usuń" />
+        </div>
     </div>
 }

@@ -122,6 +122,8 @@ function ReloadData(addMonth) {
     actualMonthAndYear.add(addMonth, "month");
     UpdateActualMonthBtn(actualMonthAndYear);
 
+    var scrollTop = $(window).scrollTop();
+
     lastId = null;
     $("#operations-list").html("");
 
@@ -148,6 +150,7 @@ function ReloadData(addMonth) {
         },
         complete: function () {
             $("#progress").hide();
+            window.scrollTo(0, scrollTop);
         },
         error: function () {
             $("#error").show();

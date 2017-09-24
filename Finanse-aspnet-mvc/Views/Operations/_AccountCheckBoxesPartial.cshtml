@@ -5,7 +5,7 @@
     var id = $"account-{account.Id}-checkbox";
     <div class="checkbox-div">
         <input type="checkbox" id="@id" class="animate-button" checked="checked" value="@account.Id" />
-        <label for="@id">@account.Name</label>
+        <label for="@id" class="listed">@account.Name</label>
     </div>
 
     foreach (var subAccount in account.SubAccounts)
@@ -13,7 +13,7 @@
         var subId = $"account-{subAccount.Id}-checkbox";
         <div class="checkbox-div sub">
             <input type="checkbox" id="@subId" class="animate-button" checked="checked" value="@subAccount.Id" />
-            <label for="@subId">@subAccount.Name</label>
+            <label for="@subId" class="listed">@subAccount.Name</label>
         </div>
     }
 }

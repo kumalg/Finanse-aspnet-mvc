@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Finanse_aspnet_mvc.Models.Helpers
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -54,43 +55,43 @@
 
             <ul class="sidebar-nav">
                 <li>
-                    <a href="@Url.Action("Index", "Home")" class="animate-button active">
+                    <a href="@Url.Action("Index", "Operations")" class="animate-button @Html.IsSelected("Index", "Operations", "active")">
                         <i class="fa fa-calendar-o"></i>
                         <span>Operacje</span>
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Categories")" class="animate-button">
+                    <a href="@Url.Action("Index", "Categories")" class="animate-button @Html.IsSelected("Index", "Categories", "active")">
                         <i class="fa fa-tags"></i>
                         <span>Kategorie</span>
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Statistics")" class="animate-button">
+                    <a href="@Url.Action("Index", "Statistics")" class="animate-button @Html.IsSelected("Index", "Statistics", "active")">
                         <i class="fa fa-bar-chart"></i>
                         <span>Statystyki</span>
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Patterns")" class="animate-button">
+                    <a href="@Url.Action("Index", "Patterns")" class="animate-button @Html.IsSelected("Index", "Patterns", "active")">
                         <i class="fa fa-copy"></i>
                         <span>Szablony</span>
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Accounts")" class="animate-button">
+                    <a href="@Url.Action("Index", "Accounts")" class="animate-button @Html.IsSelected("Index", "Accounts", "active")">
                         <i class="fa fa-credit-card"></i>
                         <span>Konta</span>
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "StandingOrders")" class="animate-button">
+                    <a href="@Url.Action("Index", "StandingOrders")" class="animate-button @Html.IsSelected("Index", "StandingOrders", "active")">
                         <i class="fa fa-clock-o"></i>
                         <span>Zlecenia stałe</span>
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Contact", "Home")" class="animate-button">
+                    <a href="@Url.Action("Contact", "Home")" class="animate-button @Html.IsSelected("Contact", "Home", "active")">
                         <i class="fa fa-phone"></i>
                         <span>Kontakt</span>
                     </a>

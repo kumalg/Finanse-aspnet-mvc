@@ -220,6 +220,7 @@
     <Compile Include="Models\DecimalModelBinder.cs" />
     <Compile Include="Models\Helpers\AppSettingsHelper.cs" />
     <Compile Include="Models\Helpers\JsonHelper.cs" />
+    <Compile Include="Models\Helpers\MyHtmlHelper.cs" />
     <Compile Include="Models\Helpers\OperationsHelper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ISpecificUserData.cs" />

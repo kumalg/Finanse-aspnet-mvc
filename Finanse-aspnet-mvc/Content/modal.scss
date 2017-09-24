@@ -83,7 +83,17 @@
 }
 
 .pop-up-body {
-    padding: 24px 0;
+    padding: 12px 0 24px 0;
+
+    p {
+        color: $foreground-50;
+        line-height: 1.25em;
+    }
+
+    strong {
+        font-weight: 600;
+        color: $foreground-75;
+    }
 }
 
 .pop-up-footer {
@@ -109,11 +119,24 @@
     padding: 0;
     background: none;
     border: none;
-    color: $accent-color;
+    color: $foreground-50;
     font-size: 0.875em;
     line-height: 1.5em;
     outline: none;
     transition: color 0.2s;
+
+    &:hover {
+        color: $foreground-75;
+    }
+
+    &:active {
+        color: $foreground-100;
+    }
+}
+
+.pop-up-button-primary {
+    font-weight: 600;
+    color: $accent-color;
 
     &:hover {
         color: $accent-color-lighter-1;
@@ -124,8 +147,17 @@
     }
 }
 
-.pop-up-button-primary {
+.pop-up-button-danger {
     font-weight: 600;
+    color: $red-color;
+
+    &:hover {
+        color: $red-color-lighter-1;
+    }
+
+    &:active {
+        color: $red-color-lighter-2;
+    }
 }
 
 .form-wrapper {

@@ -38,12 +38,18 @@
         
             <div>
                 @Html.Label("Kolor", htmlAttributes: new { @class = "" })
-                    @Html.DropDownListFor(model => model.ColorKey, AppSettingsHelper.GetColors().Select(i => new SelectListItem {Value = i.Key, Text = i.Key}), new {@class = ""})
+                @*@Html.DropDownListFor(model => model.ColorKey, AppSettingsHelper.GetColors().Select(i => new SelectListItem {Value = i.Key, Text = i.Key}), new {style = ""})*@
+                <select id="@nameof(Model.ColorKey)" name="@nameof(Model.ColorKey)">
+                    @foreach (var color in AppSettingsHelper.GetColors())
+                    {
+                        <option value="@color.Key" style="background-color: @color.Value"></option>
+                    }
+                </select>
             </div>
         
 
 
-            @*<div class="form-group">
+            @*<div class="form-group"> AppSettingsHelper.GetColors()
             @Html.LabelFor(model => model.IconKey, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.IconKey, new { htmlAttributes = new { @class = "form-control" } })
@@ -53,13 +59,21 @@
         
             <div>
                 @Html.Label("Ikona", htmlAttributes: new { @class = "" })
-                @Html.DropDownListFor(model => model.IconKey, AppSettingsHelper.GetIcons().Select(i => new SelectListItem { Value = i.Key, Text = i.Key }), new { @class = "" })
+                @*@Html.DropDownListFor(model => model.IconKey, AppSettingsHelper.GetIcons().Select(i => new SelectListItem { Value = i.Key, Text = i.Key }), new { @class = "" })*@
+                <select id="@nameof(Model.IconKey)" name="@nameof(Model.IconKey)">
+                    @foreach (var icon in AppSettingsHelper.GetIcons())
+                    {
+                        <option value="@icon.Key" style="color: black">
+                            @icon.Value
+                        </option>
+                    }
+                </select>
             </div>
 
             <div class="checkbox-div">
                 @Html.EditorFor(model => model.VisibleInIncomes)
-                @Html.LabelFor(model => model.VisibleInIncomes, htmlAttributes: new {@class = "label-normal" })
-                @Html.ValidationMessageFor(model => model.VisibleInIncomes, "", new {@class = "text-danger"})
+                @Html.LabelFor(model => model.VisibleInIncomes, htmlAttributes: new { @class = "label-normal" })
+                @Html.ValidationMessageFor(model => model.VisibleInIncomes, "", new { @class = "text-danger" })
             </div>
 
             <div class="checkbox-div">

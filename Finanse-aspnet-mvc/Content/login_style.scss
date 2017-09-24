@@ -113,16 +113,17 @@
     }
 
     .remember-div {
-        display: inline-block;
+        display: flex;
+        flex-wrap: wrap;
 
-        label {
+        /*label {
             display: inline-block;
             color: rgba(255,255,255,.5);
             font-size: 0.875em;
             margin: 2px 0 0 8px;
             padding: 0;
             vertical-align: top;
-        }
+        }*/
     }
 }
 
