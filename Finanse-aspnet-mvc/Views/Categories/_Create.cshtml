@@ -55,7 +55,7 @@
                     </button>
                     <ul class="dropdown-menu _select_color_drop" aria-labelledby="dropdownMenu1">
                         @foreach (var color in AppSettingsHelper.GetColors()) {
-                            <li value="@color.Key" color-hex="@color.Value">
+                            <li value="@color.Key" color-hex="@color.Value" class="loll">
                                 <span class="dropdown-grid-color" style="background-color: @color.Value"></span>
                             </li>
                         }
@@ -69,8 +69,8 @@
                     </button>
                     <ul class="dropdown-menu _select_color_drop" aria-labelledby="dropdownMenu2">
                         @foreach (var icon in AppSettingsHelper.GetIcons()) {
-                            <li value="@icon.Key">
-                                <span class="dropdown-grid-color">
+                            <li value="@icon.Key" class="dropdown-grid-icon loll">
+                                <span>
                                     <i class="@icon.Value" aria-hidden="true"></i>
                                 </span>
                             </li>
@@ -145,16 +145,30 @@
 
 <script>
     $(".dropdown[data-dropdown='ColorKey'] li").click(function () {
-        var color = $(".dropdown[data-dropdown='ColorKey'] li.selected").attr("color-hex");
-        console.log(color);
-        $("#color-button-circle").css("color", color);
+        setColorOnButton();
     });
 
     $(".dropdown[data-dropdown='IconKey'] li").click(function () {
+        setIconOnButton();
+    });
+
+    function setColorOnButton() {
+        var color = $(".dropdown[data-dropdown='ColorKey'] li.selected").attr("color-hex");
+        console.log(color);
+        $("#color-button-circle").css("color", color);
+    }
+
+    function setIconOnButton() {
         var icon = $(".dropdown[data-dropdown='IconKey'] li.selected i").attr("class");
         console.log(icon);
         $("#icon-button-i").attr("class", icon);
-    });
+    }
+    
+    $($(".dropdown[data-dropdown='ColorKey'] li")[0]).addClass("selected");
+    setColorOnButton();
+
+    $($(".dropdown[data-dropdown='IconKey'] li")[0]).addClass("selected");
+    setIconOnButton();
 </script>
 
 @section Scripts {
