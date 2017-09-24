@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Finanse_aspnet_mvc.Models.Categories {
     public class CategoryPost : ICategoryBase {
@@ -10,7 +6,9 @@ namespace Finanse_aspnet_mvc.Models.Categories {
         public string Name { get; set; }
         public string ColorKey { get; set; }
         public string IconKey { get; set; }
+        [Display(Name = "Widoczna we wpływach")]
         public bool VisibleInIncomes { get; set; }
+        [Display(Name = "Widoczna w wydatkach")]
         public bool VisibleInExpenses { get; set; }
         public bool CantDelete { get; set; }
         public int? ParentCategoryId { get; set; }

@@ -308,3 +308,32 @@ button,
 #button-hamburger {
     @include uniform-size($upper-bar-height);
 }
+
+
+
+.dropdown-grid-toggle {
+    background: none;
+    border: none;
+    padding: 16px;
+    border-radius: 4px;
+    outline: none;
+
+    > * {
+        display: block;
+    }
+
+    span {
+        margin-top: 12px;
+        color: $foreground-40;
+        font-size: 0.875em;
+    }
+
+    i {
+        font-size: 2em;
+        color: $foreground-75;
+    }
+
+    &:hover {
+        background-color: $body-background-lighten-1;
+    }
+}

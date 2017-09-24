@@ -36,48 +36,57 @@
             }
         </div>*@
         
-            <div>
-                @Html.Label("Kolor", htmlAttributes: new { @class = "" })
+            @*<div>
+                @Html.Label("Kolor", htmlAttributes: new { @class = "" })*@
                 @*@Html.DropDownListFor(model => model.ColorKey, AppSettingsHelper.GetColors().Select(i => new SelectListItem {Value = i.Key, Text = i.Key}), new {style = ""})*@
-                <select id="@nameof(Model.ColorKey)" name="@nameof(Model.ColorKey)">
+                @*<select id="@nameof(Model.ColorKey)" name="@nameof(Model.ColorKey)">
                     @foreach (var color in AppSettingsHelper.GetColors())
                     {
-                        <option value="@color.Key" style="background-color: @color.Value"></option>
+                        <option class="yco" value="@color.Key" style="background-color: @color.Value"></option>
                     }
                 </select>
-            </div>
-        
-
-
-            @*<div class="form-group"> AppSettingsHelper.GetColors()
-            @Html.LabelFor(model => model.IconKey, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IconKey, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IconKey, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-        
+            </div>*@
+            
             <div>
-                @Html.Label("Ikona", htmlAttributes: new { @class = "" })
-                @*@Html.DropDownListFor(model => model.IconKey, AppSettingsHelper.GetIcons().Select(i => new SelectListItem { Value = i.Key, Text = i.Key }), new { @class = "" })*@
-                <select id="@nameof(Model.IconKey)" name="@nameof(Model.IconKey)">
-                    @foreach (var icon in AppSettingsHelper.GetIcons())
-                    {
-                        <option value="@icon.Key" style="color: black">
-                            @icon.Value
-                        </option>
-                    }
-                </select>
+                <div class="dropdown" data-dropdown="@nameof(Model.ColorKey)">
+                    <button class="dropdown-grid-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-circle" aria-hidden="true" id="color-button-circle"></i>
+                        <span>Kolor</span>
+                    </button>
+                    <ul class="dropdown-menu _select_color_drop" aria-labelledby="dropdownMenu1">
+                        @foreach (var color in AppSettingsHelper.GetColors()) {
+                            <li value="@color.Key" color-hex="@color.Value">
+                                <span class="dropdown-grid-color" style="background-color: @color.Value"></span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="dropdown" data-dropdown="@nameof(Model.IconKey)">
+                    <button class="dropdown-grid-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-inbox" aria-hidden="true" id="icon-button-i"></i>
+                        <span>Ikona</span>
+                    </button>
+                    <ul class="dropdown-menu _select_color_drop" aria-labelledby="dropdownMenu2">
+                        @foreach (var icon in AppSettingsHelper.GetIcons()) {
+                            <li value="@icon.Key">
+                                <span class="dropdown-grid-color">
+                                    <i class="@icon.Value" aria-hidden="true"></i>
+                                </span>
+                            </li>
+                        }
+                    </ul>
+                </div>
             </div>
 
             <div class="checkbox-div">
-                @Html.EditorFor(model => model.VisibleInIncomes)
+                @Html.EditorFor(model => model.VisibleInIncomes, new { @Value = "true" })
                 @Html.LabelFor(model => model.VisibleInIncomes, htmlAttributes: new { @class = "label-normal" })
                 @Html.ValidationMessageFor(model => model.VisibleInIncomes, "", new { @class = "text-danger" })
             </div>
 
             <div class="checkbox-div">
-                @Html.EditorFor(model => model.VisibleInExpenses)
+                @Html.EditorFor(model => model.VisibleInExpenses, new { @Value = "true" })
                 @Html.LabelFor(model => model.VisibleInExpenses, htmlAttributes: new { @class = "label-normal" })
                 @Html.ValidationMessageFor(model => model.VisibleInExpenses, "", new { @class = "text-danger" })
             </div>
@@ -99,6 +108,54 @@
         </div>
     </div>
 }
+
+<script>
+    _dropDownMenus = $('._select_color_drop');
+
+    for (var j = _dropDownMenus.length - 1; j >= 0; j--) {
+        var items = _dropDownMenus[j].getElementsByTagName("li");
+
+        for (var i = items.length - 1; i >= 0; i--) {
+            $(items[i]).click(function () {
+                var value = $(this).attr('value');
+                var dropDown = $(this).parent().parent();
+
+                var inputName = dropDown.attr("data-dropdown");
+                var input = dropDown[0].getElementsByTagName("input");
+
+                unselectAll(dropDown);
+                $(this).addClass("selected");
+
+                if (input.length === 0) {
+                    dropDown.append("<input type='hidden' name='" + inputName + "' value='" + value + "'>");
+                } else {
+                    $(input).val(value);
+                }
+            });
+        };
+
+        function unselectAll(dropDown) {
+            var items = dropDown[0].getElementsByTagName("li");
+            for (var k = items.length - 1; k >= 0; k--) {
+                $(items[k]).removeClass("selected");
+            };
+        }
+    }
+</script>
+
+<script>
+    $(".dropdown[data-dropdown='ColorKey'] li").click(function () {
+        var color = $(".dropdown[data-dropdown='ColorKey'] li.selected").attr("color-hex");
+        console.log(color);
+        $("#color-button-circle").css("color", color);
+    });
+
+    $(".dropdown[data-dropdown='IconKey'] li").click(function () {
+        var icon = $(".dropdown[data-dropdown='IconKey'] li.selected i").attr("class");
+        console.log(icon);
+        $("#icon-button-i").attr("class", icon);
+    });
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
