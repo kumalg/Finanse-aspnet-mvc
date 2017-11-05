@@ -449,6 +449,45 @@ button,
   .button-round:focus {
     outline: 0; }
 
+.button {
+  display: inline-block;
+  color: #242727;
+  background-color: #06a771;
+  font-size: 0.6875em;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 1em;
+  margin: 0 4px;
+  text-align: center;
+  line-height: 0.6875em;
+  text-decoration: none !important;
+  outline: 0;
+  min-width: 32px;
+  min-height: 32px; }
+  .button.round-button {
+    border-radius: 5px;
+    border-style: solid;
+    border-color: transparent; }
+  .button.outline-button {
+    border-width: 1.5px;
+    border-style: solid;
+    border-color: #06a771; }
+  .button.square {
+    padding: 0;
+    width: 32px;
+    height: 32px; }
+  .button:enabled:hover {
+    background-color: transparent;
+    color: #06a771;
+    border-color: #06a771; }
+  .button:enabled:active {
+    color: #07c585;
+    border-color: #07c585; }
+  .button:disabled {
+    border-color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.25); }
+
+/* docelowo do wyjebania */
 .outline-button {
   display: inline-block;
   color: #06a771;

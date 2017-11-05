@@ -22,13 +22,13 @@
                 <small id="actual-year-title">Rok</small>
             </div>
             <div id="nav-month-buttons">
-                <button class="outline-button square" id="prev-month-button">
+                <button class="button round-button square outline-button" id="prev-month-button">
                     <i class="fa fa-angle-left square" aria-hidden="true"></i>
                 </button>
-                <button class="outline-button square" id="next-month-button">
+                <button class="button round-button square outline-button" id="next-month-button">
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </button>
-                <button class="outline-button outline-button-inverted square" id="planned-operations-button">
+                <button class="button round-button square" id="planned-operations-button">
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                 </button>
             </div>
@@ -100,7 +100,7 @@
                     <div class="checkbox-group" id="accounts-checkboxes">
                         @Html.Partial("_AccountCheckBoxesPartial", ViewBag.Accounts as IEnumerable<Account>)
                     </div>
-                    <button class="outline-button filter-button" id="account-filter-button">Filtruj</button>
+                    <button class="button round-button outline-button filter-button" id="account-filter-button">Filtruj</button>
                 </div>
             </div>
             
@@ -122,7 +122,7 @@
     </div>
 </div>
 
-@Html.ActionLink("+", "Create", "Operations", null, new { dataModal = "", id = "btnCreate", @class = "button-round button-add animate-button" })
+@Html.ActionLink("+", "Create", "Operations", null, new { dataModal = "", id = "btnCreate", @class = "button round-button button-add" })
 <!-- Trigger/Open The Modal -->
 @*<button id="btnCreate" class = "button-round button-add animate-button">+</button>*@
 

@@ -91,6 +91,68 @@ button,
     }
 }
 
+.button {
+    display: inline-block;
+    color: $body-background;
+    background-color: $accent-color;
+    font-size: 0.6875em;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 1em;
+    margin: 0 4px;
+    text-align: center;
+    line-height: 0.6875em;
+    text-decoration: none !important;
+    outline: 0;
+
+    min: {
+        @include uniform-size(32px);
+    }
+
+    &.round-button {
+        border: {
+            radius: 5px;
+            style: solid;
+            color: transparent;
+        }
+    }
+
+    &.outline-button {
+        border: {
+            width: 1.5px;
+            style: solid;
+            color: $accent-color;
+        }
+    }
+
+    &.square {
+        padding: 0;
+        @include uniform-size(32px);
+    }
+
+
+
+    &:enabled {
+        &:hover {
+            background-color: transparent;
+            color: $accent-color;
+            border-color: $accent-color;
+        }
+
+        &:active {
+            // background-color: $accent-color-lighter-2;
+            color: $accent-color-lighter-2;
+            border-color: $accent-color-lighter-2;
+        }
+    }
+
+    &:disabled {
+        border-color: $foreground-25;
+        color: $foreground-25;
+    }
+}
+
+/* docelowo do wyjebania */
 .outline-button {
     display: inline-block;
     color: $accent-color;
